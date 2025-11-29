@@ -4,6 +4,7 @@ import Nav from "@/components/nav";
 import Hero from "@/components/hero";
 import BarChart from "@/components/barChart";
 import Carousel from "@/components/carousel";
+import Drawer from "@/components/drawer";
 
 export default function Home() {
   return (
@@ -52,6 +53,7 @@ export default function Home() {
             iconLink: "",
           },
         ]}
+        hamburgerIcon="/looplogoli.png"
       />
       <Hero
         headerBtn="Now available by running npm commands"
@@ -117,6 +119,7 @@ export default function Home() {
             { image: "/card3.png", text: "Card 3" },
           ]}
         />
+        <Drawer title="Doodle" size={600} colour="#000000ff" />
       </div>
     </>
   );

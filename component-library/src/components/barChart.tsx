@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 
 const arr: string[] = ["#1a1a1a", "#4d4d4d", "#999999", "#e6e6e6"];
 
@@ -11,9 +10,7 @@ type barChart = {
 type eachBar = { content: barChart[] };
 
 export default function BarChart({ content }: eachBar) {
-  const [colors] = useState<string[]>(() =>
-    content.map(() => arr[Math.floor(Math.random() * arr.length)])
-  );
+  const colors = content.map((_, index) => arr[index % arr.length]);
 
   const max = content.reduce((a, b) => Math.max(a, b.size), 0);
   const cal = content.map((a) => (a.size / max) * 300);

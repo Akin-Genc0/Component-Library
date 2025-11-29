@@ -25,3 +25,9 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 1.5rem 5.5rem;
 }
+
+@media (max-width: 640px) {
+  body {
+    margin: 0.5rem 1rem;
+  }
+}
