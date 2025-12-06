@@ -5,7 +5,7 @@ import Hero from "@/components/hero";
 import BarChart from "@/components/barChart";
 import Carousel from "@/components/carousel";
 import Drawer from "@/components/drawer";
-
+import Accordion from "@/components/accordion";
 export default function Home() {
   return (
     <>
@@ -114,12 +114,50 @@ export default function Home() {
         <Chat title="kol bot" img="/looplogoli.png" propt="kol" />
         <Carousel
           card={[
-            { image: "/card1.png", text: "Card 1" },
-            { image: "/card2.png", text: "Card 2" },
-            { image: "/card3.png", text: "Card 3" },
+            {
+              image: "",
+              text: "Streamline your development workflow with modern tools and frameworks that boost productivity. Create scalable applications with ease.",
+            },
+            {
+              image: "",
+              text: "Build beautiful, responsive interfaces that users love. Our component library provides everything you need for professional UI design.",
+            },
+            {
+              image: "",
+              text: "Write clean, maintainable code with best practices. TypeScript and modern JavaScript make your codebase robust and reliable.",
+            },
+            {
+              image: "",
+              text: "Create stunning user experiences with smooth animations and intuitive interactions. Delight your users with every click.",
+            },
+            {
+              image: "",
+              text: "Powerful components designed for modern applications. Accessible, customizable, and ready to use in your next project.",
+            },
           ]}
         />
         <Drawer title="Doodle" size={600} colour="#000000ff" />
+
+        <Accordion
+          items={[
+            {
+              title: "What is LoopUI?",
+              text: "LoopUI is a modern component library built with React and Tailwind CSS, designed to help you build beautiful interfaces quickly.",
+            },
+            {
+              title: "How do I get started?",
+              text: "Simply install the components using npm and import them into your project. Full documentation is available in our guides.",
+            },
+            {
+              title: "Is it free to use?",
+              text: "Yes! LoopUI is completely free and open source. You can use it in personal and commercial projects.",
+            },
+            {
+              title: "Does it support dark mode?",
+              text: "Absolutely! All components are built with dark mode support using Tailwind's dark mode utilities.",
+            },
+          ]}
+        />
       </div>
     </>
   );
