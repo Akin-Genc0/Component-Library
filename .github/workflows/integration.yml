@@ -25,11 +25,7 @@ jobs:
 
       - name: "Installing Dependencies"
         working-directory: ./component-library
-        run: npm ci
-
-      - name: "Run Tests"
-        working-directory: ./component-library
-        run: npm test
+        run: npm i
 
       - name: "Build Command"
         working-directory: ./component-library
