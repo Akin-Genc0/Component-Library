@@ -6,14 +6,17 @@ import BarChart from "@/components/barChart";
 import Carousel from "@/components/carousel";
 import Drawer from "@/components/drawer";
 import Accordion from "@/components/accordion";
-export default function Home() {
+import { auth } from "@/authConfig";
+export default async function Home() {
+  const session = await auth();
+
   return (
     <>
       <Nav
         link={[
           {
             icon: "/looplogoli.png",
-            iconLink: "#",
+            iconLink: "/",
             lin: "https://react.dev/learn/rendering-lists",
             navLink: "Home",
           },
@@ -49,8 +52,8 @@ export default function Home() {
           },
           {
             el: "",
-            icon: "/assests/dl-icon.png",
-            iconLink: "",
+            icon: session?.user?.image || "/nouser1.png",
+            iconLink: "/login",
           },
         ]}
         hamburgerIcon="/looplogoli.png"
@@ -115,23 +118,28 @@ export default function Home() {
         <Carousel
           card={[
             {
-              image: "",
+              image:
+                "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
               text: "Streamline your development workflow with modern tools and frameworks that boost productivity. Create scalable applications with ease.",
             },
             {
-              image: "",
+              image:
+                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
               text: "Build beautiful, responsive interfaces that users love. Our component library provides everything you need for professional UI design.",
             },
             {
-              image: "",
+              image:
+                "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80",
               text: "Write clean, maintainable code with best practices. TypeScript and modern JavaScript make your codebase robust and reliable.",
             },
             {
-              image: "",
+              image:
+                "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
               text: "Create stunning user experiences with smooth animations and intuitive interactions. Delight your users with every click.",
             },
             {
-              image: "",
+              image:
+                "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80",
               text: "Powerful components designed for modern applications. Accessible, customizable, and ready to use in your next project.",
             },
           ]}
