@@ -1,0 +1,36 @@
+name: Integration
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+          cache-dependency-path: "./component-library/package-lock.json"
+
+      - name: "Installing Dependencies"
+        working-directory: ./component-library
+        run: npm ci
+
+      - name: "Run Tests"
+        working-directory: ./component-library
+        run: npm test
+
+      - name: "Build Command"
+        working-directory: ./component-library
+        run: npm run build
