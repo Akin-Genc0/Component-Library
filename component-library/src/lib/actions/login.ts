@@ -1,6 +1,6 @@
 "use server"
-import { signIn } from "@/auth";
-import { signOut } from "@/auth";
+import { signIn } from "@/authConfig";
+import { signOut } from "@/authConfig";
 
 export const login = async () => {
     await signIn('github', {redirectTo: "/"})
