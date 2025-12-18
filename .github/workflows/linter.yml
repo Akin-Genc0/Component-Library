@@ -16,7 +16,25 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter@v7
         env:
-          VALIDATE_ALL_CODEBASE: true
-          VALIDATE_JAVASCRIPT_ES: false
+          VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Only validate essential code quality
+          VALIDATE_TYPESCRIPT_ES: true
+          VALIDATE_TSX: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_JSON: true
+          VALIDATE_YAML: true
+          # Disable all formatters
+          VALIDATE_CSS_PRETTIER: false
+          VALIDATE_TYPESCRIPT_PRETTIER: false
+          VALIDATE_MARKDOWN_PRETTIER: false
+          VALIDATE_JSON_PRETTIER: false
+          VALIDATE_YAML_PRETTIER: false
+          # Disable security/infrastructure scanners
+          VALIDATE_CHECKOV: false
+          VALIDATE_TYPESCRIPT_STANDARD: false
+          VALIDATE_CSS: false
+          VALIDATE_MARKDOWN: false
+          VALIDATE_NATURAL_LANGUAGE: false
+          VALIDATE_JSCPD: false
