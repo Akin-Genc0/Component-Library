@@ -19,13 +19,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Only validate essential code quality
-          VALIDATE_TYPESCRIPT_ES: true
-          VALIDATE_TSX: true
-          VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_JSON: true
-          VALIDATE_YAML: true
-          # Disable all formatters
+          # Disable formatters
           VALIDATE_CSS_PRETTIER: false
           VALIDATE_TYPESCRIPT_PRETTIER: false
           VALIDATE_MARKDOWN_PRETTIER: false
