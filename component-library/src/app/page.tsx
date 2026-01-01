@@ -48,7 +48,7 @@ export default async function Home() {
           {
             el: "",
             icon: "/assests/githublogo.png",
-            iconLink: "",
+            iconLink: "/userinfo",
           },
           {
             el: "",
