@@ -11,10 +11,6 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // If user is authenticated and not on /userinfo, redirect to /userinfo
-  if (token && pathname !== "/userinfo" && !pathname.startsWith("/api")) {
-    return NextResponse.redirect(new URL("/userinfo", request.url));
-  }
 
   return NextResponse.next();
 }
