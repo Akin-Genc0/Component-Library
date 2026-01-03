@@ -1,13 +1,13 @@
+import { auth } from "@/authConfig";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getToken } from "next-auth/jwt";
 
 export default async function middleware(request: NextRequest) {
-  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+  const session = await auth();
   const { pathname } = request.nextUrl;
 
   // If user is not authenticated and trying to access /userinfo, redirect to /login
-  if (pathname.startsWith("/userinfo") && !token) {
+  if (pathname.startsWith("/userinfo") && !session) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
