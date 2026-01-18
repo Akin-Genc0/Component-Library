@@ -1,7 +1,7 @@
 terraform {
   cloud {
     organization = "Looply"
-
+    
     workspaces {
       name = "Component-Library-dev"
     }
@@ -21,8 +21,8 @@ provider "google" {
   zone    = "us-central1-c"
 }
 
-resource "google_storage_bucket" "test" {
-  name          = "test"
+resource "google_storage_bucket" "app_bucket" {
+  name          = "${var.project}-storage-bucket"
   location      = "EU"
   force_destroy = true
 }
