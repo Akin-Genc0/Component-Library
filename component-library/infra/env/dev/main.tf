@@ -1,7 +1,7 @@
 terraform {
   cloud {
     organization = "Looply"
-    
+
     workspaces {
       name = "Component-Library-dev"
     }
@@ -9,7 +9,7 @@ terraform {
 
   required_providers {
     google = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
       version = "6.8.0"
     }
   }
