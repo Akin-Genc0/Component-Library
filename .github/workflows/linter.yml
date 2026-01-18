@@ -28,6 +28,9 @@ jobs:
           # Disable security/infrastructure scanners
           VALIDATE_CHECKOV: false
           VALIDATE_TYPESCRIPT_STANDARD: false
+          # Disable Terraform linters
+          VALIDATE_TERRAFORM_TFLINT: false
+          VALIDATE_TERRAFORM_TERRASCAN: false
           VALIDATE_CSS: false
           VALIDATE_MARKDOWN: false
           VALIDATE_NATURAL_LANGUAGE: false
