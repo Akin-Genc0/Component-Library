@@ -21,7 +21,9 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform init
+        working-directory: ${{ env.CONFIG_DIRECTORY }}
         run: terraform init
 
       - name: Terraform Plan
+        working-directory: ${{ env.CONFIG_DIRECTORY }}
         run: terraform plan
