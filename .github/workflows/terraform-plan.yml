@@ -4,11 +4,12 @@ on:
   pull_request:
     branches:
       - develop
+      - qa
 
 env:
   TF_CLOUD_ORGANIZATION: "Looply"
   TF_TOKEN_app_terraform_io: "${{ secrets.TF_API_TOKEN }}"
-  CONFIG_DIRECTORY: "./component-library/infra/env/dev"
+  CONFIG_DIRECTORY: ${{ github.base_ref == 'qa' && './component-library/infra/env/qa' || './component-library/infra/env/dev' }}
 
 jobs:
   terraform:
