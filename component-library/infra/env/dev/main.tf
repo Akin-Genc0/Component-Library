@@ -1,7 +1,7 @@
 terraform {
   cloud {
     organization = "Looply"
-    
+
     workspaces {
       name = "Component-Library-dev"
     }

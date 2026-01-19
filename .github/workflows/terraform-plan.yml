@@ -8,7 +8,6 @@ on:
 env:
   TF_CLOUD_ORGANIZATION: "Looply"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-  TF_WORKSPACE: "component-Library-dev"
   CONFIG_DIRECTORY: "./component-library/infra/env/dev"
 
 jobs:
