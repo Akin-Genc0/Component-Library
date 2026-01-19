@@ -15,6 +15,9 @@ on:
 jobs:
   Deploy-Preview:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./component-library
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
@@ -24,10 +27,10 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Install dependencies
-        run: cd component-library && npm ci
+        run: npm ci
       - name: Pull Vercel Environment Information
-        run: cd component-library && vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
-        run: cd component-library && vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: cd component-library && vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
