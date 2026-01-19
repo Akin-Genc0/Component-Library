@@ -19,6 +19,10 @@ jobs:
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Terraform fmt
+        working-directory: ${{ env.CONFIG_DIRECTORY }}
+        run: terraform fmt
+
       - name: Terraform init
         working-directory: ${{ env.CONFIG_DIRECTORY }}
         run: terraform init
