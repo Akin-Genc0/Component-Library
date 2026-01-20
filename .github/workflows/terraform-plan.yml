@@ -1,0 +1,33 @@
+name: "Terraform Plan"
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - qa
+
+env:
+  TF_CLOUD_ORGANIZATION: "Looply"
+  TF_TOKEN_app_terraform_io: "${{ secrets.TF_API_TOKEN }}"
+  CONFIG_DIRECTORY: ${{ github.base_ref == 'qa' && './component-library/infra/env/qa' || './component-library/infra/env/dev' }}
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform fmt
+        working-directory: ${{ env.CONFIG_DIRECTORY }}
+        run: terraform fmt
+
+      - name: Terraform init
+        working-directory: ${{ env.CONFIG_DIRECTORY }}
+        run: terraform init
+
+      - name: Terraform Plan
+        working-directory: ${{ env.CONFIG_DIRECTORY }}
+        run: terraform plan
