@@ -1,9 +1,10 @@
 name: Terraform apply
 
 on:
-  pull_request:
+  push:
     branches:
       - prod
+  workflow_dispatch:
 
 env:
   TF_CLOUD_ORGANIZATION: "Looply"
@@ -11,8 +12,11 @@ env:
   CONFIG_DIRECTORY: "./component-library/infra/env/prod"
 
 jobs:
-  terraform apply:
+  terraform_apply:
+    name: Terraform apply
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
 
@@ -23,6 +27,10 @@ jobs:
         working-directory: ${{ env.CONFIG_DIRECTORY }}
         run: terraform fmt
 
+      - name: Terraform init
+        working-directory: ${{ env.CONFIG_DIRECTORY }}
+        run: terraform init
+
       - name: Terraform apply
         working-directory: ${{ env.CONFIG_DIRECTORY }}
-        run: terraform apply
+        run: terraform apply -auto-approve
