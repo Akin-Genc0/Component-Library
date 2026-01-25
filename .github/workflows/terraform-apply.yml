@@ -1,0 +1,36 @@
+name: Terraform apply
+
+on:
+  push:
+    branches:
+      - prod
+  workflow_dispatch:
+
+env:
+  TF_CLOUD_ORGANIZATION: "Looply"
+  TF_TOKEN_app_terraform_io: "${{ secrets.TF_API_TOKEN }}"
+  CONFIG_DIRECTORY: "./component-library/infra/env/prod"
+
+jobs:
+  terraform_apply:
+    name: Terraform apply
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform fmt
+        working-directory: ${{ env.CONFIG_DIRECTORY }}
+        run: terraform fmt
+
+      - name: Terraform init
+        working-directory: ${{ env.CONFIG_DIRECTORY }}
+        run: terraform init
+
+      - name: Terraform apply
+        working-directory: ${{ env.CONFIG_DIRECTORY }}
+        run: terraform apply -auto-approve
