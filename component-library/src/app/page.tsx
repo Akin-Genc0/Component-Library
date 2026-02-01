@@ -7,6 +7,7 @@ import Carousel from "@/components/carousel";
 import Drawer from "@/components/drawer";
 import Accordion from "@/components/accordion";
 import { auth } from "@/authConfig";
+import NewNav from "@/components/newnav";
 export default async function Home() {
   const session = await auth();
 
@@ -167,6 +168,28 @@ export default async function Home() {
           ]}
         />
       </div>
+      <NewNav
+        split={5}
+        navObj={[
+          {
+            type: "link",
+            label: "link",
+            href: "/contact",
+          },
+          {
+            type: "button",
+            label: "button",
+            href: "/about",
+          },
+          {
+            type: "icon",
+            label: "icon",
+            href: "/about",
+            iconPath: "M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59...",
+            slot: "right",
+          },
+        ]}
+      />
     </>
   );
 }
