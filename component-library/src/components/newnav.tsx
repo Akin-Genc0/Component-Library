@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 type NavItem = {
   type: "link" | "button" | "icon";
@@ -9,10 +10,12 @@ type NavItem = {
   href: string;
   slot?: "left" | "right";
   iconPath?: string;
+  imageSrc?: string;
   visible?: boolean;
+  viewBox?: string;
 };
 
-type NavProps = { navObj: NavItem[]; split?: number };
+type NavProps = { navObj: NavItem[]; split?: number; hamburgerIcon?: string };
 
 export default function NewNav({ navObj }: NavProps) {
   const router = useRouter();
@@ -22,37 +25,51 @@ export default function NewNav({ navObj }: NavProps) {
 
   function renderNav(navSection: Array<NavItem>) {
     return navSection.map((element, index) => (
-      <li className="list-none" key={index}>
+      <li className="list-none pl-6 first:pl-0" key={index}>
         {element.type === "link" ? (
-          <Link href={element.href}>{element.label}</Link>
+          <Link
+            className="text-gray-500 hover:text-gray-700 text-sm py-2 transition-colors duration-200"
+            href={element.href}
+          >
+            {element.label}
+          </Link>
         ) : element.type === "button" ? (
-          <button onClick={() => router.push(element.href)}>
+          <button
+            className="text-white hover:text-black hover:bg-white border cursor-pointer py-2.5 px-6 bg-black rounded-lg text-sm transition-all duration-200"
+            onClick={() => router.push(element.href)}
+          >
             {element.label}
           </button>
-        ) : undefined}
+        ) : null}
 
         {element.type === "icon" ? (
           <Link href={element.href}>
-            <svg width="80" height="80" viewBox="0 0 38.89 38.91">
-              <title>{element.label}</title>
-              <path d={element.iconPath} />
-            </svg>
+            {element.imageSrc ? (
+              <Image
+                src={element.imageSrc}
+                alt={element.label}
+                width={24}
+                height={24}
+                className="rounded-full"
+              />
+            ) : (
+              <svg width="24" height="24" viewBox={element.viewBox}>
+                <title>{element.label}</title>
+                <path fill="currentColor" d={element.iconPath} />
+              </svg>
+            )}
           </Link>
-        ) : undefined}
+        ) : null}
       </li>
     ));
   }
 
   return (
     <>
-      <div className="flex justify-between items-center w-full flex-row relative ">
-        <nav className="flex justify-between flex-row items-center w-full">
-          <ul className="flex flex-row items-center gap-8">
-            {renderNav(leftItems)}
-          </ul>
-          <ul className="flex flex-row items-center gap-6 ml-auto">
-            {renderNav(rightItems)}
-          </ul>
+      <div className="flex items-center w-full relative">
+        <nav className="flex justify-between items-center w-full">
+          <ul className="flex items-center gap-10">{renderNav(leftItems)}</ul>
+          <ul className="flex items-center gap-10">{renderNav(rightItems)}</ul>
         </nav>
       </div>
     </>
