@@ -12,7 +12,6 @@ type NavItem = {
   slot?: "left" | "right";
   iconPath?: string;
   imageSrc?: string;
-  visible?: boolean;
   viewBox?: string;
 };
 
