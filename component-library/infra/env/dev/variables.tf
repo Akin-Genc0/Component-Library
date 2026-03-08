@@ -15,7 +15,7 @@ variable "image" {
   default     = "us-docker.pkg.dev/cloudrun/container/hello"
 }
 
-# ── Secrets (set these in Terraform Cloud as SENSITIVE variables) ──
+# Secrets 
 
 variable "database_url" {
   type      = string
