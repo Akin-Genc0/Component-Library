@@ -27,7 +27,7 @@ variable "secret_env_vars" {
   type        = map(string)
 }
 
-variable "version" {
+variable "version_type" {
   type    = string
   default = "latest"
 }

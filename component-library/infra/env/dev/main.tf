@@ -35,7 +35,7 @@ locals {
   }
 }
 
-# ── Service Account ────────────────────────────────────────────
+# Service Account
 module "service_account" {
   source = "../../modules/service_account"
 
@@ -47,7 +47,7 @@ module "service_account" {
   ]
 }
 
-# ── Secret Manager ─────────────────────────────────────────────
+# Secret Manager 
 module "secrets" {
   source = "../../modules/secret_manager"
 
@@ -56,7 +56,7 @@ module "secrets" {
   secrets     = local.secrets
 }
 
-# ── Cloud Run ──────────────────────────────────────────────────
+# Cloud Run
 module "cloud_run" {
   source = "../../modules/cloud_run"
 

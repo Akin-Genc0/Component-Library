@@ -15,7 +15,7 @@ resource "google_cloud_run_v2_service" "cloudrun" {
           value_source {
             secret_key_ref {
               secret  = env.value
-              version = var.version
+              version = var.version_type
             }
           }
         }
