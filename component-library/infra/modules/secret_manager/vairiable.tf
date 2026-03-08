@@ -9,5 +9,4 @@ variable "environment" {
 variable "secrets" {
   description = "Map of secret name to secret value"
   type        = map(string)
-  sensitive   = true
 }
