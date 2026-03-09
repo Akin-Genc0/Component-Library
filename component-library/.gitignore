@@ -45,4 +45,5 @@ next-env.d.ts
 #tf
 .terraform.lock.hcl
 .terraform
+*.tfvars
 
