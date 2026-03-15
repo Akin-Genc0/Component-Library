@@ -1,4 +1,4 @@
-# Dev environment configuration
+# Dev environment
 terraform {
   cloud {
     organization = "Looply"
