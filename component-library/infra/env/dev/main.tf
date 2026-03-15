@@ -67,4 +67,6 @@ module "cloud_run" {
   service_account_email = module.service_account.email
   image                 = var.image
   secret_env_vars       = module.secrets.secret_ids
+
+  depends_on = [module.service_account]
 }
