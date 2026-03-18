@@ -2,12 +2,18 @@
 import { useState, useEffect } from "react";
 
 type themeToggleIcon = {
-  lightIcon?: string;
-  darkIcon?: string;
+  lightIcon: string;
+  darkIcon: string;
   lable?: string;
+  viewBox?: string;
 };
 
-export default function Theme({ lable, lightIcon, darkIcon }: themeToggleIcon) {
+export default function Theme({
+  lable,
+  lightIcon,
+  darkIcon,
+  viewBox,
+}: themeToggleIcon) {
   const [theme, setTheme] = useState(false);
 
   function switchTheme() {
@@ -17,17 +23,11 @@ export default function Theme({ lable, lightIcon, darkIcon }: themeToggleIcon) {
   return (
     <>
       <div className="">
-        {theme ? (
-          <svg onClick={switchTheme} width="24" height="24" viewBox="0 0 24 24">
-            <title>{lable}</title>
-            <path fill="currentColor" d={lightIcon} />
+        <button onClick={switchTheme} aria-label={lable ?? "Toggle theme"}>
+          <svg width="24" height="24" viewBox={viewBox ?? "0 0 24 24"}>
+            <path fill="currentColor" d={theme ? darkIcon : lightIcon} />
           </svg>
-        ) : (
-          <svg onClick={switchTheme} width="24" height="24" viewBox="0 0 24 24">
-            <title>{lable}</title>
-            <path fill="currentColor" d={darkIcon} />
-          </svg>
-        )}
+        </button>
       </div>
     </>
   );
