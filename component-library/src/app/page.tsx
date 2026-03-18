@@ -7,6 +7,7 @@ import Drawer from "@/components/drawer";
 import Accordion from "@/components/accordion";
 import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
+import Theme from "@/components/themeSwitch";
 export default async function Home() {
   const session = await auth();
 
@@ -180,6 +181,7 @@ export default async function Home() {
           ]}
         />
       </div>
+      <Theme />
     </>
   );
 }
