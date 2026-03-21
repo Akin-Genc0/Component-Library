@@ -19,9 +19,15 @@ type NavProps = {
   navObj: NavItem[];
   hamburger?: boolean;
   hamburgerIcon?: React.ReactNode;
+  children?: React.ReactNode;
 };
 
-export default function NewNav({ navObj, hamburger, hamburgerIcon }: NavProps) {
+export default function NewNav({
+  navObj,
+  hamburger,
+  hamburgerIcon,
+  children,
+}: NavProps) {
   const [mobile, setMobile] = useState(false);
   const router = useRouter();
 
@@ -44,8 +50,8 @@ export default function NewNav({ navObj, hamburger, hamburgerIcon }: NavProps) {
           <Link
             className={
               isMobile
-                ? "text-gray-500 hover:text-gray-700 text-sm py-2 transition-colors duration-200"
-                : "hidden md:flex text-gray-500 hover:text-gray-700 text-sm py-2 transition-colors duration-200"
+                ? "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm py-2 transition-colors duration-200"
+                : "hidden md:flex text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm py-2 transition-colors duration-200"
             }
             href={element.href}
             onClick={isMobile ? () => setMobile(false) : undefined}
@@ -56,8 +62,8 @@ export default function NewNav({ navObj, hamburger, hamburgerIcon }: NavProps) {
           <button
             className={
               isMobile
-                ? "text-white hover:text-black hover:bg-white border cursor-pointer py-2.5 px-6 bg-black rounded-lg text-sm transition-all duration-200"
-                : "hidden md:flex text-white hover:text-black hover:bg-white border cursor-pointer py-2.5 px-6 bg-black rounded-lg text-sm transition-all duration-200"
+                ? "text-white dark:text-black hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-gray-800 border dark:border-gray-600 cursor-pointer py-2.5 px-6 bg-black dark:bg-white rounded-lg text-sm transition-all duration-200"
+                : "hidden md:flex text-white dark:text-black hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-gray-800 border dark:border-gray-600 cursor-pointer py-2.5 px-6 bg-black dark:bg-white rounded-lg text-sm transition-all duration-200"
             }
             onClick={() => {
               router.push(element.href);
@@ -118,11 +124,14 @@ export default function NewNav({ navObj, hamburger, hamburgerIcon }: NavProps) {
             </button>
           )}
           <ul className="flex items-center gap-10">{renderNav(leftItems)}</ul>
-          <ul className="flex items-center gap-10">{renderNav(rightItems)}</ul>
+          <ul className="flex items-center gap-10">
+            {renderNav(rightItems)}
+            {children && <li className="flex items-center">{children}</li>}
+          </ul>
         </nav>
 
         {hamburger && mobile && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-200 z-50">
+          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-700 z-50">
             <ul className="flex flex-col list-none p-4 gap-4">
               {renderNav(navObj, true)}
             </ul>

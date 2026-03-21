@@ -9,13 +9,13 @@ interface FormProps {
 export default function Form({ session }: FormProps) {
   if (session?.user) {
     return (
-      <div className="flex justify-center items-center min-h-screen w-full bg-white">
-        <div className="flex flex-col border border-1 border-black p-10 rounded-sm gap-5 bg-white max-w-md w-full">
-          <h1 className="text-lg font-semibold text-gray-800 text-center">
+      <div className="flex justify-center items-center min-h-screen w-full bg-white dark:bg-gray-950">
+        <div className="flex flex-col border border-1 border-black dark:border-gray-700 p-10 rounded-sm gap-5 bg-white dark:bg-gray-900 max-w-md w-full">
+          <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-100 text-center">
             Welcome, {session.user.name}
           </h1>
           <button
-            className="border-1 px-6 py-1 cursor-pointer rounded-sm text-bold hover:bg-gray-100 transition delay-150"
+            className="border-1 dark:border-gray-600 px-6 py-1 cursor-pointer rounded-sm text-bold hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-300 transition delay-150"
             onClick={() => logout()}
           >
             Log Out
@@ -26,13 +26,13 @@ export default function Form({ session }: FormProps) {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen w-full bg-white">
-      <div className="flex flex-col border border-1  p-10 rounded-sm gap-5 bg-white max-w-md w-full">
-        <h1 className="text-lg font-semibold text-gray-800 text-center">
+    <div className="flex justify-center items-center min-h-screen w-full bg-white dark:bg-gray-950">
+      <div className="flex flex-col border border-1 dark:border-gray-700 p-10 rounded-sm gap-5 bg-white dark:bg-gray-900 max-w-md w-full">
+        <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-100 text-center">
           You are signed out
         </h1>
         <button
-          className="border-1 px-8 py-2 cursor-pointer rounded-md font-bold bg-black text-white text-sm flex items-center gap-3 justify-center hover:bg-gray-900 transition delay-150"
+          className="border-1 dark:border-gray-600 px-8 py-2 cursor-pointer rounded-md font-bold bg-black dark:bg-white text-white dark:text-black text-sm flex items-center gap-3 justify-center hover:bg-gray-900 dark:hover:bg-gray-200 transition delay-150"
           onClick={() => loginGithub()}
         >
           <svg
@@ -51,7 +51,7 @@ export default function Form({ session }: FormProps) {
         </button>
 
         <button
-          className="border-1 px-8 py-2 cursor-pointer rounded-md font-bold bg-white text-sm flex items-center gap-3 justify-center hover:bg-gray-100 transition delay-150 border "
+          className="border-1 px-8 py-2 cursor-pointer rounded-md font-bold bg-white dark:bg-gray-800 text-sm dark:text-gray-100 flex items-center gap-3 justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition delay-150 border dark:border-gray-600"
           onClick={() => loginGoogle()}
         >
           <svg
