@@ -1,15 +1,18 @@
 {
-  "type":"module",
+  "type": "module",
   "name": "component-library",
   "version": "0.1.0",
   "private": true,
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
+    "build:lib": "rollup -c src/rollup.config.mjs",
     "vercel-build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
@@ -23,13 +26,19 @@
     "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "^7.1.0",
     "dotenv": "^17.2.3",
-    "next": "^16.0.10",
+    "next": "^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0",
     "next-auth": "^5.0.0-beta.30",
-    "next-themes": "^0.4.6",
+    "next-themes": "^0.4.0",
     "openai": "^6.9.1",
     "pg": "^8.16.3",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "peerDependencies": {
+    "next": "^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0",
+    "next-themes": "^0.4.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
@@ -38,8 +47,10 @@
     "@rollup/plugin-babel": "^7.0.0",
     "@rollup/plugin-commonjs": "^29.0.2",
     "@rollup/plugin-image": "^3.0.3",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^1.0.0",
+    "@rollup/plugin-typescript": "^12.3.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
@@ -54,6 +65,7 @@
     "prettier": "^3.7.4",
     "prisma": "^7.1.0",
     "rollup": "^4.60.0",
+    "rollup-plugin-dts": "^6.4.1",
     "rollup-plugin-postcss": "^4.0.2",
     "tailwindcss": "^4",
     "typescript": "^5"
