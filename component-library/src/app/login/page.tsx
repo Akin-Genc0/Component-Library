@@ -1,4 +1,4 @@
-import Form from "@/components/form";
+import Form from "@/components/form/form";
 import { auth } from "@/authConfig";
 import Nav from "@/components/nav";
 export default async function Login() {

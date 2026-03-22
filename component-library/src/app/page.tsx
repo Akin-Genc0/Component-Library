@@ -1,13 +1,13 @@
-import Chat from "@/components/chat";
-import CardText from "@/components/cardText";
-import Hero from "@/components/hero";
-import BarChart from "@/components/barChart";
-import Carousel from "@/components/carousel";
-import Drawer from "@/components/drawer";
-import Accordion from "@/components/accordion";
+import Chat from "@/components/chat/chat";
+import CardText from "@/components/cardtext/cardText";
+import Hero from "@/components/hero/hero";
+import BarChart from "@/components/barchart/barChart";
+import Carousel from "@/components/carousel/carousel";
+import Drawer from "@/components/drawer/drawer";
+import Accordion from "@/components/accordion/accordion";
 import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
-import ThemeToggle from "@/components/themeSwitch";
+import ThemeToggle from "@/components/themeswitch/themeSwitch";
 export default async function Home() {
   const session = await auth();
 
