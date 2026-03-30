@@ -1,10 +1,23 @@
 {
   "name": "component-library",
   "version": "0.1.0",
-  "private": true,
+  "type": "module",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "keywords": [
+    "component library",
+    "typescript",
+    "npm"
+  ],
+  "description": "simple ui component",
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
+    "build:lib": "rollup -c src/rollup.config.mjs",
+    "prepare": "npm run build:lib",
     "vercel-build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
@@ -27,6 +40,15 @@
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "@babel/preset-react": "^7.28.5",
+    "@rollup/plugin-babel": "^7.0.0",
+    "@rollup/plugin-commonjs": "^29.0.2",
+    "@rollup/plugin-image": "^3.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
+    "@rollup/plugin-typescript": "^12.3.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
@@ -40,7 +62,13 @@
     "jest-environment-jsdom": "^30.2.0",
     "prettier": "^3.7.4",
     "prisma": "^7.1.0",
+    "rollup": "^4.60.0",
+    "rollup-plugin-postcss": "^4.0.2",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   }
 }

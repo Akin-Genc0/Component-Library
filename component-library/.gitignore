@@ -47,3 +47,8 @@ next-env.d.ts
 .terraform
 *.tfvars
 
+# library build output
+/dist
+.rollup.cache
+
+ 
