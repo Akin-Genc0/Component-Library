@@ -1,16 +1,23 @@
 {
   "name": "component-library",
   "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
   "keywords": [
     "component library",
     "typescript",
     "npm"
   ],
   "description": "simple ui component",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
+    "build:lib": "rollup -c src/rollup.config.mjs",
+    "prepare": "npm run build:lib",
     "vercel-build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
@@ -59,5 +66,9 @@
     "rollup-plugin-postcss": "^4.0.2",
     "tailwindcss": "^4",
     "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   }
 }
