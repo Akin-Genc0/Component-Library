@@ -19,9 +19,11 @@ export default {
   ],
   plugins: [
     typescript({
+      tsconfig: './tsconfig.json',
+      noEmit: false,
       declaration: true,
       declarationDir: 'dist',
-      tsconfig: './tsconfig.json',
+      outDir: 'dist',
     }),
     nodeResolve({
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -35,5 +37,5 @@ export default {
     }),
     terser(),
   ],
-  external: ['react', 'react-dom', 'react/jsx-runtime'],
+  external: ['react', 'react-dom', 'react/jsx-runtime', 'next', 'next/image', 'next-themes'],
 };
