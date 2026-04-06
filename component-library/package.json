@@ -1,9 +1,9 @@
 {
-  "name": "component-library",
+  "name": "looply-comp-lib",
   "version": "0.1.0",
   "type": "module",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": ["dist"],
   "keywords": [
