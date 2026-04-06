@@ -8,6 +8,7 @@ import Accordion from "@/components/accordion";
 import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
 import ThemeToggle from "@/components/themeSwitch";
+import Link from "next/link";
 export default async function Home() {
   const session = await auth();
 
@@ -92,13 +93,15 @@ export default async function Home() {
       />
 
       <div className="flex flex-wrap gap-[50px] justify-center">
-        <CardText
-          header="Welcome to LoopUI"
-          subHeader="A modern UI card component for your next project."
-          mainText="This card showcases a clean design, flexible layout, and interactive buttons. Easily customize it to fit your needs and enhance your application's user experience."
-          buttonText1="Learn More"
-          buttonText2="Get Started"
-        />
+        <Link href="/login">
+          <CardText
+            header="Welcome to LoopUI"
+            subHeader="A modern UI card component for your next project."
+            mainText="This card showcases a clean design, flexible layout, and interactive buttons. Easily customize it to fit your needs and enhance your application's user experience."
+            buttonText1="Learn More"
+            buttonText2="Get Started"
+          />
+        </Link>
 
         <BarChart
           content={[
