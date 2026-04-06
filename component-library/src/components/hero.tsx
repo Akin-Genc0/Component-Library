@@ -14,7 +14,10 @@ export default function Hero({
   headerBtn,
 }: heroValue) {
   return (
-    <div className="flex flex-col items-center mt-[6rem] gap-8 w-full font-inter mb-[6rem]">
+    <div
+      data-looply
+      className="flex flex-col items-center mt-[6rem] gap-8 w-full font-inter mb-[6rem]"
+    >
       <button
         className="bg-gray-200 dark:bg-gray-800 py-1 px-5 rounded-xl text-sm font-thin transition-colors 
       duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white dark:text-gray-300"

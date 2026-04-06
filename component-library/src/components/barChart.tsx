@@ -16,7 +16,10 @@ export default function BarChart({ content }: eachBar) {
   const cal = content.map((a) => (a.size / max) * 300);
 
   return (
-    <div className="w-[650px] flex flex-row gap-[10px] items-end pl-[25px] pr-[25px] pt-[25px] border-black dark:border-gray-700 border-1 h-[300px] rounded-md dark:bg-gray-900">
+    <div
+      data-looply
+      className="w-[650px] flex flex-row gap-[10px] items-end pl-[25px] pr-[25px] pt-[25px] border-black dark:border-gray-700 border-1 h-[300px] rounded-md dark:bg-gray-900"
+    >
       <div className="border-r-2 border-black dark:border-gray-500 h-full mb-[10px] mr-[10px] flex flex-col justify-between dark:text-gray-300">
         <p>{Math.floor(Math.max(max))} </p>
         <p>{Math.floor(Math.max(max) / 1.5)}</p>

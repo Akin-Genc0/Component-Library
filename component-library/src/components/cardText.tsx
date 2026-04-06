@@ -15,7 +15,7 @@ export default function CardText({
 }: cardText) {
   return (
     <>
-      <div className="">
+      <div data-looply>
         <div className="lg:w-[22rem] h-[400px] border border-black dark:border-gray-700 rounded-lg px-7 py-5 flex flex-col gap-6 font-inter sm:w-full md:w-[20rem] dark:bg-gray-900 h-full">
           <section>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">

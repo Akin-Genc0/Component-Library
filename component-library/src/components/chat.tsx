@@ -50,7 +50,10 @@ export default function Chat({ title, img, propt }: chatBot) {
 
   return (
     <>
-      <div className="w-[37rem] border-1 border-black dark:border-gray-700 px-10 py-5 overflow-auto rounded-sm h-full dark:bg-gray-900">
+      <div
+        data-looply
+        className="w-[37rem] border-1 border-black dark:border-gray-700 px-10 py-5 overflow-auto rounded-sm h-full dark:bg-gray-900"
+      >
         <div className="flex flex-row gap-5 pb-2">
           <Image
             className="p-2 bg-gray-50 rounded-full flex flex-row"
