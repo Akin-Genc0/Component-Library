@@ -56,7 +56,11 @@ export default function ThemeToggle({
   }
 
   return (
-    <button onClick={switchTheme} aria-label={label ?? "Toggle theme"}>
+    <button
+      data-looply
+      onClick={switchTheme}
+      aria-label={label ?? "Toggle theme"}
+    >
       {isDark ? (darkIcon ?? defaultDark) : (lightIcon ?? defaultLight)}
     </button>
   );
