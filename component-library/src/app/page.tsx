@@ -93,7 +93,7 @@ export default async function Home() {
       />
 
       <div className="flex flex-wrap gap-[50px] justify-center">
-        <Link href="/login">
+        <Link href="/card">
           <CardText
             header="Welcome to LoopUI"
             subHeader="A modern UI card component for your next project."
@@ -103,42 +103,44 @@ export default async function Home() {
           />
         </Link>
 
-        <BarChart
-          content={[
-            {
-              lable: "Akin",
-              size: 180,
-            },
-            {
-              lable: "chris",
-              size: 69,
-            },
-            {
-              lable: "Akin",
-              size: 66,
-            },
-            {
-              lable: "chris",
-              size: 88,
-            },
-            {
-              lable: "Akin",
-              size: 90,
-            },
-            {
-              lable: "chris",
-              size: 57,
-            },
-            {
-              lable: "Akin",
-              size: 200,
-            },
-            {
-              lable: "chris",
-              size: 69,
-            },
-          ]}
-        />
+        <Link href="/barchart">
+          <BarChart
+            content={[
+              {
+                lable: "Akin",
+                size: 180,
+              },
+              {
+                lable: "chris",
+                size: 69,
+              },
+              {
+                lable: "Akin",
+                size: 66,
+              },
+              {
+                lable: "chris",
+                size: 88,
+              },
+              {
+                lable: "Akin",
+                size: 90,
+              },
+              {
+                lable: "chris",
+                size: 57,
+              },
+              {
+                lable: "Akin",
+                size: 200,
+              },
+              {
+                lable: "chris",
+                size: 69,
+              },
+            ]}
+          />
+        </Link>
         <Chat title="kol bot" img="/looplogoli.png" propt="kol" />
         <Carousel
           card={[

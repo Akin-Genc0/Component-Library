@@ -1,21 +1,19 @@
-"use client";
-
 interface DocumentationTempProps {
   title: string;
   description: string;
-  codesnip?: string;
+  children?: React.ReactNode;
 }
 
 export default function DocumentationTemp({
   title,
   description,
-  codesnip,
+  children,
 }: DocumentationTempProps) {
   return (
-    <div>
+    <article>
       <h1>{title}</h1>
       <p>{description}</p>
-      <samp>{codesnip}</samp>
-    </div>
+      {children && <div className="mdx-content">{children}</div>}
+    </article>
   );
 }
