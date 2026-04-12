@@ -70,3 +70,12 @@ module "cloud_run" {
 
   depends_on = [module.service_account]
 }
+
+
+module "artifact_registry" {
+  source        = "../../modules/artifact_registry"
+  project       = var.project
+  location      = var.region
+  repository_id = "looply-repo"
+  description   = "Looply Docker images"
+}
