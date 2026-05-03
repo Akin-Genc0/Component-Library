@@ -23,11 +23,23 @@ jobs:
       - name: Check authentication
         run: gcloud auth list
 
-      - name: Build Docker Image
-        run: docker build -t europe-west2-docker.pkg.dev/looply-loo-dev/Component-Library/looply-dev-image:${{ github.sha }} ./component-library
-
       - name: Configure Docker for Artifact Registry
         run: gcloud auth configure-docker europe-west2-docker.pkg.dev --quiet
 
+      - name: Build Docker Image
+        run: docker build -t europe-west2-docker.pkg.dev/looply-loo-dev/Component-Library/looply-dev-image:${{ github.sha }} ./component-library
+
       - name: Push to Artifact Registry
         run: docker push europe-west2-docker.pkg.dev/looply-loo-dev/Component-Library/looply-dev-image:${{ github.sha }}
+
+      - name: Deploy to Cloud Run
+        run: gcloud run deploy looply-dev-service \
+          --image europe-west2-docker.pkg.dev/looply-loo-dev/Component-Library/looply-dev-image:${{ github.sha }} \
+          --region europe-west2 \
+          --platform managed \
+          --allow-unauthenticated
+
+      - name: Get Cloud Run URL
+        run: gcloud run services describe looply-dev-service \
+          --region europe-west2 \
+          --format='value(status.url)'
