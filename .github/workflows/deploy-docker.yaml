@@ -24,4 +24,10 @@ jobs:
         run: gcloud auth list
 
       - name: Build Docker Image
-        run: docker build -t dev-image ./component-library
+        run: docker build -t europe-west2-docker.pkg.dev/looply-loo-dev/Component-Library/looply-dev-image:${{ github.sha }} ./component-library
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker europe-west2-docker.pkg.dev --quiet
+
+      - name: Push to Artifact Registry
+        run: docker push europe-west2-docker.pkg.dev/looply-loo-dev/Component-Library/looply-dev-image:${{ github.sha }}
