@@ -27,14 +27,14 @@ jobs:
         run: gcloud auth configure-docker europe-west2-docker.pkg.dev --quiet
 
       - name: Build Docker Image
-        run: docker build -t europe-west2-docker.pkg.dev/looply-loo-dev/Component-Library/looply-dev-image:${{ github.sha }} ./component-library
+        run: docker build -t europe-west2-docker.pkg.dev/looply-loo-dev/looply-repo/looply-dev-image:${{ github.sha }} ./component-library
 
       - name: Push to Artifact Registry
-        run: docker push europe-west2-docker.pkg.dev/looply-loo-dev/Component-Library/looply-dev-image:${{ github.sha }}
+        run: docker push europe-west2-docker.pkg.dev/looply-loo-dev/looply-repo/looply-dev-image:${{ github.sha }}
 
       - name: Deploy to Cloud Run
         run: gcloud run deploy looply-dev-service \
-          --image europe-west2-docker.pkg.dev/looply-loo-dev/Component-Library/looply-dev-image:${{ github.sha }} \
+          --image europe-west2-docker.pkg.dev/looply-loo-dev/looply-repo/looply-dev-image:${{ github.sha }} \
           --region europe-west2 \
           --platform managed \
           --allow-unauthenticated
