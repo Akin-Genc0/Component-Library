@@ -14,6 +14,11 @@ COPY src ./src
 COPY prisma ./prisma
 COPY public ./public
 COPY next.config.ts tsconfig.json postcss.config.mjs prisma.config.ts ./
+
+# Build-time placeholders so Prisma can generate without runtime secrets.
+ENV DIRECT_URL="postgresql://postgres:postgres@localhost:5432/postgres"
+ENV DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres"
+
 RUN npm run build
 
 ENV PORT=8080
