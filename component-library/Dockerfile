@@ -8,13 +8,12 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm ci
+RUN npm ci --ignore-scripts
 
 COPY src ./src
 COPY prisma ./prisma
 COPY public ./public
 COPY next.config.ts tsconfig.json postcss.config.mjs prisma.config.ts ./
-
 RUN npm run build
 
 ENV PORT=8080
