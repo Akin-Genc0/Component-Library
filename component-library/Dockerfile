@@ -21,6 +21,10 @@ ENV DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres"
 
 RUN npm run build
 
+# Copy static assets into standalone output
+RUN cp -r .next/static .next/standalone/.next/static
+RUN cp -r public .next/standalone/public
+
 ENV PORT=8080
 
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
