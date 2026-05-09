@@ -45,6 +45,8 @@ module "service_account" {
   display_name = "Cloud Run SA (${local.environment})"
   roles = [
     "roles/secretmanager.secretAccessor",
+    "roles/run.admin",
+    "roles/iam.serviceAccountUser",
   ]
 }
 
