@@ -78,4 +78,7 @@ module "artifact_registry" {
   location      = var.region
   repository_id = "looply-repo"
   description   = "Looply Docker images"
+  role          = var.artifact_registry_iam_role
+  member        = var.artifact_registry_iam_member
 }
+

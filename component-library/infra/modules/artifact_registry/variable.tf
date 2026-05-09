@@ -22,3 +22,15 @@ variable "location" {
 variable "project" {
   type = string
 }
+
+variable "member" {
+  type     = string
+  default  = null
+  nullable = true
+}
+
+variable "role" {
+  type     = string
+  default  = null
+  nullable = true
+}
