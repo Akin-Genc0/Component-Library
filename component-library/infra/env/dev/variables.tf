@@ -56,3 +56,17 @@ variable "nextauth_secret" {
   type      = string
   sensitive = true
 }
+
+variable "artifact_registry_iam_member" {
+  type        = string
+  default     = null
+  nullable    = true
+  description = "Optional IAM member for Artifact Registry access, e.g. serviceAccount:ci-sa@project.iam.gserviceaccount.com"
+}
+
+variable "artifact_registry_iam_role" {
+  type        = string
+  default     = null
+  nullable    = true
+  description = "Optional IAM role for Artifact Registry access, e.g. roles/artifactregistry.writer"
+}

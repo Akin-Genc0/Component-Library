@@ -24,9 +24,13 @@ variable "project" {
 }
 
 variable "member" {
-  type = string
+  type     = string
+  default  = null
+  nullable = true
 }
 
 variable "role" {
-  type = string
+  type     = string
+  default  = null
+  nullable = true
 }
