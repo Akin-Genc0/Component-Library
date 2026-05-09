@@ -22,3 +22,11 @@ variable "location" {
 variable "project" {
   type = string
 }
+
+variable "member" {
+  type = string
+}
+
+variable "role" {
+  type = string
+}
