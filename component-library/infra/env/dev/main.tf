@@ -45,6 +45,9 @@ module "service_account" {
   display_name = "Cloud Run SA (${local.environment})"
   roles = [
     "roles/secretmanager.secretAccessor",
+    "roles/run.admin",
+    "roles/iam.serviceAccountUser",
+    "roles/artifactregistry.writer",
   ]
 }
 
@@ -78,7 +81,5 @@ module "artifact_registry" {
   location      = var.region
   repository_id = "looply-repo"
   description   = "Looply Docker images"
-  role          = var.artifact_registry_iam_role
-  member        = var.artifact_registry_iam_member
 }
 
