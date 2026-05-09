@@ -36,13 +36,15 @@ jobs:
         run: docker push europe-west2-docker.pkg.dev/looply-loo-dev/looply-repo/looply-dev-image:${{ github.sha }}
 
       - name: Deploy to Cloud Run
-        run: gcloud run deploy looply-dev-service \
-          --image europe-west2-docker.pkg.dev/looply-loo-dev/looply-repo/looply-dev-image:${{ github.sha }} \
-          --region europe-west2 \
-          --platform managed \
-          --allow-unauthenticated
+        run: |
+          gcloud run deploy looply-dev-service \
+            --image europe-west2-docker.pkg.dev/looply-loo-dev/looply-repo/looply-dev-image:${{ github.sha }} \
+            --region europe-west2 \
+            --platform managed \
+            --allow-unauthenticated
 
       - name: Get Cloud Run URL
-        run: gcloud run services describe looply-dev-service \
-          --region europe-west2 \
-          --format='value(status.url)'
+        run: |
+          gcloud run services describe looply-dev-service \
+            --region europe-west2 \
+            --format='value(status.url)'
