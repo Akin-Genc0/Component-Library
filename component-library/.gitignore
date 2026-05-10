@@ -19,6 +19,10 @@
 
 # production
 /build
+/dist
+
+# rollup cache
+.rollup.cache
 
 # misc
 .DS_Store
@@ -45,4 +49,10 @@ next-env.d.ts
 #tf
 .terraform.lock.hcl
 .terraform
+*.tfvars
 
+# library build output
+/dist
+.rollup.cache
+
+ 

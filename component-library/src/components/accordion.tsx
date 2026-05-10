@@ -63,7 +63,10 @@ export default function Accordion({ items }: AccordionProps) {
     });
   }
   return (
-    <div className="border border-black dark:border-gray-700 rounded-lg overflow-hidden max-w-3xl bg-white dark:bg-gray-900 font-inter">
+    <div
+      data-looply
+      className="border border-black dark:border-gray-700 rounded-lg overflow-hidden max-w-3xl bg-white dark:bg-gray-900 font-inter"
+    >
       {values()}
     </div>
   );

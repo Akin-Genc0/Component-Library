@@ -58,7 +58,10 @@ export default function Carousel({ card }: carousel) {
   }, []);
 
   return (
-    <div className="border border-black dark:border-gray-700 rounded-lg max-w-5xl h-[25rem] flex flex-col gap-5 p-10 overflow-hidden bg-white dark:bg-gray-900">
+    <div
+      data-looply
+      className="border border-black dark:border-gray-700 rounded-lg max-w-5xl h-[25rem] flex flex-col gap-5 p-10 overflow-hidden bg-white dark:bg-gray-900"
+    >
       <div
         ref={containerRef}
         className="flex flex-row gap-5 flex-1 flex-nowrap"

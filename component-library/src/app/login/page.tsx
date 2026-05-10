@@ -1,56 +1,78 @@
 import Form from "@/components/form";
 import { auth } from "@/authConfig";
-import Nav from "@/components/nav";
+import NewNav from "@/components/newnav";
+import ThemeToggle from "@/components/themeSwitch";
 export default async function Login() {
   const session = await auth();
   return (
     <>
-      <Nav
-        link={[
+      <NewNav
+        hamburger
+        navObj={[
           {
-            icon: "/looplogoli.png",
-            iconLink: "/",
-            lin: "https://react.dev/learn/rendering-lists",
-            navLink: "Home",
+            type: "icon",
+            label: "icon",
+            href: "/",
+            iconPath:
+              "M172,68a44,44,0,1,0-44,44A44.04978,44.04978,0,0,0,172,68Zm-44,36a36,36,0,1,1,36-36A36.04061,36.04061,0,0,1,128,104Zm60,24a44,44,0,1,0,44,44A44.04978,44.04978,0,0,0,188,128Zm0,80a36,36,0,1,1,36-36A36.04061,36.04061,0,0,1,188,208ZM68,128a44,44,0,1,0,44,44A44.04978,44.04978,0,0,0,68,128Zm0,80a36,36,0,1,1,36-36A36.04061,36.04061,0,0,1,68,208Z",
+            slot: "left",
+            viewBox: "0 0 256 256",
           },
           {
-            lin: "https://react.dev/learn/rendering-lists",
-            navLink: "About",
-            icon: "",
-            iconLink: "",
+            type: "link",
+            label: "Home",
+            href: "/",
           },
+
           {
-            lin: "https://react.dev/learn/rendering-lists",
-            navLink: "Services",
-            icon: "",
-            iconLink: "",
+            type: "link",
+            label: "About",
+            href: "/about",
           },
+
           {
-            lin: "https://react.dev/learn/rendering-lists",
-            navLink: "Contact",
-            icon: "",
-            iconLink: "",
+            type: "link",
+            label: "Services",
+            href: "/service",
+          },
+
+          {
+            type: "link",
+            label: "Contact",
+            href: "/contact",
+          },
+          ...(session
+            ? [
+                {
+                  type: "icon" as const,
+                  label: "Settings",
+                  href: "/userinfo",
+                  iconPath:
+                    "M20.017 14.669L23 13.564l-.012-3.208-2.996-1.085a8.455 8.455 0 0 0-.437-1.05l1.329-2.893-2.277-2.26-2.886 1.351a8.396 8.396 0 0 0-1.052-.436L13.564 1l-3.208.012-1.085 2.996a8.485 8.485 0 0 0-1.05.437L5.328 3.116l-2.26 2.276L4.419 8.28a8.378 8.378 0 0 0-.436 1.052L1 10.436l.012 3.208 2.996 1.085a8.46 8.46 0 0 0 .437 1.05l-1.329 2.893 2.276 2.26 2.887-1.351a8.383 8.383 0 0 0 1.052.436L10.436 23l3.208-.012 1.085-2.996a8.478 8.478 0 0 0 1.05-.437l2.893 1.329 2.26-2.276-1.351-2.887a8.382 8.382 0 0 0 .436-1.052zm-.287 3.73l-1.275 1.285-2.694-1.238-.429.215a7.612 7.612 0 0 1-.928.385l-.452.156-1.01 2.789-1.81.007-1.03-2.779-.456-.151a7.394 7.394 0 0 1-.926-.385l-.43-.21-2.688 1.257-1.286-1.275 1.239-2.695-.216-.43a7.551 7.551 0 0 1-.386-.926l-.155-.452-2.79-1.01-.005-1.81 2.777-1.03.152-.456a7.46 7.46 0 0 1 .384-.927l.212-.43L4.27 5.601l1.275-1.285 2.694 1.238.429-.215a7.612 7.612 0 0 1 .928-.385l.452-.156 1.01-2.789 1.81-.007 1.03 2.779.456.151a7.35 7.35 0 0 1 .925.385l.43.211L18.4 4.27l1.285 1.275-1.239 2.695.216.43a7.551 7.551 0 0 1 .386.926l.155.452 2.79 1.01.005 1.81-2.777 1.03-.152.456a7.46 7.46 0 0 1-.384.927l-.212.43zM12 7.2a4.8 4.8 0 1 0 4.8 4.8A4.8 4.8 0 0 0 12 7.2zm0 8.6a3.8 3.8 0 1 1 3.8-3.8 3.804 3.804 0 0 1-3.8 3.8z",
+                  viewBox: "0 0 24 24",
+                  slot: "right" as const,
+                },
+              ]
+            : [
+                {
+                  type: "button" as const,
+                  label: "Sign up",
+                  href: "/login",
+                  slot: "right" as const,
+                },
+              ]),
+
+          {
+            type: "icon",
+            label: "User profile",
+            href: "/login",
+            imageSrc: session?.user?.image || "/nouser1.png",
+            slot: "right",
           },
         ]}
-        rlink={[
-          {
-            el: "Search Docs",
-            icon: "",
-            iconLink: "",
-          },
-          {
-            el: "",
-            icon: "/assests/githublogo.png",
-            iconLink: "",
-          },
-          {
-            el: "",
-            icon: session?.user?.image || "/nouser1.png",
-            iconLink: "/login",
-          },
-        ]}
-        hamburgerIcon="/looplogoli.png"
-      />
+      >
+        <ThemeToggle />
+      </NewNav>
       <Form session={session} />
     </>
   );
