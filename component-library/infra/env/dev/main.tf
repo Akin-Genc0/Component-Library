@@ -83,3 +83,9 @@ module "artifact_registry" {
   description   = "Looply Docker images"
 }
 
+
+module "storage" {
+  source  = "../../modules/storage_bucket"
+  name    = "artifact_storage"
+  project = var.project
+}
