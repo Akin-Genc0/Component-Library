@@ -86,6 +86,6 @@ module "artifact_registry" {
 
 module "storage" {
   source  = "../../modules/storage_bucket"
-  name    = "artifact_storage"
+  name    = "${var.project}-artifact-storage"
   project = var.project
 }
