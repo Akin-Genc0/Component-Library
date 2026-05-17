@@ -4,8 +4,6 @@ on:
   push:
     branches: ["develop", "qa", "prod"]
   pull_request:
-    branches:
-      - develop
 
 jobs:
   Deploying-Docker-Image:
