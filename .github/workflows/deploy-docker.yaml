@@ -4,11 +4,13 @@ on:
   push:
     branches: ["develop", "qa", "prod"]
   pull_request:
+    branches:
+      - develop
 
 env:
-  GCP_PROJECT: ${{ github.ref_name == 'develop' && 'looply-loo-dev' || github.ref_name == 'qa' && 'looply-loo-qa' || 'looply-loo-prod' }}
-  SERVICE_NAME: ${{ github.ref_name == 'develop' && 'dev-looply-app' || github.ref_name == 'qa' && 'qa-looply-app' || 'prod-looply-app' }}
-  IMAGE_NAME: ${{ github.ref_name == 'develop' && 'looply-dev-image' || github.ref_name == 'qa' && 'looply-qa-image' || 'looply-prod-image' }}
+  GCP_PROJECT: ${{ github.ref_name == 'develop' && 'looply-loo-dev' || github.ref_name == 'qa' && 'looply-loo-qa' || github.ref_name == 'prod' && 'looply-loo-prod' || 'looply-loo-dev' }}
+  SERVICE_NAME: ${{ github.ref_name == 'develop' && 'dev-looply-app' || github.ref_name == 'qa' && 'qa-looply-app' || github.ref_name == 'prod' && 'prod-looply-app' || 'dev-looply-app' }}
+  IMAGE_NAME: ${{ github.ref_name == 'develop' && 'looply-dev-image' || github.ref_name == 'qa' && 'looply-qa-image' || github.ref_name == 'prod' && 'looply-prod-image' || 'looply-dev-image' }}
 
 jobs:
   Deploying-Docker-Image:
