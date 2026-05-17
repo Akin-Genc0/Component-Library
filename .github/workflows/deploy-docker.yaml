@@ -5,6 +5,11 @@ on:
     branches: ["develop", "qa", "prod"]
   pull_request:
 
+env:
+  GCP_PROJECT: ${{ github.ref_name == 'develop' && 'looply-loo-dev' || github.ref_name == 'qa' && 'looply-loo-qa' || 'looply-loo-prod' }}
+  SERVICE_NAME: ${{ github.ref_name == 'develop' && 'dev-looply-app' || github.ref_name == 'qa' && 'qa-looply-app' || 'prod-looply-app' }}
+  IMAGE_NAME: ${{ github.ref_name == 'develop' && 'looply-dev-image' || github.ref_name == 'qa' && 'looply-qa-image' || 'looply-prod-image' }}
+
 jobs:
   Deploying-Docker-Image:
     runs-on: ubuntu-latest
@@ -16,22 +21,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set environment variables
-        run: |
-          if [ "${{ github.ref_name }}" = "develop" ]; then
-            echo "GCP_PROJECT=looply-loo-dev" >> "$GITHUB_ENV"
-            echo "SERVICE_NAME=dev-looply-app" >> "$GITHUB_ENV"
-            echo "IMAGE_NAME=looply-dev-image" >> "$GITHUB_ENV"
-          elif [ "${{ github.ref_name }}" = "qa" ]; then
-            echo "GCP_PROJECT=looply-loo-qa" >> "$GITHUB_ENV"
-            echo "SERVICE_NAME=qa-looply-app" >> "$GITHUB_ENV"
-            echo "IMAGE_NAME=looply-qa-image" >> "$GITHUB_ENV"
-          elif [ "${{ github.ref_name }}" = "prod" ]; then
-            echo "GCP_PROJECT=looply-loo-prod" >> "$GITHUB_ENV"
-            echo "SERVICE_NAME=prod-looply-app" >> "$GITHUB_ENV"
-            echo "IMAGE_NAME=looply-prod-image" >> "$GITHUB_ENV"
-          fi
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
