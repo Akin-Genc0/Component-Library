@@ -11,14 +11,34 @@ jobs:
   Deploying-Docker-Image:
     runs-on: ubuntu-latest
 
+    environment:
+      name: ${{ github.ref_name }}
+      url: ${{ steps.get_url.outputs.service_url }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set environment variables
+        run: |
+          if [ "${{ github.ref_name }}" = "develop" ]; then
+            echo "GCP_PROJECT=looply-loo-dev" >> "$GITHUB_ENV"
+            echo "SERVICE_NAME=dev-looply-app" >> "$GITHUB_ENV"
+            echo "IMAGE_NAME=looply-dev-image" >> "$GITHUB_ENV"
+          elif [ "${{ github.ref_name }}" = "qa" ]; then
+            echo "GCP_PROJECT=looply-loo-qa" >> "$GITHUB_ENV"
+            echo "SERVICE_NAME=qa-looply-app" >> "$GITHUB_ENV"
+            echo "IMAGE_NAME=looply-qa-image" >> "$GITHUB_ENV"
+          elif [ "${{ github.ref_name }}" = "prod" ]; then
+            echo "GCP_PROJECT=looply-loo-prod" >> "$GITHUB_ENV"
+            echo "SERVICE_NAME=prod-looply-app" >> "$GITHUB_ENV"
+            echo "IMAGE_NAME=looply-prod-image" >> "$GITHUB_ENV"
+          fi
+
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY_DEV }}
+          credentials_json: ${{ github.ref_name == 'develop' && secrets.GCP_SA_KEY_DEV || github.ref_name == 'qa' && secrets.GCP_SA_KEY_QA || secrets.GCP_SA_KEY_PROD }}
 
       - name: Set up gcloud CLI
         uses: google-github-actions/setup-gcloud@v2
@@ -30,21 +50,23 @@ jobs:
         run: gcloud auth configure-docker europe-west2-docker.pkg.dev --quiet
 
       - name: Build Docker Image
-        run: docker build -t europe-west2-docker.pkg.dev/looply-loo-dev/looply-repo/looply-dev-image:${{ github.sha }} ./component-library
+        run: docker build -t europe-west2-docker.pkg.dev/${{ env.GCP_PROJECT }}/looply-repo/${{ env.IMAGE_NAME }}:${{ github.sha }} ./component-library
 
       - name: Push to Artifact Registry
-        run: docker push europe-west2-docker.pkg.dev/looply-loo-dev/looply-repo/looply-dev-image:${{ github.sha }}
+        run: docker push europe-west2-docker.pkg.dev/${{ env.GCP_PROJECT }}/looply-repo/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy looply-dev-service \
-            --image europe-west2-docker.pkg.dev/looply-loo-dev/looply-repo/looply-dev-image:${{ github.sha }} \
+          gcloud run deploy ${{ env.SERVICE_NAME }} \
+            --image europe-west2-docker.pkg.dev/${{ env.GCP_PROJECT }}/looply-repo/${{ env.IMAGE_NAME }}:${{ github.sha }} \
             --region europe-west2 \
             --platform managed \
             --allow-unauthenticated
 
       - name: Get Cloud Run URL
+        id: get_url
         run: |
-          gcloud run services describe looply-dev-service \
+          URL=$(gcloud run services describe ${{ env.SERVICE_NAME }} \
             --region europe-west2 \
-            --format='value(status.url)'
+            --format='value(status.url)')
+          echo "service_url=$URL" >> "$GITHUB_OUTPUT"
