@@ -52,7 +52,7 @@ variable "host" {
   type = string
 }
 
-variable "alert_threshold" {
+variable "uptime_alert_threshold" {
   type    = number
   default = 1
 }
@@ -75,4 +75,14 @@ variable "alert_auto_close" {
 variable "combiner" {
   type    = string
   default = "OR"
+}
+
+variable "error_rate_threshold" {
+  type    = number
+  default = 5
+}
+
+variable "latency_threshold" {
+  type    = number
+  default = 2000
 }
