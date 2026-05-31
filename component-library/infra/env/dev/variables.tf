@@ -57,4 +57,8 @@ variable "nextauth_secret" {
   sensitive = true
 }
 
+variable "alert_email" {
+  type = string
+}
+
 
