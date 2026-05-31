@@ -9,11 +9,10 @@ resource "google_monitoring_notification_channel" "monitoring_email" {
 }
 
 resource "google_monitoring_uptime_check_config" "cloud_run_uptime" {
-  project            = var.project
-  display_name       = var.display_name
-  timeout            = var.timeout
-  period             = var.period
-  log_check_failures = true
+  project      = var.project
+  display_name = var.display_name
+  timeout      = var.timeout
+  period       = var.period
 
   http_check {
     path           = var.path
@@ -38,7 +37,7 @@ resource "google_monitoring_alert_policy" "alert_policy_uptime" {
     display_name = "Uptime check failure"
 
     condition_threshold {
-      filter          = "resource.type = \"uptime_url\" AND metric.type = \"monitoring.googleapis.com/uptime_check/check_passed\" AND metric.labels.check_id = \"${google_monitoring_uptime_check_config.name.uptime_check_id}\""
+      filter          = "resource.type = \"uptime_url\" AND metric.type = \"monitoring.googleapis.com/uptime_check/check_passed\" AND metric.labels.check_id = \"${google_monitoring_uptime_check_config.cloud_run_uptime.uptime_check_id}\""
       comparison      = "COMPARISON_GT"
       threshold_value = var.uptime_alert_threshold
       duration        = var.alert_duration
