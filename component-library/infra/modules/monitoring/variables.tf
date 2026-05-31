@@ -50,5 +50,29 @@ variable "request_method" {
 
 variable "host" {
   type = string
+}
 
+variable "alert_threshold" {
+  type    = number
+  default = 1
+}
+
+variable "alert_duration" {
+  type    = string
+  default = "60s"
+}
+
+variable "alert_alignment_period" {
+  type    = string
+  default = "300s"
+}
+
+variable "alert_auto_close" {
+  type    = string
+  default = "1800s"
+}
+
+variable "combiner" {
+  type    = string
+  default = "OR"
 }
