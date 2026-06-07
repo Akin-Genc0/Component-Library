@@ -18,30 +18,21 @@ export default function Hero({
       data-looply
       className="flex flex-col items-center mt-[6rem] gap-8 w-full font-inter mb-[6rem]"
     >
-      <button
-        className="bg-gray-200 dark:bg-gray-800 py-1 px-5 rounded-xl text-sm font-thin transition-colors 
-      duration-200 hover:bg-gray-300 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white dark:text-gray-300"
-      >
+      <button className="neu-btn py-2 px-6 text-sm font-thin text-gray-600 dark:text-gray-300">
         {headerBtn}
         {" -->"}
       </button>
-      <h1 className=" text-center w-full text-5xl font-bold dark:text-white">
+      <h1 className="text-center w-full text-5xl font-bold dark:text-white">
         {header}
       </h1>
-      <p className="text-center lg:w-[69ch] sm:w-[40ch] md:w-[50ch] dark:text-gray-300">
+      <p className="text-center lg:w-[69ch] sm:w-[40ch] md:w-[50ch] text-gray-600 dark:text-gray-300">
         {subHeader}
       </p>
       <div className="flex flex-row gap-4 justify-center w-full">
-        <button
-          className="text-sm bg-black dark:bg-white cursor-pointer text-white dark:text-black py-3 px-8 rounded-xl
-         transition-colors duration-200 hover:bg-gray-800 dark:hover:bg-gray-200 hover:text-gray-200 dark:hover:text-black"
-        >
+        <button className="neu-btn text-sm cursor-pointer text-gray-900 dark:text-gray-100 py-3 px-8 font-medium">
           {btn1Text}
         </button>
-        <button
-          className="text-sm cursor-pointer py-3 px-8 rounded-xl transition-colors 
-        duration-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white dark:text-gray-300"
-        >
+        <button className="neu-btn text-sm cursor-pointer py-3 px-8 text-gray-500 dark:text-gray-400">
           {btn2Text}
         </button>
       </div>
