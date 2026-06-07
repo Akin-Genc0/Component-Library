@@ -1,0 +1,34 @@
+---
+id: 5
+slug: chat
+title: Chat
+description: A neumorphic chat widget with customizable endpoint and preset prompts.
+---
+
+## Chat
+
+The Chat component provides a conversational interface with user and bot message bubbles.
+
+### Usage
+
+```jsx
+import Chat from "@/components/chat";
+
+<Chat title="kol bot" img="/looplogoli.png" propt="kol" />
+```
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `title` | `string` | The chat window title |
+| `img` | `string` | Logo image path |
+| `propt` | `string` | Preset prompt label |
+| `endpoint` | `string` | API endpoint (defaults to `/api/chat`) |
+
+### Features
+
+- User messages styled with `neu-flat`
+- Bot responses styled with `neu-inset`
+- Customizable API endpoint for reuse across projects
+- Preset prompt button for quick interactions

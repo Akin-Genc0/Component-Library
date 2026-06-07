@@ -104,7 +104,9 @@ export default async function Home() {
             buttonText2="Get Started"
           />
         </Link>
-        <Calendar />
+        <Link href="/calendar">
+          <Calendar />
+        </Link>
         <Link href="/barchart">
           <BarChart
             content={[
@@ -143,65 +145,82 @@ export default async function Home() {
             ]}
           />
         </Link>
-        <Chat title="kol bot" img="/looplogoli.png" propt="kol" />
-        <Buttons
-          buttonObj={[
-            { buttonText: "Flat", buttonType: "neu-flat", href: "/button" },
-            { buttonText: "Raised", buttonType: "neu-raised", href: "/button" },
-            { buttonText: "Pressed", buttonType: "neu-inset", href: "/button" },
-          ]}
-        />
-        <Carousel
-          card={[
-            {
-              image:
-                "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
-              text: "Streamline your development workflow with modern tools and frameworks that boost productivity. Create scalable applications with ease.",
-            },
-            {
-              image:
-                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
-              text: "Build beautiful, responsive interfaces that users love. Our component library provides everything you need for professional UI design.",
-            },
-            {
-              image:
-                "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80",
-              text: "Write clean, maintainable code with best practices. TypeScript and modern JavaScript make your codebase robust and reliable.",
-            },
-            {
-              image:
-                "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
-              text: "Create stunning user experiences with smooth animations and intuitive interactions. Delight your users with every click.",
-            },
-            {
-              image:
-                "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80",
-              text: "Powerful components designed for modern applications. Accessible, customizable, and ready to use in your next project.",
-            },
-          ]}
-        />
-        <Drawer title="Doodle" size={600} colour="#000000ff" />
-
-        <Accordion
-          items={[
-            {
-              title: "What is LoopUI?",
-              text: "LoopUI is a modern component library built with React and Tailwind CSS, designed to help you build beautiful interfaces quickly.",
-            },
-            {
-              title: "How do I get started?",
-              text: "Simply install the components using npm and import them into your project. Full documentation is available in our guides.",
-            },
-            {
-              title: "Is it free to use?",
-              text: "Yes! LoopUI is completely free and open source. You can use it in personal and commercial projects.",
-            },
-            {
-              title: "Does it support dark mode?",
-              text: "Absolutely! All components are built with dark mode support using Tailwind's dark mode utilities.",
-            },
-          ]}
-        />
+        <Link href="/chat">
+          <Chat title="kol bot" img="/looplogoli.png" propt="kol" />
+        </Link>
+        <Link href="/accordion">
+          <Accordion
+            items={[
+              {
+                title: "What is LoopUI?",
+                text: "LoopUI is a modern component library built with React and Tailwind CSS, designed to help you build beautiful interfaces quickly.",
+              },
+              {
+                title: "How do I get started?",
+                text: "Simply install the components using npm and import them into your project. Full documentation is available in our guides.",
+              },
+              {
+                title: "Is it free to use?",
+                text: "Yes! LoopUI is completely free and open source. You can use it in personal and commercial projects.",
+              },
+              {
+                title: "Does it support dark mode?",
+                text: "Absolutely! All components are built with dark mode support using Tailwind's dark mode utilities.",
+              },
+            ]}
+          />
+        </Link>
+        <Link href="/button">
+          <Buttons
+            buttonObj={[
+              { buttonText: "Flat", buttonType: "neu-flat", href: "/button" },
+              {
+                buttonText: "Raised",
+                buttonType: "neu-raised",
+                href: "/button",
+              },
+              {
+                buttonText: "Pressed",
+                buttonType: "neu-inset",
+                href: "/button",
+              },
+            ]}
+          />
+        </Link>
+        <Link href="/carousel">
+          <Carousel
+            card={[
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Soft, tactile interfaces inspired by real-world surfaces. Neumorphism brings depth and elegance to modern UI design.",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Subtle gradients and shadows create a seamless experience. Every element feels like it belongs on the surface.",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Minimalist aesthetics meet functional design. Clean layouts with soft shadows that guide the user naturally.",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Light and shadow working in harmony. Components that feel pressed, raised, or floating on a unified surface.",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Fluid color palettes and smooth transitions. Build interfaces that are as beautiful as they are functional.",
+              },
+            ]}
+          />
+        </Link>
+        <Link href="/drawer">
+          <Drawer title="Doodle" size={600} colour="#000000ff" />
+        </Link>
       </div>
     </>
   );

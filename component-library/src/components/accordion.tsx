@@ -24,49 +24,48 @@ export default function Accordion({ items }: AccordionProps) {
       return (
         <div
           key={index}
-          className="border-b border-gray-200 dark:border-gray-700 last:border-b-0"
+          className="neu-flat p-5 cursor-pointer"
+          onClick={() => handleToggle(index)}
         >
-          <div
-            className="flex items-center gap-4 p-5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
-            onClick={() => handleToggle(index)}
-          >
-            <svg
-              className={`w-6 h-6 transition-transform duration-200 text-gray-900 dark:text-gray-100 flex-shrink-0 ${
-                hide[index] ? "rotate-180" : ""
-              }`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-            <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100">
+          <div className="flex items-center justify-between">
+            <h2 className="text-base text-gray-700 dark:text-gray-100">
               {val.title}
             </h2>
+            <div className="neu-inset w-8 h-8 flex items-center justify-center flex-shrink-0 !rounded-full">
+              <svg
+                className={`w-4 h-4 transition-transform duration-200 text-gray-500 dark:text-gray-300 ${
+                  hide[index] ? "rotate-45" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 5v14M5 12h14"
+                />
+              </svg>
+            </div>
           </div>
           <div
             className={`overflow-hidden transition-all duration-200 ${
-              hide[index] ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+              hide[index] ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
             }`}
           >
-            <p className="px-5 pb-5 pl-[3.75rem] text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-              {val.text}
-            </p>
+            <div className="neu-inset p-4">
+              <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                {val.text}
+              </p>
+            </div>
           </div>
         </div>
       );
     });
   }
   return (
-    <div
-      data-looply
-      className="border border-black dark:border-gray-700 rounded-lg overflow-hidden max-w-3xl bg-white dark:bg-gray-900 font-inter"
-    >
+    <div data-looply className="flex flex-col gap-4 max-w-3xl font-inter">
       {values()}
     </div>
   );

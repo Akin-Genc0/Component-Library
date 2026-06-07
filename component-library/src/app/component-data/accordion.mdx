@@ -1,0 +1,36 @@
+---
+id: 6
+slug: accordion
+title: Accordion
+description: A neumorphic accordion component with expandable content sections.
+---
+
+## Accordion
+
+The Accordion component displays collapsible content sections with smooth transitions.
+
+### Usage
+
+```jsx
+import Accordion from "@/components/accordion";
+
+<Accordion
+  items={[
+    { title: "Question one?", text: "Answer to question one." },
+    { title: "Question two?", text: "Answer to question two." },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `items` | `{ title: string; text: string }[]` | Array of accordion items |
+
+### Features
+
+- Each item is a separate `neu-flat` bar
+- Plus icon in `neu-inset` circle rotates 45° when open
+- Expanded content wrapped in `neu-inset` panel
+- Smooth expand/collapse animation

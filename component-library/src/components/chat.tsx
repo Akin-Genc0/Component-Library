@@ -2,8 +2,13 @@
 import Image from "next/image";
 import { useState } from "react";
 
-type chatBot = { title: string; img: string; propt: string };
-export default function Chat({ title, img, propt }: chatBot) {
+type chatBot = { title: string; img: string; propt: string; endpoint?: string };
+export default function Chat({
+  title,
+  img,
+  propt,
+  endpoint = "/api/chat",
+}: chatBot) {
   const [input, setInput] = useState("");
   const [msg, setMsg] = useState<History[]>([]);
   const [spinner, setSpinner] = useState(false);
@@ -23,7 +28,7 @@ export default function Chat({ title, img, propt }: chatBot) {
 
   async function sendMessage(message: string) {
     setSpinner(true);
-    const req = await fetch(`/api/chat`, {
+    const req = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
