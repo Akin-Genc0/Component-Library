@@ -1,12 +1,41 @@
 ---
 id: 1
 slug: card
-title: CardComp
-description: Testing card description
+title: Card
+description: A neumorphic content card with header, description, and action buttons.
 ---
 
-## Cards
+## Overview
 
-This is a test card documentation page.
+The Card component displays structured content in a soft, inset neumorphic container. It includes a header, subheader, body text, and two action buttons.
 
-<code>const coool</code>
+### Usage
+
+```jsx
+import CardText from "@/components/cardText";
+
+<CardText
+  header="Welcome to LoopUI"
+  subHeader="A modern UI card component."
+  mainText="Easily customize it to fit your needs."
+  buttonText1="Learn More"
+  buttonText2="Get Started"
+/>
+```
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `header` | `string` | Main heading text |
+| `subHeader` | `string` | Secondary heading |
+| `mainText` | `string` | Body content |
+| `buttonText1` | `string` | Left button label |
+| `buttonText2` | `string` | Right button label |
+
+### Styling
+
+- Container uses `neu-inset` for the pressed-in surface look
+- Both buttons use the `neu-btn` class with hover sink effect
+- Responsive breakpoints at `lg`, `md`, and `sm`
+- Full dark mode support

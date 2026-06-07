@@ -62,8 +62,8 @@ export default function NewNav({
           <button
             className={
               isMobile
-                ? "text-white dark:text-black hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-gray-800 border dark:border-gray-600 cursor-pointer py-2.5 px-6 bg-black dark:bg-white rounded-lg text-sm transition-all duration-200"
-                : "hidden md:flex text-white dark:text-black hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-gray-800 border dark:border-gray-600 cursor-pointer py-2.5 px-6 bg-black dark:bg-white rounded-lg text-sm transition-all duration-200"
+                ? "neu-inset !rounded-lg cursor-pointer py-2.5 px-6 text-sm transition-all duration-200 dark:text-gray-100"
+                : "hidden md:flex neu-inset !rounded-lg cursor-pointer py-2.5 px-6 text-sm transition-all duration-200 dark:text-gray-100"
             }
             onClick={() => {
               router.push(element.href);
@@ -102,10 +102,10 @@ export default function NewNav({
   return (
     <>
       <div className="flex items-center w-full relative">
-        <nav className="flex justify-between items-center w-full">
+        <nav className="neu-flat flex justify-between items-center w-full px-6 py-4">
           {hamburger && (
             <button
-              className="block md:hidden"
+              className="block md:hidden neu-btn p-2"
               onClick={() => setMobile(!mobile)}
               aria-label="Toggle menu"
             >
@@ -131,7 +131,7 @@ export default function NewNav({
         </nav>
 
         {hamburger && mobile && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-700 z-50">
+          <div className="md:hidden absolute top-full left-0 w-full neu-raised z-50 mt-2">
             <ul className="flex flex-col list-none p-4 gap-4">
               {renderNav(navObj, true)}
             </ul>

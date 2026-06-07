@@ -1,0 +1,36 @@
+---
+id: 7
+slug: carousel
+title: Carousel
+description: A neumorphic carousel component for scrolling through image cards.
+---
+
+## Carousel
+
+The Carousel component displays a horizontal scrollable set of image cards.
+
+### Usage
+
+```jsx
+import Carousel from "@/components/carousel";
+
+<Carousel
+  card={[
+    { image: "/path/to/image.jpg", text: "Card description" },
+    { image: "/path/to/image2.jpg", text: "Another card" },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `card` | `{ image: string; text: string }[]` | Array of card objects with image URL and text |
+
+### Features
+
+- Outer container uses `neu-flat` styling
+- Individual cards use `neu-inset` for a pressed appearance
+- Images have rounded top corners matching the neumorphic radius
+- Horizontal scroll with smooth navigation

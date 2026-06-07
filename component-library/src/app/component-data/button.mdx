@@ -1,0 +1,52 @@
+---
+id: 3
+slug: button
+title: Buttons
+description: A set of neumorphic buttons with three distinct style variants.
+---
+
+## Overview
+
+The Buttons component renders a group of buttons inside a raised neumorphic container. Each button can be styled as flat, raised, or inset, and supports optional navigation.
+
+### Usage
+
+```jsx
+import Buttons from "@/components/buttons";
+
+<Buttons
+  buttonObj={[
+    { buttonText: "Flat", buttonType: "neu-flat" },
+    { buttonText: "Raised", buttonType: "neu-raised" },
+    { buttonText: "Pressed", buttonType: "neu-inset" },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `buttonObj` | `buttonItems[]` | Array of button configurations |
+
+#### `buttonItems`
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `buttonText` | `string` | — | Button label |
+| `buttonType` | `"neu-flat" \| "neu-raised" \| "neu-inset"` | `"neu-flat"` | Visual style variant |
+| `buttonX` | `number` | `20` | Horizontal padding in px |
+| `buttonY` | `number` | `8` | Vertical padding in px |
+| `href` | `string` | — | Optional URL to navigate to on click |
+
+### Variants
+
+- **Flat** — sits flush on the surface, sinks inward on hover
+- **Raised** — elevated above the surface, sinks inward on hover
+- **Inset** — pressed into the surface, pops out flat on hover
+
+### Styling
+
+- Container wrapped in `neu-raised p-8`
+- All buttons have `rounded-lg` corners and `200ms` transitions
+- Hover states swap between `neu-inset` and `neu-flat`
