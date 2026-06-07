@@ -9,6 +9,8 @@ import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
 import ThemeToggle from "@/components/themeSwitch";
 import Link from "next/link";
+import Calendar from "@/components/calendar";
+import Buttons from "@/components/buttons";
 export default async function Home() {
   const session = await auth();
 
@@ -102,7 +104,7 @@ export default async function Home() {
             buttonText2="Get Started"
           />
         </Link>
-
+        <Calendar />
         <Link href="/barchart">
           <BarChart
             content={[
@@ -142,6 +144,13 @@ export default async function Home() {
           />
         </Link>
         <Chat title="kol bot" img="/looplogoli.png" propt="kol" />
+        <Buttons
+          buttonObj={[
+            { buttonText: "Flat", buttonType: "neu-flat", href: "/button" },
+            { buttonText: "Raised", buttonType: "neu-raised", href: "/button" },
+            { buttonText: "Pressed", buttonType: "neu-inset", href: "/button" },
+          ]}
+        />
         <Carousel
           card={[
             {
