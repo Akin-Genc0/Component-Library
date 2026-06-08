@@ -2,12 +2,12 @@
 id: 3
 slug: button
 title: Buttons
-description: A set of neumorphic buttons with three distinct style variants.
+description: A set of neumorphic buttons with three distinct style variants and optional icon support.
 ---
 
 ## Overview
 
-The Buttons component renders a group of buttons inside a raised neumorphic container. Each button can be styled as flat, raised, or inset, and supports optional navigation.
+The Buttons component renders a group of buttons inside a raised neumorphic container. Each button can be styled as flat, raised, or inset, and supports optional navigation and SVG icons.
 
 ### Usage
 
@@ -19,6 +19,7 @@ import Buttons from "@/components/buttons";
     { buttonText: "Flat", buttonType: "neu-flat" },
     { buttonText: "Raised", buttonType: "neu-raised" },
     { buttonText: "Pressed", buttonType: "neu-inset" },
+    { buttonText: "Like", buttonType: "neu-flat", icon: "M234,80.12..." },
   ]}
 />
 ```
@@ -34,22 +35,28 @@ import Buttons from "@/components/buttons";
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `buttonText` | `string` | — | Button label |
-| `buttonType` | `"neu-flat" \| "neu-raised" \| "neu-inset"` | `"neu-flat"` | Visual style variant |
+| `buttonType` | `"neu-flat"`, `"neu-raised"`, `"neu-inset"` | `"neu-flat"` | Visual style variant |
 | `buttonX` | `number` | `20` | Horizontal padding in px |
 | `buttonY` | `number` | `8` | Vertical padding in px |
 | `href` | `string` | — | Optional URL to navigate to on click |
+| `icon` | `string` | — | Optional SVG path data to render an icon inside the button |
 
 ### Variants
 
-- **Flat** — sits flush on the surface, sinks inward on hover
-- **Raised** — elevated above the surface, sinks inward on hover
-- **Inset** — pressed into the surface, pops out flat on hover
+- **Flat** sits flush on the surface, sinks inward on hover
+- **Raised** elevated above the surface, sinks inward on hover
+- **Inset** pressed into the surface, pops out flat on hover
+
+### Icon Support
+
+Pass an SVG path string via the `icon` prop to render an inline icon next to the button text. The icon uses `currentColor` and sizes at `20x20px`.
 
 ### Styling
 
 - Container wrapped in `neu-raised p-8`
 - All buttons have `rounded-lg` corners and `200ms` transitions
 - Hover states swap between `neu-inset` and `neu-flat`
+- Styles are applied via a `styleMap` lookup no duplicated markup
 
 ### Demo
 

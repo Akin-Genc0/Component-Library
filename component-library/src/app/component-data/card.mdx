@@ -2,24 +2,29 @@
 id: 1
 slug: card
 title: Card
-description: A neumorphic content card with header, description, and action buttons.
+description: A neumorphic content card with header, description, and action buttons. Supports 3 styles soft-edge, pressed, and floating.
 ---
 
 ## Overview
 
-The Card component displays structured content in a soft, inset neumorphic container. It includes a header, subheader, body text, and two action buttons.
+The Card component displays structured content in a neumorphic container. It supports 3 visual styles and includes a header, subheader, body text, and two action buttons.
 
 ### Usage
 
 ```jsx
-import CardText from "@/components/cardText";
+import Card from "@/components/card";
 
-<CardText
-  header="Welcome to LoopUI"
-  subHeader="A modern UI card component."
-  mainText="Easily customize it to fit your needs."
-  buttonText1="Learn More"
-  buttonText2="Get Started"
+<Card
+  cards={[
+    {
+      cardStyle: "neu-pressed",
+      headerText: "Welcome to LoopUI",
+      subHeaderText: "A modern UI card component.",
+      descriptionText: "Easily customize it to fit your needs.",
+      buttonText1: "Learn More",
+      buttonText2: "Get Started",
+    },
+  ]}
 />
 ```
 
@@ -27,18 +32,19 @@ import CardText from "@/components/cardText";
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `header` | `string` | Main heading text |
-| `subHeader` | `string` | Secondary heading |
-| `mainText` | `string` | Body content |
+| `cardStyle` | `"neu-soft-edge"`, `"neu-pressed"`, `"neu-floating"` | Neumorphic style variant |
+| `headerText` | `string` | Main heading text |
+| `subHeaderText` | `string` | Secondary heading |
+| `descriptionText` | `string` | Body content |
 | `buttonText1` | `string` | Left button label |
 | `buttonText2` | `string` | Right button label |
+| `imageUrl` | `string` | Optional image URL |
 
-### Styling
+### Styles
 
-- Container uses `neu-inset` for the pressed-in surface look
-- Both buttons use the `neu-btn` class with hover sink effect
-- Responsive breakpoints at `lg`, `md`, and `sm`
-- Full dark mode support
+- **neu-soft-edge** Flat raised surface with subtle outward shadow
+- **neu-pressed** Sunken inward, like the classic CardText design
+- **neu-floating** Elevated with strong outward shadow, 3D floating look
 
 ### Demo
 

@@ -1,5 +1,5 @@
 import Chat from "@/components/chat";
-import CardText from "@/components/cardText";
+import Card from "@/components/card";
 import Hero from "@/components/hero";
 import BarChart from "@/components/barChart";
 import Carousel from "@/components/carousel";
@@ -11,6 +11,7 @@ import ThemeToggle from "@/components/themeSwitch";
 import Link from "next/link";
 import Calendar from "@/components/calendar";
 import Buttons from "@/components/buttons";
+import DropDown from "@/components/dropDown";
 export default async function Home() {
   const session = await auth();
 
@@ -91,19 +92,40 @@ export default async function Home() {
         your needs. Begin here and shape it into your own. Free. 
         Flexible. Open Source."
         btn1Text="Get Started"
-        btn1Href="/docs"
         btn2Text="View Components"
-        btn2Href="/examples"
       />
 
       <div className="flex flex-wrap gap-[50px] justify-center">
         <Link href="/card">
-          <CardText
-            header="Welcome to LoopUI"
-            subHeader="A modern UI card component for your next project."
-            mainText="This card showcases a clean design, flexible layout, and interactive buttons. Easily customize it to fit your needs and enhance your application's user experience."
-            buttonText1="Learn More"
-            buttonText2="Get Started"
+          <Card
+            cards={[
+              {
+                cardStyle: "neu-pressed",
+                headerText: "Soft Edge",
+                subHeaderText: "Subtle and smooth.",
+                descriptionText:
+                  "A gentle raised surface with soft shadows. Perfect for content that needs to feel light and approachable.",
+                buttons: ["Explore", "Details"],
+              },
+              {
+                cardStyle: "neu-pressed",
+                headerText: "Image Card",
+                subHeaderText: "Visual-first design.",
+                descriptionText:
+                  "Pair rich imagery with clean typography. Ideal for showcasing products, portfolios, or featured content.",
+                buttons: ["View", "Save"],
+                imageUrl:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+              },
+              {
+                cardStyle: "neu-floating",
+                headerText: "Floating",
+                subHeaderText: "Bold and elevated.",
+                descriptionText:
+                  "A strong 3D shadow that makes the card pop off the page. Great for calls to action or highlighted sections.",
+                buttons: ["Get Started"],
+              },
+            ]}
           />
         </Link>
         <Link href="/calendar">
@@ -190,6 +212,11 @@ export default async function Home() {
                 buttonType: "neu-inset",
                 href: "/button",
               },
+              {
+                buttonText: "Like",
+                buttonType: "neu-flat",
+                icon: "M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21.11l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z",
+              },
             ]}
           />
         </Link>
@@ -227,6 +254,40 @@ export default async function Home() {
         <Link href="/drawer">
           <Drawer title="Doodle" size={600} colour="#000000ff" />
         </Link>
+        <DropDown
+          dropDowns={[
+            {
+              dropDownType: "neu-flat",
+              dropDownMenuLabel: "Menu",
+              dropDownItem: [
+                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                { dropDownLable: "Docs", dropDownURL: "/docs" },
+                { dropDownLable: "Logout" },
+              ],
+            },
+            {
+              dropDownType: "neu-raised",
+              dropDownMenuLabel: "Options",
+              dropDownItem: [
+                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                { dropDownLable: "Docs", dropDownURL: "/docs" },
+                { dropDownLable: "Logout" },
+              ],
+            },
+            {
+              dropDownType: "neu-inset",
+              dropDownMenuLabel: "Account",
+              dropDownItem: [
+                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                { dropDownLable: "Docs", dropDownURL: "/docs" },
+                { dropDownLable: "Logout" },
+              ],
+            },
+          ]}
+        />
       </div>
     </>
   );
