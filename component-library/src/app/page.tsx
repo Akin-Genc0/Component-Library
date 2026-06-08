@@ -92,7 +92,9 @@ export default async function Home() {
         your needs. Begin here and shape it into your own. Free. 
         Flexible. Open Source."
         btn1Text="Get Started"
+        btn1Href="/docs"
         btn2Text="View Components"
+        btn2Href="/examples"
       />
 
       <div className="flex flex-wrap gap-[50px] justify-center">
