@@ -1,0 +1,39 @@
+---
+id: 9
+slug: hero
+title: Hero
+description: A neumorphic hero section with header, subheader, and call-to-action buttons.
+---
+
+## Hero
+
+The Hero component displays a prominent banner section with customizable text and action buttons.
+
+### Usage
+
+```jsx
+import Hero from "@/components/hero";
+
+<Hero
+  headerBtn="Announcement text"
+  header="Main Heading"
+  subHeader="Supporting description text."
+  btn1Text="Primary Action"
+  btn2Text="Secondary Action"
+/>
+```
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `headerBtn` | `string` | Small announcement text above the header |
+| `header` | `string` | Main heading text |
+| `subHeader` | `string` | Description text below the header |
+| `btn1Text` | `string` | Primary button label |
+| `btn2Text` | `string` | Secondary button label |
+
+### Features
+
+- Buttons use `neu-btn` class with inset hover effect
+- Clean, centered layout
