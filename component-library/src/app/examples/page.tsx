@@ -1,29 +1,17 @@
 import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
 import ThemeToggle from "@/components/themeSwitch";
-import Hero from "@/components/hero";
-import CardLink from "@/components/cardLink";
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import CardText from "@/components/cardText";
+import BarChart from "@/components/barChart";
+import Calendar from "@/components/calendar";
+import Buttons from "@/components/buttons";
+import Accordion from "@/components/accordion";
+import Carousel from "@/components/carousel";
+import Drawer from "@/components/drawer";
+import Chat from "@/components/chat";
 
-function getDocPages() {
-  const dir = path.join(process.cwd(), "src", "app", "component-data");
-  const files = fs.readdirSync(dir).filter((f) => f.endsWith(".mdx"));
-  return files.map((file) => {
-    const content = fs.readFileSync(path.join(dir, file), "utf8");
-    const { data } = matter(content);
-    return {
-      slug: file.replace(/\.mdx$/, ""),
-      title: data.title,
-      description: data.description,
-    };
-  });
-}
-
-export default async function Docs() {
+export default async function Examples() {
   const session = await auth();
-  const docs = getDocPages();
 
   return (
     <>
@@ -41,8 +29,8 @@ export default async function Docs() {
           },
           { type: "link", label: "Home", href: "/" },
           { type: "link", label: "About", href: "/about" },
-          { type: "link", label: "Docs", href: "/docs" },
-          { type: "link", label: "Examples", href: "/examples" },
+          { type: "link", label: "Docs", href: "/services" },
+          { type: "link", label: "Examples", href: "/contact" },
           ...(session
             ? [
                 {
@@ -74,23 +62,88 @@ export default async function Docs() {
       >
         <ThemeToggle />
       </NewNav>
-      <Hero
-        headerBtn="Documentation"
-        header="Component Docs"
-        subHeader="Browse the full list of Looply components. Each page includes usage examples, props, and a live interactive demo."
-        btn1Text="Get Started"
-        btn2Text="View on GitHub"
-        btn2Href="https://github.com/Akin-Genc0/Component-Library"
-      />
-      <div className="max-w-4xl mx-auto px-6 py-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {docs.map((doc) => (
-          <CardLink
-            key={doc.slug}
-            header={doc.title}
-            subHeader={doc.description}
-            href={`/${doc.slug}`}
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        <div className="neu-flat p-10 mb-10">
+          <h1 className="text-3xl font-bold mb-2 dark:text-white">Examples</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-lg">
+            Live interactive examples of every Looply component.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap gap-10 justify-center">
+          <CardText
+            header="Project Card"
+            subHeader="A real-world card example."
+            mainText="Use this card to display project info, blog posts, or product features."
+            buttonText1="View"
+            buttonText2="Share"
           />
-        ))}
+
+          <Calendar />
+
+          <BarChart
+            content={[
+              { lable: "Mon", size: 45 },
+              { lable: "Tue", size: 80 },
+              { lable: "Wed", size: 120 },
+              { lable: "Thu", size: 65 },
+              { lable: "Fri", size: 200 },
+            ]}
+          />
+
+          <Chat
+            title="Looply AI"
+            img="/looplogoli.png"
+            propt="What components are available?"
+          />
+
+          <Accordion
+            items={[
+              {
+                title: "Can I use this in production?",
+                text: "Absolutely. All components are production-ready and tested.",
+              },
+              {
+                title: "Does it work with Next.js?",
+                text: "Yes, Looply is built on Next.js and works seamlessly with it.",
+              },
+              {
+                title: "Can I customise the theme?",
+                text: "All styles use CSS variables. Override them in your globals.css.",
+              },
+            ]}
+          />
+
+          <Buttons
+            buttonObj={[
+              { buttonText: "Primary", buttonType: "neu-flat" },
+              { buttonText: "Secondary", buttonType: "neu-raised" },
+              { buttonText: "Tertiary", buttonType: "neu-inset" },
+            ]}
+          />
+
+          <Carousel
+            card={[
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Neumorphic design in action.",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Soft shadows and clean lines.",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Modern, tactile interfaces.",
+              },
+            ]}
+          />
+
+          <Drawer title="Sketch Pad" size={400} colour="#4d4d4d" />
+        </div>
       </div>
     </>
   );

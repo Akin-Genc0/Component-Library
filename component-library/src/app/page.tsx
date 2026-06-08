@@ -42,14 +42,14 @@ export default async function Home() {
 
           {
             type: "link",
-            label: "Services",
-            href: "/service",
+            label: "Docs",
+            href: "/docs",
           },
 
           {
             type: "link",
-            label: "Contact",
-            href: "/contact",
+            label: "Examples",
+            href: "/examples",
           },
           ...(session
             ? [
@@ -91,7 +91,9 @@ export default async function Home() {
         your needs. Begin here and shape it into your own. Free. 
         Flexible. Open Source."
         btn1Text="Get Started"
+        btn1Href="/docs"
         btn2Text="View Components"
+        btn2Href="/examples"
       />
 
       <div className="flex flex-wrap gap-[50px] justify-center">
@@ -146,7 +148,11 @@ export default async function Home() {
           />
         </Link>
         <Link href="/chat">
-          <Chat title="kol bot" img="/looplogoli.png" propt="kol" />
+          <Chat
+            title="Looply AI"
+            img="/looplogoli.png"
+            propt="How do I install Looply?"
+          />
         </Link>
         <Link href="/accordion">
           <Accordion

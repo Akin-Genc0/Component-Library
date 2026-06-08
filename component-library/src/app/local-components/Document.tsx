@@ -26,7 +26,7 @@ export default function DocumentationTemp({
           [&_pre]:neu-flat [&_pre]:p-4 [&_pre]:rounded-[var(--neu-radius)] [&_pre]:overflow-x-auto [&_pre]:my-4 [&_pre]:text-sm
           [&_code]:text-sm [&_code]:font-mono
           [&_:not(pre)>code]:neu-inset [&_:not(pre)>code]:px-2 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:rounded-md [&_:not(pre)>code]:text-sm
-          [&_table]:w-full [&_table]:my-4
+          [&_table]:w-full [&_table]:my-4 [&_table]:block [&_table]:overflow-x-auto [&_table]:whitespace-nowrap
           [&_th]:text-left [&_th]:py-2 [&_th]:px-3 [&_th]:font-semibold [&_th]:border-b [&_th]:border-gray-300 [&_th]:dark:border-gray-600
           [&_td]:py-2 [&_td]:px-3 [&_td]:border-b [&_td]:border-gray-200 [&_td]:dark:border-gray-700
           [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ul]:space-y-1
