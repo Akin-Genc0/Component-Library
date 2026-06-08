@@ -8,7 +8,7 @@ import remarkGfm from "remark-gfm";
 import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
 import ThemeToggle from "@/components/themeSwitch";
-import CardText from "@/components/cardText";
+import Card from "@/components/card";
 import BarChart from "@/components/barChart";
 import Calendar from "@/components/calendar";
 import Buttons from "@/components/buttons";
@@ -17,9 +17,11 @@ import Accordion from "@/components/accordion";
 import Carousel from "@/components/carousel";
 import Drawer from "@/components/drawer";
 import Hero from "@/components/hero";
+import DropDown from "@/components/dropDown";
 
 const mdxComponents = {
-  CardText,
+  Card,
+  DropDown,
   BarChart,
   Calendar,
   Buttons,
@@ -89,16 +91,73 @@ const mdxComponents = {
     />
   ),
   CardDemo: () => (
-    <CardText
-      header="Welcome to LoopUI"
-      subHeader="A modern UI card component."
-      mainText="This card showcases a clean design, flexible layout, and interactive buttons. Easily customize it to fit your needs."
-      buttonText1="Learn More"
-      buttonText2="Get Started"
+    <Card
+      cards={[
+        {
+          cardStyle: "neu-soft-edge",
+          headerText: "Soft Edge",
+          subHeaderText: "Flat raised surface.",
+          descriptionText:
+            "A subtle outward shadow that gently lifts the card off the background.",
+          buttons: ["Learn More", "Get Started"],
+        },
+        {
+          cardStyle: "neu-pressed",
+          headerText: "Pressed",
+          subHeaderText: "Sunken inward surface.",
+          descriptionText:
+            "A pressed-in look, like the card is carved into the background.",
+          buttons: ["Learn More", "Get Started"],
+        },
+        {
+          cardStyle: "neu-floating",
+          headerText: "Floating",
+          subHeaderText: "Elevated 3D surface.",
+          descriptionText:
+            "A strong outward shadow giving the card a hovering, floating appearance.",
+          buttons: ["Learn More", "Get Started"],
+        },
+      ]}
     />
   ),
   ChatDemo: () => <Chat title="Demo Bot" img="/looplogoli.png" propt="Hello" />,
   DrawerDemo: () => <Drawer title="Doodle" size={400} colour="#000000ff" />,
+  DropDownDemo: () => (
+    <DropDown
+      dropDowns={[
+        {
+          dropDownType: "neu-flat",
+          dropDownMenuLabel: "Menu",
+          dropDownItem: [
+            { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+            { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+            { dropDownLable: "Docs", dropDownURL: "/docs" },
+            { dropDownLable: "Logout" },
+          ],
+        },
+        {
+          dropDownType: "neu-raised",
+          dropDownMenuLabel: "Options",
+          dropDownItem: [
+            { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+            { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+            { dropDownLable: "Docs", dropDownURL: "/docs" },
+            { dropDownLable: "Logout" },
+          ],
+        },
+        {
+          dropDownType: "neu-inset",
+          dropDownMenuLabel: "Account",
+          dropDownItem: [
+            { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+            { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+            { dropDownLable: "Docs", dropDownURL: "/docs" },
+            { dropDownLable: "Logout" },
+          ],
+        },
+      ]}
+    />
+  ),
   HeroDemo: () => (
     <Hero
       headerBtn="New release"

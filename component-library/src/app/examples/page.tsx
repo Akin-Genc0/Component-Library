@@ -9,6 +9,7 @@ import Accordion from "@/components/accordion";
 import Carousel from "@/components/carousel";
 import Drawer from "@/components/drawer";
 import Chat from "@/components/chat";
+import DropDown from "@/components/dropDown";
 
 export default async function Examples() {
   const session = await auth();
@@ -143,6 +144,41 @@ export default async function Examples() {
           />
 
           <Drawer title="Sketch Pad" size={400} colour="#4d4d4d" />
+
+          <DropDown
+            dropDowns={[
+              {
+                dropDownType: "neu-flat",
+                dropDownMenuLabel: "Menu",
+                dropDownItem: [
+                  { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Docs", dropDownURL: "/docs" },
+                  { dropDownLable: "Logout" },
+                ],
+              },
+              {
+                dropDownType: "neu-raised",
+                dropDownMenuLabel: "Options",
+                dropDownItem: [
+                  { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Docs", dropDownURL: "/docs" },
+                  { dropDownLable: "Logout" },
+                ],
+              },
+              {
+                dropDownType: "neu-inset",
+                dropDownMenuLabel: "Account",
+                dropDownItem: [
+                  { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Docs", dropDownURL: "/docs" },
+                  { dropDownLable: "Logout" },
+                ],
+              },
+            ]}
+          />
         </div>
       </div>
     </>
