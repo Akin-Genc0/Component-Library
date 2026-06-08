@@ -20,8 +20,8 @@ export default async function UserInfoPage() {
           },
           { type: "link", label: "Home", href: "/" },
           { type: "link", label: "About", href: "/about" },
-          { type: "link", label: "Services", href: "/service" },
-          { type: "link", label: "Contact", href: "/contact" },
+          { type: "link", label: "Docs", href: "/docs" },
+          { type: "link", label: "Examples", href: "/examples" },
           ...(session
             ? [
                 {

@@ -4,6 +4,7 @@ type heroValue = {
   subHeader: string;
   btn1Text: string;
   btn2Text: string;
+  btn2Href?: string;
 };
 
 export default function Hero({
@@ -11,6 +12,7 @@ export default function Hero({
   subHeader,
   btn1Text,
   btn2Text,
+  btn2Href,
   headerBtn,
 }: heroValue) {
   return (
@@ -32,9 +34,18 @@ export default function Hero({
         <button className="neu-btn text-sm cursor-pointer text-gray-900 dark:text-gray-100 py-3 px-8 font-medium">
           {btn1Text}
         </button>
-        <button className="neu-btn text-sm cursor-pointer py-3 px-8 text-gray-500 dark:text-gray-400">
-          {btn2Text}
-        </button>
+        {btn2Href ? (
+          <a
+            href={btn2Href}
+            className="neu-btn inline-block text-sm cursor-pointer py-3 px-8 text-gray-500 dark:text-gray-400 no-underline"
+          >
+            {btn2Text}
+          </a>
+        ) : (
+          <button className="neu-btn text-sm cursor-pointer py-3 px-8 text-gray-500 dark:text-gray-400">
+            {btn2Text}
+          </button>
+        )}
       </div>
     </div>
   );

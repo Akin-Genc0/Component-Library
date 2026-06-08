@@ -8,6 +8,107 @@ import remarkGfm from "remark-gfm";
 import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
 import ThemeToggle from "@/components/themeSwitch";
+import CardText from "@/components/cardText";
+import BarChart from "@/components/barChart";
+import Calendar from "@/components/calendar";
+import Buttons from "@/components/buttons";
+import Chat from "@/components/chat";
+import Accordion from "@/components/accordion";
+import Carousel from "@/components/carousel";
+import Drawer from "@/components/drawer";
+import Hero from "@/components/hero";
+
+const mdxComponents = {
+  CardText,
+  BarChart,
+  Calendar,
+  Buttons,
+  Chat,
+  Accordion,
+  Carousel,
+  Drawer,
+  Hero,
+  CarouselDemo: () => (
+    <Carousel
+      card={[
+        {
+          image:
+            "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+          text: "Soft, tactile interfaces inspired by real-world surfaces.",
+        },
+        {
+          image:
+            "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+          text: "Subtle gradients and shadows create a seamless experience.",
+        },
+        {
+          image:
+            "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+          text: "Minimalist aesthetics meet functional design.",
+        },
+      ]}
+    />
+  ),
+  AccordionDemo: () => (
+    <Accordion
+      items={[
+        {
+          title: "What is LoopUI?",
+          text: "LoopUI is a modern component library built with React and Tailwind CSS.",
+        },
+        {
+          title: "How do I install it?",
+          text: "Install via npm and import components directly into your project.",
+        },
+        {
+          title: "Is it free?",
+          text: "Yes! LoopUI is completely free and open source.",
+        },
+      ]}
+    />
+  ),
+  BarChartDemo: () => (
+    <BarChart
+      content={[
+        { lable: "Jan", size: 120 },
+        { lable: "Feb", size: 80 },
+        { lable: "Mar", size: 200 },
+        { lable: "Apr", size: 150 },
+        { lable: "May", size: 90 },
+        { lable: "Jun", size: 170 },
+      ]}
+    />
+  ),
+  ButtonsDemo: () => (
+    <Buttons
+      buttonObj={[
+        { buttonText: "Flat", buttonType: "neu-flat" },
+        { buttonText: "Raised", buttonType: "neu-raised" },
+        { buttonText: "Pressed", buttonType: "neu-inset" },
+      ]}
+    />
+  ),
+  CardDemo: () => (
+    <CardText
+      header="Welcome to LoopUI"
+      subHeader="A modern UI card component."
+      mainText="This card showcases a clean design, flexible layout, and interactive buttons. Easily customize it to fit your needs."
+      buttonText1="Learn More"
+      buttonText2="Get Started"
+    />
+  ),
+  ChatDemo: () => <Chat title="Demo Bot" img="/looplogoli.png" propt="Hello" />,
+  DrawerDemo: () => <Drawer title="Doodle" size={400} colour="#000000ff" />,
+  HeroDemo: () => (
+    <Hero
+      headerBtn="New release"
+      header="Build Something Beautiful"
+      subHeader="A neumorphic hero section for your landing page."
+      btn1Text="Get Started"
+      btn2Text="Learn More"
+    />
+  ),
+};
 
 const COMPONENT_DATA_DIR = path.join(
   process.cwd(),
@@ -50,8 +151,8 @@ export default async function Page({
           },
           { type: "link", label: "Home", href: "/" },
           { type: "link", label: "About", href: "/about" },
-          { type: "link", label: "Services", href: "/service" },
-          { type: "link", label: "Contact", href: "/contact" },
+          { type: "link", label: "Docs", href: "/docs" },
+          { type: "link", label: "Examples", href: "/examples" },
           ...(session
             ? [
                 {
@@ -87,6 +188,7 @@ export default async function Page({
         <MDXRemote
           source={content}
           options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          components={mdxComponents}
         />
       </DocumentationTemp>
     </>
