@@ -18,6 +18,7 @@ import Carousel from "@/components/carousel";
 import Drawer from "@/components/drawer";
 import Hero from "@/components/hero";
 import DropDown from "@/components/dropDown";
+import CalloutCard from "@/components/calloutCard";
 
 const mdxComponents = {
   Card,
@@ -30,6 +31,7 @@ const mdxComponents = {
   Carousel,
   Drawer,
   Hero,
+  CalloutCard,
   CarouselDemo: () => (
     <Carousel
       card={[
@@ -99,7 +101,7 @@ const mdxComponents = {
           subHeaderText: "Flat raised surface.",
           descriptionText:
             "A subtle outward shadow that gently lifts the card off the background.",
-          buttons: ["Learn More", "Get Started"],
+          buttons: [{ label: "Learn More" }, { label: "Get Started" }],
         },
         {
           cardStyle: "neu-pressed",
@@ -107,7 +109,7 @@ const mdxComponents = {
           subHeaderText: "Sunken inward surface.",
           descriptionText:
             "A pressed-in look, like the card is carved into the background.",
-          buttons: ["Learn More", "Get Started"],
+          buttons: [{ label: "Learn More" }, { label: "Get Started" }],
         },
         {
           cardStyle: "neu-floating",
@@ -115,7 +117,7 @@ const mdxComponents = {
           subHeaderText: "Elevated 3D surface.",
           descriptionText:
             "A strong outward shadow giving the card a hovering, floating appearance.",
-          buttons: ["Learn More", "Get Started"],
+          buttons: [{ label: "Learn More" }, { label: "Get Started" }],
         },
       ]}
     />
@@ -165,6 +167,33 @@ const mdxComponents = {
       subHeader="A neumorphic hero section for your landing page."
       btn1Text="Get Started"
       btn2Text="Learn More"
+    />
+  ),
+  CalloutCardDemo: () => (
+    <CalloutCard
+      callOut={[
+        {
+          header: "Start Building Today",
+          subHeader:
+            "Install Looply with a single command and start creating beautiful neumorphic interfaces.",
+          styleType: "neu-soft-edge",
+          radiusType: "soft-edge",
+          buttons: [
+            { label: "Get Started", href: "/docs" },
+            { label: "View Examples", href: "/examples" },
+          ],
+        },
+        {
+          header: "Open Source & Free",
+          subHeader:
+            "Looply is completely free and open source. Use it in personal or commercial projects.",
+          styleType: "neu-floating",
+          radiusType: "pill",
+          buttons: [{ label: "Browse Components", href: "/examples" }],
+          imageUrl:
+            "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+        },
+      ]}
     />
   ),
 };

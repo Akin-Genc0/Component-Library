@@ -137,38 +137,16 @@ export default async function Home() {
         <Link href="/barchart">
           <BarChart
             content={[
-              {
-                lable: "Akin",
-                size: 180,
-              },
-              {
-                lable: "chris",
-                size: 69,
-              },
-              {
-                lable: "Akin",
-                size: 66,
-              },
-              {
-                lable: "chris",
-                size: 88,
-              },
-              {
-                lable: "Akin",
-                size: 90,
-              },
-              {
-                lable: "chris",
-                size: 57,
-              },
-              {
-                lable: "Akin",
-                size: 200,
-              },
-              {
-                lable: "chris",
-                size: 69,
-              },
+              { lable: "Mon", size: 180 },
+              { lable: "Tue", size: 95 },
+              { lable: "Wed", size: 120 },
+              { lable: "Thu", size: 88 },
+              { lable: "Fri", size: 150 },
+              { lable: "Sat", size: 57 },
+              { lable: "Sun", size: 200 },
+              { lable: "Fri", size: 150 },
+              { lable: "Sat", size: 57 },
+              { lable: "Sun", size: 200 },
             ]}
           />
         </Link>
@@ -223,6 +201,40 @@ export default async function Home() {
             ]}
           />
         </Link>
+        <DropDown
+          dropDowns={[
+            {
+              dropDownType: "neu-flat",
+              dropDownMenuLabel: "Menu",
+              dropDownItem: [
+                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                { dropDownLable: "Docs", dropDownURL: "/docs" },
+                { dropDownLable: "Logout" },
+              ],
+            },
+            {
+              dropDownType: "neu-raised",
+              dropDownMenuLabel: "Options",
+              dropDownItem: [
+                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                { dropDownLable: "Docs", dropDownURL: "/docs" },
+                { dropDownLable: "Logout" },
+              ],
+            },
+            {
+              dropDownType: "neu-inset",
+              dropDownMenuLabel: "Account",
+              dropDownItem: [
+                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                { dropDownLable: "Docs", dropDownURL: "/docs" },
+                { dropDownLable: "Logout" },
+              ],
+            },
+          ]}
+        />
         <Link href="/carousel">
           <Carousel
             card={[
@@ -257,6 +269,7 @@ export default async function Home() {
         <Link href="/drawer">
           <Drawer title="Doodle" size={600} colour="#000000ff" />
         </Link>
+
         <CalloutCard
           callOut={[
             {
@@ -289,40 +302,6 @@ export default async function Home() {
               buttons: [
                 { label: "Read Docs", href: "/docs" },
                 { label: "Contact Us", href: "/contact" },
-              ],
-            },
-          ]}
-        />
-        <DropDown
-          dropDowns={[
-            {
-              dropDownType: "neu-flat",
-              dropDownMenuLabel: "Menu",
-              dropDownItem: [
-                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
-                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
-                { dropDownLable: "Docs", dropDownURL: "/docs" },
-                { dropDownLable: "Logout" },
-              ],
-            },
-            {
-              dropDownType: "neu-raised",
-              dropDownMenuLabel: "Options",
-              dropDownItem: [
-                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
-                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
-                { dropDownLable: "Docs", dropDownURL: "/docs" },
-                { dropDownLable: "Logout" },
-              ],
-            },
-            {
-              dropDownType: "neu-inset",
-              dropDownMenuLabel: "Account",
-              dropDownItem: [
-                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
-                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
-                { dropDownLable: "Docs", dropDownURL: "/docs" },
-                { dropDownLable: "Logout" },
               ],
             },
           ]}

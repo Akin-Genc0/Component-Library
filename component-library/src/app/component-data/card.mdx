@@ -21,8 +21,7 @@ import Card from "@/components/card";
       headerText: "Welcome to LoopUI",
       subHeaderText: "A modern UI card component.",
       descriptionText: "Easily customize it to fit your needs.",
-      buttonText1: "Learn More",
-      buttonText2: "Get Started",
+      buttons: [{ label: "Learn More" }, { label: "Get Started" }],
     },
   ]}
 />
@@ -32,12 +31,11 @@ import Card from "@/components/card";
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `cardStyle` | `"neu-soft-edge"`, `"neu-pressed"`, `"neu-floating"` | Neumorphic style variant |
+| `cardStyle` | `"neu-soft-edge" \| "neu-pressed" \| "neu-floating"` | Neumorphic style variant |
 | `headerText` | `string` | Main heading text |
 | `subHeaderText` | `string` | Secondary heading |
 | `descriptionText` | `string` | Body content |
-| `buttonText1` | `string` | Left button label |
-| `buttonText2` | `string` | Right button label |
+| `buttons` | `{ label: string; href?: string }[]` | Optional action buttons |
 | `imageUrl` | `string` | Optional image URL |
 
 ### Styles
