@@ -12,6 +12,7 @@ import Link from "next/link";
 import Calendar from "@/components/calendar";
 import Buttons from "@/components/buttons";
 import DropDown from "@/components/dropDown";
+import CalloutCard from "@/components/calloutCard";
 export default async function Home() {
   const session = await auth();
 
@@ -107,7 +108,7 @@ export default async function Home() {
                 subHeaderText: "Subtle and smooth.",
                 descriptionText:
                   "A gentle raised surface with soft shadows. Perfect for content that needs to feel light and approachable.",
-                buttons: ["Explore", "Details"],
+                buttons: [{ label: "Explore" }, { label: "Details" }],
               },
               {
                 cardStyle: "neu-pressed",
@@ -115,7 +116,7 @@ export default async function Home() {
                 subHeaderText: "Visual-first design.",
                 descriptionText:
                   "Pair rich imagery with clean typography. Ideal for showcasing products, portfolios, or featured content.",
-                buttons: ["View", "Save"],
+                buttons: [{ label: "View" }, { label: "Save" }],
                 imageUrl:
                   "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
               },
@@ -125,7 +126,7 @@ export default async function Home() {
                 subHeaderText: "Bold and elevated.",
                 descriptionText:
                   "A strong 3D shadow that makes the card pop off the page. Great for calls to action or highlighted sections.",
-                buttons: ["Get Started"],
+                buttons: [{ label: "Get Started" }],
               },
             ]}
           />
@@ -256,6 +257,42 @@ export default async function Home() {
         <Link href="/drawer">
           <Drawer title="Doodle" size={600} colour="#000000ff" />
         </Link>
+        <CalloutCard
+          callOut={[
+            {
+              header: "Start Building Today",
+              subHeader:
+                "Install Looply with a single command and start creating beautiful neumorphic interfaces in minutes. No configuration needed.",
+              styleType: "neu-soft-edge",
+              radiusType: "sharp-edge",
+              buttons: [
+                { label: "Get Started", href: "/docs" },
+                { label: "View Examples", href: "/examples" },
+              ],
+            },
+            {
+              header: "Open Source & Free",
+              subHeader:
+                "Looply is completely free and open source. Use it in personal or commercial projects, contribute to the codebase, or fork it and make it your own.",
+              styleType: "neu-floating",
+              radiusType: "soft-edge",
+              buttons: [{ label: "Browse Components", href: "/examples" }],
+              imageUrl:
+                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+            },
+            {
+              header: "Need Help?",
+              subHeader:
+                "Check out our documentation for guides, API references, and examples to help you get the most out of Looply.",
+              styleType: "neu-pressed",
+              radiusType: "pill",
+              buttons: [
+                { label: "Read Docs", href: "/docs" },
+                { label: "Contact Us", href: "/contact" },
+              ],
+            },
+          ]}
+        />
         <DropDown
           dropDowns={[
             {

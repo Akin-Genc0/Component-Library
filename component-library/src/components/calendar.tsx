@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 
-function getCalenderData(year: number, month: number, today: number) {
+function getCalenderData(
+  year: number,
+  month: number,
+  today: number,
+  selectedDay: number | null,
+  onSelectDay: (day: number) => void
+) {
   const days = new Date(year, month + 1, 0).getDate();
   const dayArray = Array.from({ length: days }, (_, i) => i + 1);
 
@@ -12,8 +18,13 @@ function getCalenderData(year: number, month: number, today: number) {
         {dayArray.map((value, index) => (
           <div
             key={index}
-            className={`w-10 h-10 flex items-center justify-center text-sm cursor-pointer transition-all ${
-              value === today ? "neu-flat font-bold " : "neu-inset"
+            onClick={() => onSelectDay(value)}
+            className={`w-10 h-10 flex items-center justify-center text-sm cursor-pointer transition-all rounded-md ${
+              value === selectedDay
+                ? "neu-flat font-bold scale-110 shadow-lg"
+                : value === today
+                  ? "neu-flat font-bold"
+                  : "neu-inset hover:scale-105"
             }`}
           >
             {value}
@@ -30,6 +41,7 @@ export default function Calendar() {
 
   const [month, setMonth] = useState(currentMonth);
   const [year, setYear] = useState(currentYear);
+  const [selectedDay, setSelectedDay] = useState<number | null>(null);
 
   const today =
     month === currentMonth && year === currentYear ? new Date().getDate() : -1;
@@ -71,7 +83,9 @@ export default function Calendar() {
             </div>
           ))}
         </div>
-        <div>{getCalenderData(year, month, today)}</div>
+        <div>
+          {getCalenderData(year, month, today, selectedDay, setSelectedDay)}
+        </div>
       </div>
     </>
   );
