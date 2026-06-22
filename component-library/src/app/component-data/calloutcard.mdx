@@ -1,0 +1,76 @@
+---
+id: 10
+slug: calloutcard
+title: Callout Card
+description: A wide neumorphic banner card with header, subheader, buttons, and optional image. Supports 3 styles and 3 radius options.
+---
+
+## Overview
+
+The CalloutCard component displays wide, horizontal banner-style cards ideal for calls to action, announcements, or feature highlights. Each card supports neumorphic styling, customisable border radius, action buttons with optional links, and an optional image.
+
+### Usage
+
+```jsx
+import CalloutCard from "@/components/calloutCard";
+
+<CalloutCard
+  callOut={[
+    {
+      header: "Get Started",
+      subHeader: "Build beautiful neumorphic interfaces in minutes.",
+      styleType: "neu-soft-edge",
+      radiusType: "soft-edge",
+      buttons: [
+        { label: "Learn More", href: "/docs" },
+        { label: "Examples", href: "/examples" },
+      ],
+    },
+    {
+      header: "Open Source",
+      subHeader: "Free to use in personal and commercial projects.",
+      styleType: "neu-floating",
+      radiusType: "pill",
+      buttons: [{ label: "Browse", href: "/examples" }],
+      imageUrl: "https://example.com/image.jpg",
+    },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `callOut` | `calloutContent[]` | Array of callout card configurations |
+
+#### `calloutContent`
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `header` | `string` | Main heading text |
+| `subHeader` | `string` | Supporting description text |
+| `buttons` | `{ label: string; href?: string }[]` | Optional array of action buttons |
+| `imageUrl` | `string` | Optional image displayed on the right side |
+| `styleType` | `"neu-soft-edge"` \| `"neu-pressed"` \| `"neu-floating"` | Neumorphic style variant |
+| `radiusType` | `"sharp-edge"` \| `"soft-edge"` \| `"pill"` | Border radius variant |
+
+### Style Types
+
+- **neu-soft-edge** — Flat surface with subtle outward shadow
+- **neu-pressed** — Sunken inward, carved into the background
+- **neu-floating** — Elevated with strong shadow, floating appearance
+
+### Radius Types
+
+- **sharp-edge** — No border radius (square corners)
+- **soft-edge** — Medium rounded corners (12px)
+- **pill** — Fully rounded pill shape (35px)
+
+### Responsive
+
+On smaller screens, cards stack vertically with the image below the text content. On medium screens and above, the layout is horizontal with text on the left and image on the right.
+
+### Demo
+
+<CalloutCardDemo />

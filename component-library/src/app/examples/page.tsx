@@ -10,6 +10,7 @@ import Carousel from "@/components/carousel";
 import Drawer from "@/components/drawer";
 import Chat from "@/components/chat";
 import DropDown from "@/components/dropDown";
+import CalloutCard from "@/components/calloutCard";
 
 export default async function Examples() {
   const session = await auth();
@@ -175,6 +176,43 @@ export default async function Examples() {
                   { dropDownLable: "Settings", dropDownURL: "/userinfo" },
                   { dropDownLable: "Docs", dropDownURL: "/docs" },
                   { dropDownLable: "Logout" },
+                ],
+              },
+            ]}
+          />
+
+          <CalloutCard
+            callOut={[
+              {
+                header: "Start Building Today",
+                subHeader:
+                  "Install Looply with a single command and start creating beautiful neumorphic interfaces in minutes.",
+                styleType: "neu-soft-edge",
+                radiusType: "sharp-edge",
+                buttons: [
+                  { label: "Get Started", href: "/docs" },
+                  { label: "View Examples", href: "/examples" },
+                ],
+              },
+              {
+                header: "Open Source & Free",
+                subHeader:
+                  "Looply is completely free and open source. Use it in personal or commercial projects.",
+                styleType: "neu-floating",
+                radiusType: "soft-edge",
+                buttons: [{ label: "Browse Components", href: "/examples" }],
+                imageUrl:
+                  "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+              },
+              {
+                header: "Need Help?",
+                subHeader:
+                  "Check out our documentation for guides, API references, and examples.",
+                styleType: "neu-pressed",
+                radiusType: "pill",
+                buttons: [
+                  { label: "Read Docs", href: "/docs" },
+                  { label: "Contact Us", href: "/contact" },
                 ],
               },
             ]}

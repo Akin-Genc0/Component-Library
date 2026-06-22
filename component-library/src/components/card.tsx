@@ -5,7 +5,7 @@ type CardDesign = {
   headerText: string;
   subHeaderText: string;
   descriptionText: string;
-  buttons?: string[];
+  buttons?: { label: string; href?: string }[];
   imageUrl?: string;
 };
 
@@ -57,8 +57,9 @@ export default function Card({ cards }: CardCollection) {
                 <button
                   key={i}
                   className="neu-btn px-5 py-2 font-medium text-sm text-gray-900 dark:text-gray-100"
+                  onClick={() => btn.href && (window.location.href = btn.href)}
                 >
-                  {btn}
+                  {btn.label}
                 </button>
               ))}
             </section>
