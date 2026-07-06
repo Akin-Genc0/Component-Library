@@ -99,6 +99,21 @@ export default function NewNav({
     ));
   }
 
+  async function npmInstallNum() {
+    const resp = await fetch(
+      "https://api.npmjs.org/downloads/point/last-month/looply-comp-lib"
+    );
+
+    if (!resp.ok) {
+      throw new Error("Failed to fetch npm downloads");
+    }
+
+    const data = await resp.json();
+    const d = data.downloads.toString();
+
+    return <p>{d}</p>;
+  }
+
   return (
     <>
       <div className="flex items-center w-full relative">
@@ -126,6 +141,26 @@ export default function NewNav({
           <ul className="flex items-center gap-10">{renderNav(leftItems)}</ul>
           <ul className="flex items-center gap-10">
             {renderNav(rightItems)}
+            <li
+              className="hidden md:flex neu-inset !rounded-xl items-center gap-2.5 px-3.5 py-2 text-xs font-semibold text-gray-600 dark:text-gray-200"
+              title="npm downloads last month"
+            >
+              <svg
+                className="h-7 w-7 shrink-0 rounded-md shadow-[inset_-2px_-2px_4px_rgba(255,255,255,0.35),inset_2px_2px_4px_rgba(0,0,0,0.16)]"
+                viewBox="0 0 256 256"
+                role="img"
+                aria-label="npm"
+              >
+                <rect width="256" height="256" rx="42" fill="#CB3837" />
+                <path
+                  fill="#fff"
+                  d="M48 76h160v104h-40V108h-24v72h-40v-72H80v72H48V76Z"
+                />
+              </svg>
+              <span className="min-w-8 text-center tabular-nums">
+                {npmInstallNum()}
+              </span>
+            </li>
             {children && <li className="flex items-center">{children}</li>}
           </ul>
         </nav>
