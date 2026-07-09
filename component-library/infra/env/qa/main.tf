@@ -89,3 +89,16 @@ module "storage" {
   name    = "${var.project}-artifact-storage"
   project = var.project
 }
+
+# Monitoring
+module "monitoring" {
+  source = "../../modules/monitoring"
+
+  project       = var.project
+  email_address = var.alert_email
+  name          = "${local.environment}-notification-channel"
+  display_name  = "${local.environment}-cloud-run-uptime"
+  host          = replace(module.cloud_run.service_url, "https://", "")
+
+  depends_on = [module.cloud_run]
+}

@@ -1,5 +1,5 @@
 import Chat from "@/components/chat";
-import CardText from "@/components/cardText";
+import Card from "@/components/card";
 import Hero from "@/components/hero";
 import BarChart from "@/components/barChart";
 import Carousel from "@/components/carousel";
@@ -9,6 +9,10 @@ import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
 import ThemeToggle from "@/components/themeSwitch";
 import Link from "next/link";
+import Calendar from "@/components/calendar";
+import Buttons from "@/components/buttons";
+import DropDown from "@/components/dropDown";
+import CalloutCard from "@/components/calloutCard";
 export default async function Home() {
   const session = await auth();
 
@@ -40,14 +44,14 @@ export default async function Home() {
 
           {
             type: "link",
-            label: "Services",
-            href: "/service",
+            label: "Docs",
+            href: "/docs",
           },
 
           {
             type: "link",
-            label: "Contact",
-            href: "/contact",
+            label: "Examples",
+            href: "/examples",
           },
           ...(session
             ? [
@@ -89,107 +93,216 @@ export default async function Home() {
         your needs. Begin here and shape it into your own. Free. 
         Flexible. Open Source."
         btn1Text="Get Started"
+        btn1Href="/docs"
         btn2Text="View Components"
+        btn2Href="/examples"
       />
 
       <div className="flex flex-wrap gap-[50px] justify-center">
         <Link href="/card">
-          <CardText
-            header="Welcome to LoopUI"
-            subHeader="A modern UI card component for your next project."
-            mainText="This card showcases a clean design, flexible layout, and interactive buttons. Easily customize it to fit your needs and enhance your application's user experience."
-            buttonText1="Learn More"
-            buttonText2="Get Started"
-          />
-        </Link>
-
-        <Link href="/barchart">
-          <BarChart
-            content={[
+          <Card
+            cards={[
               {
-                lable: "Akin",
-                size: 180,
+                cardStyle: "neu-pressed",
+                headerText: "Soft Edge",
+                subHeaderText: "Subtle and smooth.",
+                descriptionText:
+                  "A gentle raised surface with soft shadows. Perfect for content that needs to feel light and approachable.",
+                buttons: [{ label: "Explore" }, { label: "Details" }],
               },
               {
-                lable: "chris",
-                size: 69,
+                cardStyle: "neu-pressed",
+                headerText: "Image Card",
+                subHeaderText: "Visual-first design.",
+                descriptionText:
+                  "Pair rich imagery with clean typography. Ideal for showcasing products, portfolios, or featured content.",
+                buttons: [{ label: "View" }, { label: "Save" }],
+                imageUrl:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
               },
               {
-                lable: "Akin",
-                size: 66,
-              },
-              {
-                lable: "chris",
-                size: 88,
-              },
-              {
-                lable: "Akin",
-                size: 90,
-              },
-              {
-                lable: "chris",
-                size: 57,
-              },
-              {
-                lable: "Akin",
-                size: 200,
-              },
-              {
-                lable: "chris",
-                size: 69,
+                cardStyle: "neu-floating",
+                headerText: "Floating",
+                subHeaderText: "Bold and elevated.",
+                descriptionText:
+                  "A strong 3D shadow that makes the card pop off the page. Great for calls to action or highlighted sections.",
+                buttons: [{ label: "Get Started" }],
               },
             ]}
           />
         </Link>
-        <Chat title="kol bot" img="/looplogoli.png" propt="kol" />
-        <Carousel
-          card={[
+        <Link href="/calendar">
+          <Calendar />
+        </Link>
+        <Link href="/barchart">
+          <BarChart
+            content={[
+              { lable: "Mon", size: 180 },
+              { lable: "Tue", size: 95 },
+              { lable: "Wed", size: 120 },
+              { lable: "Thu", size: 88 },
+              { lable: "Fri", size: 150 },
+              { lable: "Sat", size: 57 },
+              { lable: "Sun", size: 200 },
+              { lable: "Fri", size: 150 },
+              { lable: "Sat", size: 57 },
+              { lable: "Sun", size: 200 },
+            ]}
+          />
+        </Link>
+        <Link href="/chat">
+          <Chat
+            title="Looply AI"
+            img="/looplogoli.png"
+            propt="How do I install Looply?"
+          />
+        </Link>
+        <Link href="/accordion">
+          <Accordion
+            items={[
+              {
+                title: "What is LoopUI?",
+                text: "LoopUI is a modern component library built with React and Tailwind CSS, designed to help you build beautiful interfaces quickly.",
+              },
+              {
+                title: "How do I get started?",
+                text: "Simply install the components using npm and import them into your project. Full documentation is available in our guides.",
+              },
+              {
+                title: "Is it free to use?",
+                text: "Yes! LoopUI is completely free and open source. You can use it in personal and commercial projects.",
+              },
+              {
+                title: "Does it support dark mode?",
+                text: "Absolutely! All components are built with dark mode support using Tailwind's dark mode utilities.",
+              },
+            ]}
+          />
+        </Link>
+        <Link href="/button">
+          <Buttons
+            buttonObj={[
+              { buttonText: "Flat", buttonType: "neu-flat", href: "/button" },
+              {
+                buttonText: "Raised",
+                buttonType: "neu-raised",
+                href: "/button",
+              },
+              {
+                buttonText: "Pressed",
+                buttonType: "neu-inset",
+                href: "/button",
+              },
+              {
+                buttonText: "Like",
+                buttonType: "neu-flat",
+                icon: "M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21.11l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z",
+              },
+            ]}
+          />
+        </Link>
+        <DropDown
+          dropDowns={[
             {
-              image:
-                "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
-              text: "Streamline your development workflow with modern tools and frameworks that boost productivity. Create scalable applications with ease.",
+              dropDownType: "neu-flat",
+              dropDownMenuLabel: "Menu",
+              dropDownItem: [
+                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                { dropDownLable: "Docs", dropDownURL: "/docs" },
+                { dropDownLable: "Logout" },
+              ],
             },
             {
-              image:
-                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
-              text: "Build beautiful, responsive interfaces that users love. Our component library provides everything you need for professional UI design.",
+              dropDownType: "neu-raised",
+              dropDownMenuLabel: "Options",
+              dropDownItem: [
+                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                { dropDownLable: "Docs", dropDownURL: "/docs" },
+                { dropDownLable: "Logout" },
+              ],
             },
             {
-              image:
-                "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80",
-              text: "Write clean, maintainable code with best practices. TypeScript and modern JavaScript make your codebase robust and reliable.",
-            },
-            {
-              image:
-                "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
-              text: "Create stunning user experiences with smooth animations and intuitive interactions. Delight your users with every click.",
-            },
-            {
-              image:
-                "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80",
-              text: "Powerful components designed for modern applications. Accessible, customizable, and ready to use in your next project.",
+              dropDownType: "neu-inset",
+              dropDownMenuLabel: "Account",
+              dropDownItem: [
+                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                { dropDownLable: "Docs", dropDownURL: "/docs" },
+                { dropDownLable: "Logout" },
+              ],
             },
           ]}
         />
-        <Drawer title="Doodle" size={600} colour="#000000ff" />
+        <Link href="/carousel">
+          <Carousel
+            card={[
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Soft, tactile interfaces inspired by real-world surfaces. Neumorphism brings depth and elegance to modern UI design.",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Subtle gradients and shadows create a seamless experience. Every element feels like it belongs on the surface.",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Minimalist aesthetics meet functional design. Clean layouts with soft shadows that guide the user naturally.",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Light and shadow working in harmony. Components that feel pressed, raised, or floating on a unified surface.",
+              },
+              {
+                image:
+                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
+                text: "Fluid color palettes and smooth transitions. Build interfaces that are as beautiful as they are functional.",
+              },
+            ]}
+          />
+        </Link>
+        <Link href="/drawer">
+          <Drawer title="Doodle" size={600} colour="#000000ff" />
+        </Link>
 
-        <Accordion
-          items={[
+        <CalloutCard
+          callOut={[
             {
-              title: "What is LoopUI?",
-              text: "LoopUI is a modern component library built with React and Tailwind CSS, designed to help you build beautiful interfaces quickly.",
+              header: "Start Building Today",
+              subHeader:
+                "Install Looply with a single command and start creating beautiful neumorphic interfaces in minutes. No configuration needed.",
+              styleType: "neu-soft-edge",
+              radiusType: "sharp-edge",
+              buttons: [
+                { label: "Get Started", href: "/docs" },
+                { label: "View Examples", href: "/examples" },
+              ],
             },
             {
-              title: "How do I get started?",
-              text: "Simply install the components using npm and import them into your project. Full documentation is available in our guides.",
+              header: "Open Source & Free",
+              subHeader:
+                "Looply is completely free and open source. Use it in personal or commercial projects, contribute to the codebase, or fork it and make it your own.",
+              styleType: "neu-floating",
+              radiusType: "soft-edge",
+              buttons: [{ label: "Browse Components", href: "/examples" }],
+              imageUrl:
+                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
             },
             {
-              title: "Is it free to use?",
-              text: "Yes! LoopUI is completely free and open source. You can use it in personal and commercial projects.",
-            },
-            {
-              title: "Does it support dark mode?",
-              text: "Absolutely! All components are built with dark mode support using Tailwind's dark mode utilities.",
+              header: "Need Help?",
+              subHeader:
+                "Check out our documentation for guides, API references, and examples to help you get the most out of Looply.",
+              styleType: "neu-pressed",
+              radiusType: "pill",
+              buttons: [
+                { label: "Read Docs", href: "/docs" },
+                { label: "Contact Us", href: "/contact" },
+              ],
             },
           ]}
         />

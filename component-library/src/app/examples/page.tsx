@@ -9,6 +9,8 @@ import Accordion from "@/components/accordion";
 import Carousel from "@/components/carousel";
 import Drawer from "@/components/drawer";
 import Chat from "@/components/chat";
+import DropDown from "@/components/dropDown";
+import CalloutCard from "@/components/calloutCard";
 
 export default async function Examples() {
   const session = await auth();
@@ -29,8 +31,8 @@ export default async function Examples() {
           },
           { type: "link", label: "Home", href: "/" },
           { type: "link", label: "About", href: "/about" },
-          { type: "link", label: "Docs", href: "/docs" },
-          { type: "link", label: "Examples", href: "/examples" },
+          { type: "link", label: "Docs", href: "/services" },
+          { type: "link", label: "Examples", href: "/contact" },
           ...(session
             ? [
                 {
@@ -143,6 +145,78 @@ export default async function Examples() {
           />
 
           <Drawer title="Sketch Pad" size={400} colour="#4d4d4d" />
+
+          <DropDown
+            dropDowns={[
+              {
+                dropDownType: "neu-flat",
+                dropDownMenuLabel: "Menu",
+                dropDownItem: [
+                  { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Docs", dropDownURL: "/docs" },
+                  { dropDownLable: "Logout" },
+                ],
+              },
+              {
+                dropDownType: "neu-raised",
+                dropDownMenuLabel: "Options",
+                dropDownItem: [
+                  { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Docs", dropDownURL: "/docs" },
+                  { dropDownLable: "Logout" },
+                ],
+              },
+              {
+                dropDownType: "neu-inset",
+                dropDownMenuLabel: "Account",
+                dropDownItem: [
+                  { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+                  { dropDownLable: "Docs", dropDownURL: "/docs" },
+                  { dropDownLable: "Logout" },
+                ],
+              },
+            ]}
+          />
+
+          <CalloutCard
+            callOut={[
+              {
+                header: "Start Building Today",
+                subHeader:
+                  "Install Looply with a single command and start creating beautiful neumorphic interfaces in minutes.",
+                styleType: "neu-soft-edge",
+                radiusType: "sharp-edge",
+                buttons: [
+                  { label: "Get Started", href: "/docs" },
+                  { label: "View Examples", href: "/examples" },
+                ],
+              },
+              {
+                header: "Open Source & Free",
+                subHeader:
+                  "Looply is completely free and open source. Use it in personal or commercial projects.",
+                styleType: "neu-floating",
+                radiusType: "soft-edge",
+                buttons: [{ label: "Browse Components", href: "/examples" }],
+                imageUrl:
+                  "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+              },
+              {
+                header: "Need Help?",
+                subHeader:
+                  "Check out our documentation for guides, API references, and examples.",
+                styleType: "neu-pressed",
+                radiusType: "pill",
+                buttons: [
+                  { label: "Read Docs", href: "/docs" },
+                  { label: "Contact Us", href: "/contact" },
+                ],
+              },
+            ]}
+          />
         </div>
       </div>
     </>

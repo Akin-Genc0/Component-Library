@@ -3,9 +3,6 @@ name: Deploy-Docker
 on:
   push:
     branches: ["develop", "qa", "prod"]
-  pull_request:
-    branches:
-      - develop
 
 env:
   GCP_PROJECT: ${{ github.ref_name == 'develop' && 'looply-loo-dev' || github.ref_name == 'qa' && 'looply-loo-qa' || github.ref_name == 'prod' && 'looply-loo-prod' || 'looply-loo-dev' }}

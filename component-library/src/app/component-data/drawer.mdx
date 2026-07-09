@@ -1,0 +1,36 @@
+---
+id: 8
+slug: drawer
+title: Drawer
+description: A neumorphic drawing canvas component with adjustable size and colour.
+---
+
+## Drawer
+
+The Drawer component provides an interactive canvas for freehand drawing.
+
+### Usage
+
+```jsx
+import Drawer from "@/components/drawer";
+
+<Drawer title="Doodle" size={600} colour="#000000ff" />
+```
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `title` | `string` | Title displayed above the canvas |
+| `size` | `number` | Canvas width in pixels |
+| `colour` | `string` | Stroke colour for drawing |
+
+### Features
+
+- Container styled with `neu-inset`
+- Clear button uses `neu-btn` class
+- Customizable brush colour and canvas size
+
+### Demo
+
+<DrawerDemo />

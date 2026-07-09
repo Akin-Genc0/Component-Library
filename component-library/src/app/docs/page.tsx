@@ -2,7 +2,7 @@ import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
 import ThemeToggle from "@/components/themeSwitch";
 import Hero from "@/components/hero";
-import CardLink from "@/components/cardLink";
+import Link from "next/link";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -41,8 +41,8 @@ export default async function Docs() {
           },
           { type: "link", label: "Home", href: "/" },
           { type: "link", label: "About", href: "/about" },
-          { type: "link", label: "Docs", href: "/docs" },
-          { type: "link", label: "Examples", href: "/examples" },
+          { type: "link", label: "Docs", href: "/services" },
+          { type: "link", label: "Examples", href: "/contact" },
           ...(session
             ? [
                 {
@@ -84,12 +84,16 @@ export default async function Docs() {
       />
       <div className="max-w-4xl mx-auto px-6 py-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
         {docs.map((doc) => (
-          <CardLink
-            key={doc.slug}
-            header={doc.title}
-            subHeader={doc.description}
-            href={`/${doc.slug}`}
-          />
+          <Link key={doc.slug} href={`/${doc.slug}`}>
+            <div className="neu-flat p-6 cursor-pointer transition-all duration-200 hover:neu-inset">
+              <h2 className="text-lg font-bold mb-1 dark:text-white">
+                {doc.title}
+              </h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {doc.description}
+              </p>
+            </div>
+          </Link>
         ))}
       </div>
     </>
