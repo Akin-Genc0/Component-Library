@@ -33,6 +33,7 @@ locals {
     GOOGLE_CLIENT_SECRET = var.google_client_secret
     NEXT_PUBLIC_HF_TOKEN = var.hf_token
     NEXTAUTH_SECRET      = var.nextauth_secret
+    NEXTAUTH_URL         = var.nextauth_url
   }
 }
 
@@ -70,6 +71,7 @@ module "cloud_run" {
   service_account_email = module.service_account.email
   image                 = var.image
   secret_env_vars       = module.secrets.secret_ids
+  domain                = "loopl-y.com"
 
   depends_on = [module.service_account]
 }
