@@ -60,3 +60,8 @@ variable "nextauth_secret" {
 variable "alert_email" {
   type = string
 }
+
+variable "nextauth_url" {
+  type = string
+
+}
