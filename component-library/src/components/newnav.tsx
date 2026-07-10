@@ -143,7 +143,7 @@ export default function NewNav({
           <ul className="flex items-center gap-10">{renderNav(leftItems)}</ul>
           <ul className="flex items-center gap-5 md:gap-5 shrink-0">
             <li
-              className="hidden md:flex neu-inset !rounded-xl items-center gap-2.5 px-3.5 py-2 text-xs font-semibold text-gray-600 dark:text-gray-200"
+              className="hidden md:flex neu-inset !rounded-xl items-center gap-2.5 px-3.5 py-2.5 text-xs font-semibold text-gray-600 dark:text-gray-200"
               title="npm downloads last month"
             >
               <svg

@@ -33,6 +33,7 @@ locals {
     GOOGLE_CLIENT_SECRET = var.google_client_secret
     NEXT_PUBLIC_HF_TOKEN = var.hf_token
     NEXTAUTH_SECRET      = var.nextauth_secret
+    NEXTAUTH_URL         = var.nextauth_url
   }
 }
 
