@@ -31,3 +31,9 @@ variable "version_type" {
   type    = string
   default = "latest"
 }
+
+variable "domain" {
+  description = "Custom domain to map to the Cloud Run service (null to skip)"
+  type        = string
+  default     = null
+}
