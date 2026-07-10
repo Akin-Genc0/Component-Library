@@ -2,8 +2,13 @@
 import Image from "next/image";
 import { useState } from "react";
 
-type chatBot = { title: string; img: string; propt: string };
-export default function Chat({ title, img, propt }: chatBot) {
+type chatBot = { title: string; img: string; propt: string; endpoint?: string };
+export default function Chat({
+  title,
+  img,
+  propt,
+  endpoint = "/api/chat",
+}: chatBot) {
   const [input, setInput] = useState("");
   const [msg, setMsg] = useState<History[]>([]);
   const [spinner, setSpinner] = useState(false);
@@ -23,7 +28,7 @@ export default function Chat({ title, img, propt }: chatBot) {
 
   async function sendMessage(message: string) {
     setSpinner(true);
-    const req = await fetch(`/api/chat`, {
+    const req = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +55,10 @@ export default function Chat({ title, img, propt }: chatBot) {
 
   return (
     <>
-      <div className="w-[37rem] border-1 border-black px-10 py-5 overflow-auto rounded-sm h-full">
+      <div
+        data-looply
+        className="w-full max-w-[37rem] neu-inset px-5 sm:px-10 py-5 overflow-auto h-full"
+      >
         <div className="flex flex-row gap-5 pb-2">
           <Image
             className="p-2 bg-gray-50 rounded-full flex flex-row"
@@ -59,13 +67,13 @@ export default function Chat({ title, img, propt }: chatBot) {
             height={40}
             alt="chat-img"
           />
-          <h1 className="text-xl text-gray-800">{title}</h1>
+          <h1 className="text-xl text-gray-800 dark:text-gray-100">{title}</h1>
         </div>
 
         <div className="flex flex-col h-51 ">
           <div className="flex justify-center mb-4">
             <button
-              className="p-1 pl-3 pr-3 rounded-full text-sm border border-black"
+              className="neu-btn p-1 pl-3 pr-3 text-sm dark:text-gray-300"
               onClick={preset}
             >
               {propt}
@@ -77,12 +85,12 @@ export default function Chat({ title, img, propt }: chatBot) {
               return (
                 <div key={index} className="space-y-3 mb-4">
                   <div className="flex justify-end">
-                    <div className="bg-gray-300 p-3 rounded-sm">
+                    <div className="neu-flat p-3">
                       <p className="text-sm font-medium">{display.user}</p>
                     </div>
                   </div>
                   <div className="flex justify-start">
-                    <div className="bg-gray-100 p-3 rounded-sm ">
+                    <div className="neu-inset p-3">
                       {display.bot.startsWith("data:image/") ? (
                         <img
                           src={display.bot}
@@ -100,7 +108,7 @@ export default function Chat({ title, img, propt }: chatBot) {
           </div>
           <div className="flex flex-row gap-2 mt-4">
             <input
-              className="flex-1 border border-gray-500 rounded-sm px-3 py-2"
+              className="flex-1 neu-inset !rounded-lg px-3 py-2 dark:text-gray-100 dark:placeholder-gray-400 outline-none"
               value={input}
               onChange={getInput}
               onKeyDown={handleKeyDown}
@@ -109,7 +117,7 @@ export default function Chat({ title, img, propt }: chatBot) {
             />
             <button
               onClick={display}
-              className="px-4 py-2 border border-black rounded-sm hover:bg-gray-100"
+              className="neu-btn px-4 py-2 dark:text-gray-100"
             >
               Send
             </button>

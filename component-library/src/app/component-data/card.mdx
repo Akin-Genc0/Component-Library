@@ -1,0 +1,49 @@
+---
+id: 1
+slug: card
+title: Card
+description: A neumorphic content card with header, description, and action buttons. Supports 3 styles soft-edge, pressed, and floating.
+---
+
+## Overview
+
+The Card component displays structured content in a neumorphic container. It supports 3 visual styles and includes a header, subheader, body text, and two action buttons.
+
+### Usage
+
+```jsx
+import Card from "@/components/card";
+
+<Card
+  cards={[
+    {
+      cardStyle: "neu-pressed",
+      headerText: "Welcome to LoopUI",
+      subHeaderText: "A modern UI card component.",
+      descriptionText: "Easily customize it to fit your needs.",
+      buttons: [{ label: "Learn More" }, { label: "Get Started" }],
+    },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `cardStyle` | `"neu-soft-edge" \| "neu-pressed" \| "neu-floating"` | Neumorphic style variant |
+| `headerText` | `string` | Main heading text |
+| `subHeaderText` | `string` | Secondary heading |
+| `descriptionText` | `string` | Body content |
+| `buttons` | `{ label: string; href?: string }[]` | Optional action buttons |
+| `imageUrl` | `string` | Optional image URL |
+
+### Styles
+
+- **neu-soft-edge** Flat raised surface with subtle outward shadow
+- **neu-pressed** Sunken inward, like the classic CardText design
+- **neu-floating** Elevated with strong outward shadow, 3D floating look
+
+### Demo
+
+<CardDemo />

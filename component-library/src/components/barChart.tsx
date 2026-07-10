@@ -16,8 +16,11 @@ export default function BarChart({ content }: eachBar) {
   const cal = content.map((a) => (a.size / max) * 300);
 
   return (
-    <div className="w-[650px] flex flex-row gap-[10px] items-end pl-[25px] pr-[25px] pt-[25px] border-black border-1 border-black h-[300px] rounded-md ">
-      <div className="border-r-2 border-black h-full mb-[10px] mr-[10px] flex flex-col justify-between">
+    <div
+      data-looply
+      className="w-full max-w-[650px] flex flex-row gap-[10px] items-end pl-[25px] pr-[25px] pt-[25px] neu-flat h-[300px]"
+    >
+      <div className="border-r border-gray-300 dark:border-gray-600 h-full mb-[10px] mr-[20px] pr-[10px] flex flex-col justify-between text-[10px] sm:text-xs dark:text-gray-300">
         <p>{Math.floor(Math.max(max))} </p>
         <p>{Math.floor(Math.max(max) / 1.5)}</p>
         <p>{Math.floor(Math.max(max) / 2)}</p>
@@ -31,13 +34,15 @@ export default function BarChart({ content }: eachBar) {
           className="flex flex-col items-center justify-end h-full w-full "
         >
           <div
-            className="w-full"
+            className="w-full rounded-t-md neu-inset"
             style={{
               height: `${cal[b]}px`,
               backgroundColor: colors[b],
             }}
           ></div>
-          <p className="text-xs text-center m-1">{a.lable}</p>
+          <p className="text-[10px] sm:text-xs text-center m-1 dark:text-gray-300 truncate w-full">
+            {a.lable}
+          </p>
         </div>
       ))}
     </div>

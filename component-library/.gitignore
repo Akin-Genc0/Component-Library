@@ -19,6 +19,10 @@
 
 # production
 /build
+/dist
+
+# rollup cache
+.rollup.cache
 
 # misc
 .DS_Store
@@ -41,3 +45,14 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+#tf
+.terraform.lock.hcl
+.terraform
+*.tfvars
+
+# library build output
+/dist
+.rollup.cache
+
+ 

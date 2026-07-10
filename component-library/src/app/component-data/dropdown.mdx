@@ -1,0 +1,70 @@
+---
+id: 9
+slug: dropdown
+title: DropDown
+description: A neumorphic dropdown menu with three style variants, smooth animations, and fragmented item layout.
+---
+
+## Overview
+
+The DropDown component renders one or more dropdown menus with neumorphic styling. Each menu item appears as its own separate neumorphic block (fragmented layout), and the list animates in smoothly on open.
+
+### Usage
+
+```jsx
+import DropDown from "@/components/dropDown";
+
+<DropDown
+  dropDowns={[
+    {
+      dropDownType: "neu-flat",
+      dropDownMenuLabel: "Menu",
+      dropDownItem: [
+        { dropDownLable: "Profile", dropDownURL: "/userinfo" },
+        { dropDownLable: "Settings", dropDownURL: "/userinfo" },
+        { dropDownLable: "Docs", dropDownURL: "/docs" },
+        { dropDownLable: "Logout" },
+      ],
+    },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `dropDowns` | `dropDownMenu[]` | Array of dropdown menu configurations |
+
+#### `dropDownMenu`
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `dropDownType` | `"neu-flat" \| "neu-raised" \| "neu-inset"` | Visual style variant |
+| `dropDownMenuLabel` | `string` | Label shown on the trigger button |
+| `dropDownItem` | `dropdownContent[]` | Array of menu items |
+
+#### `dropdownContent`
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `dropDownLable` | `string` | — | Text label for the menu item |
+| `dropDownURL` | `string` | `"#"` | Optional URL to navigate to on click |
+
+### Variants
+
+- **Flat** — sits flush on the surface, items sink inward on hover
+- **Raised** — elevated above the surface, items sink inward on hover
+- **Inset** — pressed into the surface, items pop out flat on hover
+
+### Features
+
+- Fragmented item layout — each dropdown item is its own neumorphic block
+- Smooth `fadeSlideIn` animation on open
+- Chevron icon rotates when open/closed
+- Only one dropdown open at a time (opening one closes the others)
+- Styles applied via `styleMap` lookup — no duplicated markup
+
+### Live Demo
+
+<DropDownDemo />

@@ -1,0 +1,48 @@
+---
+id: 2
+slug: barchart
+title: Bar Chart
+description: A neumorphic bar chart with dynamic sizing and automatic scaling.
+---
+
+## Overview
+
+The BarChart component renders vertical bars in a neumorphic container. Each bar is sized proportionally to the maximum value in the dataset and cycles through a monochrome colour palette.
+
+### Usage
+
+```jsx
+import BarChart from "@/components/barChart";
+
+<BarChart
+  content={[
+    { lable: "Jan", size: 120 },
+    { lable: "Feb", size: 80 },
+    { lable: "Mar", size: 200 },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `content` | `{ lable: string; size: number }[]` | Array of bar data with label and value |
+
+### Styling
+
+- Outer container uses `neu-flat` with a fixed 300px height
+- Individual bars use `neu-inset` with `rounded-t-md`
+- Y-axis labels rendered in subtle `text-xs text-gray-400`
+- Thin axis line with `border-r border-gray-300`
+- Colour palette cycles: `#1a1a1a`, `#4d4d4d`, `#999999`, `#e6e6e6`
+
+### Behaviour
+
+- Bar heights are calculated as a percentage of the maximum value
+- Y-axis scale labels are generated automatically
+- Fully responsive within its container
+
+### Demo
+
+<BarChartDemo />
