@@ -25,4 +25,17 @@ resource "google_cloud_run_v2_service" "cloudrun" {
 }
 
 
+resource "google_cloud_run_domain_mapping" "domain_mapping" {
+  count    = var.domain != null ? 1 : 0
+  location = var.location
+  project  = var.project
+  name     = var.domain
 
+  metadata {
+    namespace = var.project
+  }
+
+  spec {
+    route_name = google_cloud_run_v2_service.cloudrun.name
+  }
+}

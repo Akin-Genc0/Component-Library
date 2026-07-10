@@ -71,6 +71,7 @@ module "cloud_run" {
   service_account_email = module.service_account.email
   image                 = var.image
   secret_env_vars       = module.secrets.secret_ids
+  domain                = "loopl-y.com"
 
   depends_on = [module.service_account]
 }
