@@ -1,7 +1,7 @@
 
 variable "location" {
   type    = string
-  default = "europe-west2"
+  default = "europe-west1"
 }
 
 variable "name" {
