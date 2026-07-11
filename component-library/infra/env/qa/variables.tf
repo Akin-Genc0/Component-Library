@@ -6,7 +6,7 @@ variable "project" {
 
 variable "region" {
   type    = string
-  default = "europe-west2"
+  default = "europe-west1"
 }
 
 variable "image" {
