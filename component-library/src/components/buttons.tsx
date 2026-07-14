@@ -14,9 +14,9 @@ type buttonProps = {
 };
 
 const styleMap = {
-  "neu-flat": { base: "neu-flat", hover: "hover:neu-inset" },
-  "neu-raised": { base: "neu-raised", hover: "hover:neu-inset" },
-  "neu-inset": { base: "neu-inset", hover: "hover:neu-flat" },
+  "neu-flat": "neu-btn-flat",
+  "neu-raised": "neu-btn-raised",
+  "neu-inset": "neu-btn-inset",
 };
 
 export default function Buttons({ buttonObj }: buttonProps) {
@@ -28,7 +28,7 @@ export default function Buttons({ buttonObj }: buttonProps) {
           return (
             <div key={index}>
               <button
-                className={`${style.base} !rounded-lg cursor-pointer ${style.hover} transition-all duration-200 flex items-center gap-2`}
+                className={`${style} !rounded-lg cursor-pointer flex items-center gap-2`}
                 style={{
                   paddingInline: `${element.buttonX ?? 20}px`,
                   paddingBlock: `${element.buttonY ?? 8}px`,

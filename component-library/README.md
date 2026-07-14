@@ -1,6 +1,9 @@
-# looply-comp-lib
+# Looply
 
-A simple React component library.
+A neumorphic React component library built with Tailwind CSS.
+
+**Live Site:** [loopl-y.com](https://loopl-y.com)  
+**Docs & Examples:** [loopl-y.com/examples](https://loopl-y.com/examples)
 
 ## Installation
 
@@ -27,25 +30,21 @@ In your `globals.css` (or wherever you have `@import "tailwindcss"`), add this l
 @source "../node_modules/looply-comp-lib/dist";
 ```
 
-That's it — both lines are required for the components to render correctly.
+That's it - both lines are required for the components to render correctly.
 
 ## Usage
 
 ```tsx
-import { Accordion, Hero, Drawer } from "looply-comp-lib";
+import { Card, Table, Toggle, TextArea } from "looply-comp-lib";
+import "looply-comp-lib/styles.css";
 
 function App() {
   return (
     <div>
-      <Hero
-        headerBtn="New"
-        header="Welcome"
-        subHeader="A simple component library"
-        btn1Text="Get Started"
-        btn2Text="Learn More"
-      />
-      <Accordion items={[{ title: "Question", text: "Answer" }]} />
-      <Drawer title="Draw" size={100} colour="#000000" />
+      <Card cards={[{ cardStyle: "neu-pressed", headerText: "Hello", subHeaderText: "World", descriptionText: "A neumorphic card", buttons: [{ label: "Click" }] }]} />
+      <Toggle styleType="neu-flat" size="md" />
+      <Table tables={[{ label: "Users", styleType: "neu-pressed", header: ["Name", "Role"], rows: [{ Name: "Alice", Role: "Engineer" }] }]} />
+      <TextArea lable="Notes" helperText="Type here..." resize="on" styleType="neu-flat" />
     </div>
   );
 }
@@ -53,16 +52,21 @@ function App() {
 
 ## Components
 
-| Component     | Description                            |
-| ------------- | -------------------------------------- |
-| `Accordion`   | Expandable/collapsible content sections |
-| `BarChart`    | Simple bar chart visualisation          |
-| `CardText`    | Card with text content                  |
-| `Carousel`    | Image carousel/slider                   |
-| `Chat`        | Chat interface component                |
-| `Drawer`      | Slide-out drawer panel                  |
-| `Hero`        | Hero banner section                     |
-| `ThemeSwitch` | Light/dark theme toggle                 |
+| Component    | Description                                    |
+| ------------ | ---------------------------------------------- |
+| `Accordion`  | Expandable/collapsible content sections        |
+| `BarChart`   | Animated bar chart visualisation               |
+| `Buttons`    | Buttons with icon support and multiple styles  |
+| `Calendar`   | Interactive date picker                        |
+| `CalloutCard`| Promotional/CTA cards with image support       |
+| `Card`       | Flexible cards with neumorphic styles          |
+| `Carousel`   | Image/text carousel slider                     |
+| `Chat`       | AI chat interface component                    |
+| `Drawer`     | Slide-out drawing canvas                       |
+| `DropDown`   | Menu dropdowns with multiple styles            |
+| `Table`      | Data tables with flat, pressed, inset variants |
+| `TextArea`   | Styled text areas with resize control          |
+| `Toggle`     | Switch toggles in sm, md, lg sizes             |
 
 ## Peer Dependencies
 
@@ -76,4 +80,4 @@ These are installed automatically (npm v7+):
 
 ## License
 
-ISC
+MIT

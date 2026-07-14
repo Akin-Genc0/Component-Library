@@ -10,12 +10,12 @@ export default function Form({ session }: FormProps) {
   if (session?.user) {
     return (
       <div className="flex justify-center items-center min-h-screen w-full">
-        <div className="neu-inset flex flex-col p-10 gap-5 max-w-md w-full">
+        <div className="neu-pressed flex flex-col p-10 gap-5 max-w-md w-full">
           <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-100 text-center">
             Welcome, {session.user.name}
           </h1>
           <button
-            className="neu-btn px-6 py-2 cursor-pointer font-bold dark:text-gray-300"
+            className="neu-inset !rounded-lg px-6 py-2 cursor-pointer font-bold dark:text-gray-300"
             onClick={() => logout()}
           >
             Log Out
@@ -27,12 +27,12 @@ export default function Form({ session }: FormProps) {
 
   return (
     <div className="flex justify-center items-center min-h-screen w-full">
-      <div className="neu-inset flex flex-col p-10 gap-5 max-w-md w-full">
+      <div className="neu-pressed flex flex-col p-10 gap-5 max-w-md w-full">
         <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-100 text-center">
           You are signed out
         </h1>
         <button
-          className="neu-btn px-8 py-2 cursor-pointer font-bold text-sm flex items-center gap-3 justify-center dark:text-gray-100"
+          className="neu-inset !rounded-lg px-8 py-2 cursor-pointer font-bold text-sm flex items-center gap-3 justify-center dark:text-gray-100"
           onClick={() => loginGithub()}
         >
           <svg
@@ -51,7 +51,7 @@ export default function Form({ session }: FormProps) {
         </button>
 
         <button
-          className="neu-btn px-8 py-2 cursor-pointer font-bold text-sm dark:text-gray-100 flex items-center gap-3 justify-center"
+          className="neu-inset !rounded-lg px-8 py-2 cursor-pointer font-bold text-sm dark:text-gray-100 flex items-center gap-3 justify-center"
           onClick={() => loginGoogle()}
         >
           <svg

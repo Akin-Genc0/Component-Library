@@ -30,7 +30,7 @@ export default async function Examples() {
           { type: "link", label: "Home", href: "/" },
           { type: "link", label: "About", href: "/about" },
           { type: "link", label: "Docs", href: "/docs" },
-          { type: "link", label: "Examples", href: "/examples" },
+          { type: "link", label: "Install", href: "/examples" },
           ...(session
             ? [
                 {

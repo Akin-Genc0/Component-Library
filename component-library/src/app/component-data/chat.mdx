@@ -12,7 +12,7 @@ The Chat component provides a conversational interface with user and bot message
 ### Usage
 
 ```jsx
-import Chat from "@/components/chat";
+import { Chat } from "looply-comp-lib";
 
 <Chat title="kol bot" img="/looplogoli.png" propt="kol" />
 ```
@@ -32,6 +32,54 @@ import Chat from "@/components/chat";
 - Bot responses styled with `neu-inset`
 - Customizable API endpoint for reuse across projects
 - Preset prompt button for quick interactions
+
+### Custom API Endpoint
+
+You can point the Chat component to your own API using the `endpoint` prop. This lets you use any LLM provider (OpenAI, Anthropic, etc.) with your own API key.
+
+**1. Store your API key in `.env.local`:**
+
+```
+OPENAI_API_KEY=sk-your-key-here
+```
+
+**2. Create your API route** (e.g. `app/api/my-chat/route.ts`):
+
+```ts
+import { NextRequest, NextResponse } from "next/server";
+
+export async function POST(request: NextRequest) {
+  const { message } = await request.json();
+
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: "gpt-4",
+      messages: [{ role: "user", content: message }],
+    }),
+  });
+
+  const data = await res.json();
+  return NextResponse.json({ message: data.choices[0].message.content });
+}
+```
+
+**3. Use it in your component:**
+
+```jsx
+<Chat
+  title="My Bot"
+  img="/bot.png"
+  propt="Hello"
+  endpoint="/api/my-chat"
+/>
+```
+
+Your endpoint must accept a `POST` with `{ message: string }` and return `{ message: string }`.
 
 ### Demo
 
