@@ -17,22 +17,20 @@ export default function Carousel({ card }: carousel) {
         return (
           <div
             key={index}
-            style={{ width: "22rem", minWidth: "22rem" }}
-            className="neu-inset flex-shrink-0 overflow-hidden"
+            className="neu-inset flex-shrink-0 overflow-hidden w-[14rem] sm:w-[22rem] min-w-[14rem] sm:min-w-[22rem]"
           >
             <Image
               src={content.image}
               width={352}
               height={200}
               alt={content.text}
-              className="w-full object-cover"
+              className="w-full object-cover h-[7rem] sm:h-[12rem]"
               style={{
-                height: "12rem",
                 borderTopLeftRadius: "var(--neu-radius)",
                 borderTopRightRadius: "var(--neu-radius)",
               }}
             />
-            <p className="p-5 text-gray-900 dark:text-gray-100 font-inter text-sm">
+            <p className="p-3 sm:p-5 text-gray-900 dark:text-gray-100 font-inter text-xs sm:text-sm">
               {content.text}
             </p>
           </div>
@@ -66,8 +64,8 @@ export default function Carousel({ card }: carousel) {
   return (
     <div
       data-looply
-      style={{ maxWidth: "64rem", height: "25rem" }}
-      className="neu-flat w-full mx-auto flex flex-col gap-5 p-4 sm:p-10 overflow-hidden"
+      style={{ maxWidth: "min(64rem, calc(100vw - 2rem))" }}
+      className="neu-flat w-full mx-auto flex flex-col gap-5 p-4 sm:p-10 h-[18rem] sm:h-[25rem] overflow-hidden"
     >
       <div
         ref={containerRef}
