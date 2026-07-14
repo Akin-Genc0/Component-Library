@@ -81,16 +81,31 @@ export default async function GettingStarted() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 dark:text-white">Setup</h2>
           <p className="text-gray-600 dark:text-gray-300 mb-4">
-            Import the Looply stylesheet in your main CSS file (e.g.{" "}
+            1. Import the Looply stylesheet in your root layout (e.g.{" "}
             <code className="neu-pressed-code px-2 py-0.5 rounded-md text-sm">
-              globals.css
+              app/layout.tsx
             </code>
             ):
           </p>
           <CodeBlock
-            code={`import "looply-comp-lib/styles/looply.css";`}
-            label="CSS"
+            code={`import "looply-comp-lib/styles.css";`}
+            label="TSX"
           />
+          <p className="text-gray-600 dark:text-gray-300 mb-4 mt-6">
+            2. Add the Tailwind source in your{" "}
+            <code className="neu-pressed-code px-2 py-0.5 rounded-md text-sm">
+              globals.css
+            </code>{" "}
+            so Tailwind generates the utility classes used by the components:
+          </p>
+          <CodeBlock
+            label="CSS"
+            code={`@import "tailwindcss";
+@source "../node_modules/looply-comp-lib/dist";`}
+          />
+          <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">
+            Both lines are required for components to render correctly.
+          </p>
         </section>
 
         {/* Basic Usage */}
@@ -225,8 +240,8 @@ export default function MyPage() {
             label=""
             code={`my-app/
 ├── app/
-│   ├── globals.css        ← import looply.css here
-│   ├── layout.tsx
+│   ├── globals.css        ← add @source here
+│   ├── layout.tsx         ← import styles.css here
 │   └── page.tsx           ← use components here
 ├── public/
 ├── .env.local             ← API keys go here
