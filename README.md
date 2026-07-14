@@ -48,6 +48,8 @@ npm run dev
 - MDX for documentation
 - Prisma (database)
 - next-themes (dark mode)
+- Terraform (infrastructure as code)
+- GCP (Cloud Run, Artifact Registry, Secret Manager)
 
 ## Branch Strategy
 
