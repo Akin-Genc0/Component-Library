@@ -33,8 +33,8 @@ export default {
       declaration: true,
       declarationDir: 'dist',
       outDir: 'dist',
-      include: ['src/index.ts', 'src/components/**/*.tsx'],
-      exclude: ['src/app/**', 'src/db/**', 'src/lib/**', 'src/authConfig.ts', 'src/proxy.ts', 'src/components/form.tsx', 'src/components/nav.tsx', 'src/components/newnav.tsx'],
+      include: ['src/index.ts', 'src/components/**/*.tsx', 'src/app/globals.css'],
+      exclude: ['src/app/**', 'src/db/**', 'src/lib/**', 'src/authConfig.ts', 'src/proxy.ts', 'src/components/form.tsx', 'src/components/hero.tsx', 'src/components/nav.tsx', 'src/components/newnav.tsx', 'src/components/cardText.tsx', 'src/components/cardLink.tsx', 'src/components/themeSwitch.tsx'],
       incremental: false,
     }),
     nodeResolve({
