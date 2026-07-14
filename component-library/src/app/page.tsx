@@ -13,6 +13,9 @@ import Calendar from "@/components/calendar";
 import Buttons from "@/components/buttons";
 import DropDown from "@/components/dropDown";
 import CalloutCard from "@/components/calloutCard";
+import Toggle from "@/components/toggle";
+import Table from "@/components/table";
+import TextArea from "@/components/textarea";
 export default async function Home() {
   const session = await auth();
 
@@ -50,7 +53,7 @@ export default async function Home() {
 
           {
             type: "link",
-            label: "Examples",
+            label: "Install",
             href: "/examples",
           },
           ...(session
@@ -87,10 +90,10 @@ export default async function Home() {
       </NewNav>
       <Hero
         headerBtn="Now available by running npm commands"
-        header="Build the Core of Your UI Library"
-        subHeader="A collection of thoughtfully crafted 
-        components ready to adapt, expand, and evolve with 
-        your needs. Begin here and shape it into your own. Free. 
+        header="Neumorphic UI Built for Your Apps"
+        subHeader="A collection of soft, tactile UI elements 
+        designed to feel real, respond to touch, and bring 
+        your interfaces to life. Start here and make it yours. Free. 
         Flexible. Open Source."
         btn1Text="Get Started"
         btn1Href="/docs"
@@ -304,6 +307,128 @@ export default async function Home() {
               ],
             },
           ]}
+        />
+        <Toggle styleType="neu-flat" size="sm" />
+        <Toggle styleType="neu-flat" size="md" />
+        <Toggle styleType="neu-flat" size="lg" />
+        <Toggle styleType="neu-pressed" size="sm" />
+        <Toggle styleType="neu-pressed" size="md" />
+        <Toggle styleType="neu-pressed" size="lg" />
+        <Toggle styleType="neu-inset" size="sm" />
+        <Toggle styleType="neu-inset" size="md" />
+        <Toggle styleType="neu-inset" size="lg" />
+
+        <Link href="/table">
+          <Table
+            tables={[
+              {
+                label: "Flat Style",
+                styleType: "neu-flat",
+                header: ["Name", "Role", "Status", "Team"],
+                rows: [
+                  {
+                    Name: "Alice",
+                    Role: "Engineer",
+                    Status: "Active",
+                    Team: "Frontend",
+                  },
+                  {
+                    Name: "Bob",
+                    Role: "Designer",
+                    Status: "Away",
+                    Team: "Design",
+                  },
+                  {
+                    Name: "Carol",
+                    Role: "Manager",
+                    Status: "Active",
+                    Team: "Ops",
+                  },
+                  {
+                    Name: "Dan",
+                    Role: "DevOps",
+                    Status: "Busy",
+                    Team: "Infra",
+                  },
+                ],
+              },
+              {
+                label: "Pressed Style",
+                styleType: "neu-pressed",
+                header: ["Name", "Role", "Status", "Team"],
+                rows: [
+                  {
+                    Name: "Dave",
+                    Role: "Developer",
+                    Status: "Active",
+                    Team: "Backend",
+                  },
+                  {
+                    Name: "Eve",
+                    Role: "Analyst",
+                    Status: "Busy",
+                    Team: "Data",
+                  },
+                  { Name: "Fay", Role: "Tester", Status: "Active", Team: "QA" },
+                  {
+                    Name: "Gus",
+                    Role: "Architect",
+                    Status: "Away",
+                    Team: "Platform",
+                  },
+                ],
+              },
+              {
+                label: "Inset Style",
+                styleType: "neu-inset",
+                header: ["Name", "Role", "Status", "Team"],
+                rows: [
+                  {
+                    Name: "Frank",
+                    Role: "Lead",
+                    Status: "Active",
+                    Team: "Core",
+                  },
+                  {
+                    Name: "Grace",
+                    Role: "QA",
+                    Status: "Away",
+                    Team: "Testing",
+                  },
+                  {
+                    Name: "Hank",
+                    Role: "PM",
+                    Status: "Active",
+                    Team: "Product",
+                  },
+                  {
+                    Name: "Iris",
+                    Role: "SRE",
+                    Status: "Busy",
+                    Team: "Reliability",
+                  },
+                ],
+              },
+            ]}
+          />
+        </Link>
+        <TextArea
+          lable="Flat"
+          helperText="Type something..."
+          resize="on"
+          styleType="neu-flat"
+        />
+        <TextArea
+          lable="Pressed"
+          helperText="Type something..."
+          resize="on"
+          styleType="neu-pressed"
+        />
+        <TextArea
+          lable="Inset"
+          helperText="Type something..."
+          resize="off"
+          styleType="neu-inset"
         />
       </div>
     </>

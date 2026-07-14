@@ -1,0 +1,84 @@
+---
+id: 12
+slug: table
+title: Table
+description: A neumorphic data table with three style variants for displaying structured tabular data.
+---
+
+## Overview
+
+The Table component renders one or more styled data tables with neumorphic styling. It supports three visual variants and accepts dynamic headers and row data via objects for easy mapping.
+
+### Usage
+
+```jsx
+import Table from "@/components/table";
+
+<Table
+  tables={[
+    {
+      label: "Team Members",
+      styleType: "neu-flat",
+      header: ["Name", "Role", "Status"],
+      rows: [
+        { Name: "Alice", Role: "Engineer", Status: "Active" },
+        { Name: "Bob", Role: "Designer", Status: "Away" },
+      ],
+    },
+  ]}
+/>
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `tables` | `TableProps[]` | | Array of table configurations to render |
+
+#### TableProps
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | | Optional heading displayed above the table |
+| `styleType` | `"neu-flat"` \| `"neu-inset"` \| `"neu-pressed"` || Visual style variant |
+| `header` | `string[]` || Column headers (also used as keys to access row data) |
+| `rows` | `Record<string, string>[]` | | Array of row objects where keys match header values |
+
+### Variants
+
+- **Flat** sits flush on the surface with soft outer shadows
+- **Pressed** appears pressed into the surface with inner shadows
+- **Inset** sunken into the surface, lifts on hover
+
+### Multiple Tables
+
+Pass multiple objects in the `tables` array to render several tables with different styles in a single component call:
+
+```jsx
+<Table
+  tables={[
+    {
+      label: "Flat Style",
+      styleType: "neu-flat",
+      header: ["Name", "Role"],
+      rows: [{ Name: "Alice", Role: "Engineer" }],
+    },
+    {
+      label: "Pressed Style",
+      styleType: "neu-pressed",
+      header: ["Name", "Role"],
+      rows: [{ Name: "Bob", Role: "Designer" }],
+    },
+    {
+      label: "Inset Style",
+      styleType: "neu-inset",
+      header: ["Name", "Role"],
+      rows: [{ Name: "Carol", Role: "Manager" }],
+    },
+  ]}
+/>
+```
+
+### Demo
+
+<TableDemo />

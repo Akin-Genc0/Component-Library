@@ -1,0 +1,58 @@
+---
+id: 13
+slug: textarea
+title: TextArea
+description: A neumorphic textarea input with three style variants, optional label, resize control, and error messaging.
+---
+
+## Overview
+
+The TextArea component provides a styled multi-line text input with neumorphic styling. It supports three visual variants, optional labels, resizable or fixed dimensions, and inline error messages.
+
+### Usage
+
+```jsx
+import TextArea from "@/components/textarea";
+
+<TextArea
+  lable="Message"
+  helperText="Type something..."
+  resize="on"
+  styleType="neu-flat"
+/>
+
+<TextArea
+  lable="Bio"
+  helperText="Tell us about yourself"
+  resize="off"
+  styleType="neu-pressed"
+  errorMessage="This field is required"
+/>
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `lable` | `string` | | Optional label displayed above the textarea |
+| `helperText` | `string` | | Placeholder text shown when empty |
+| `resize` | `"on"` \| `"off"` | | Controls whether the user can resize the textarea (both axes when on) |
+| `errorMessage` | `string` | | Optional error message displayed below the textarea |
+| `styleType` | `"neu-flat"` \| `"neu-inset"` \| `"neu-pressed"` | | Visual style variant |
+
+### Variants
+
+- **Flat** sits flush on the surface with soft outer shadows
+- **Pressed** appears pressed into the surface with inner shadows
+- **Inset** sunken into the surface
+
+### Resize Behaviour
+
+| Value | Result |
+|-------|--------|
+| `"on"` | User can drag to resize in both horizontal and vertical directions |
+| `"off"` | Fixed size, no resize handle shown |
+
+### Demo
+
+<TextAreaDemo />

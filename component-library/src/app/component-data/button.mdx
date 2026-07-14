@@ -34,12 +34,12 @@ import Buttons from "@/components/buttons";
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `buttonText` | `string` | — | Button label |
+| `buttonText` | `string` | | Button label |
 | `buttonType` | `"neu-flat"`, `"neu-raised"`, `"neu-inset"` | `"neu-flat"` | Visual style variant |
 | `buttonX` | `number` | `20` | Horizontal padding in px |
 | `buttonY` | `number` | `8` | Vertical padding in px |
-| `href` | `string` | — | Optional URL to navigate to on click |
-| `icon` | `string` | — | Optional SVG path data to render an icon inside the button |
+| `href` | `string` | | Optional URL to navigate to on click |
+| `icon` | `string` | | Optional SVG path data to render an icon inside the button |
 
 ### Variants
 
@@ -56,7 +56,7 @@ Pass an SVG path string via the `icon` prop to render an inline icon next to the
 - Container wrapped in `neu-raised p-8`
 - All buttons have `rounded-lg` corners and `200ms` transitions
 - Hover states swap between `neu-inset` and `neu-flat`
-- Styles are applied via a `styleMap` lookup — no duplicated markup
+- Styles are applied via a `styleMap` lookup, no duplicated markup
 
 ### Demo
 

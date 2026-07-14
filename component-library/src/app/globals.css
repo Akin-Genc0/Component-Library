@@ -59,6 +59,46 @@ body {
   background: var(--background);
   border-radius: var(--neu-radius);
   box-shadow: var(--neu-inset);
+  transition: box-shadow 0.3s ease;
+}
+
+.neu-inset:hover {
+  box-shadow: var(--neu-flat);
+}
+
+.neu-pressed {
+  background: var(--background);
+  border-radius: 12px;
+  box-shadow: inset 4px 4px 8px 0 var(--neu-shadow-dark), inset -4px -4px 8px 0 var(--neu-shadow-light);
+  transition: box-shadow 0.3s ease;
+}
+
+.neu-pressed:hover {
+  box-shadow: var(--neu-flat);
+}
+
+.no-hover.neu-inset:hover {
+  box-shadow: var(--neu-inset);
+}
+
+.no-hover.neu-pressed:hover {
+  box-shadow: inset 4px 4px 8px 0 var(--neu-shadow-dark), inset -4px -4px 8px 0 var(--neu-shadow-light);
+}
+
+.no-hover.neu-flat:hover {
+  box-shadow: var(--neu-flat);
+}
+
+.neu-pressed-code {
+  background: var(--background);
+  border-radius: var(--neu-radius);
+  box-shadow: inset 4px 4px 8px 0 var(--neu-shadow-dark), inset -4px -4px 8px 0 var(--neu-shadow-light);
+}
+
+.mdx-content pre {
+  background: var(--background);
+  border-radius: 12px;
+  box-shadow: inset 4px 4px 8px 0 var(--neu-shadow-dark), inset -4px -4px 8px 0 var(--neu-shadow-light);
 }
 
 .neu-btn {
@@ -75,6 +115,46 @@ body {
 
 .neu-btn:active {
   box-shadow: var(--neu-btn-pressed);
+}
+
+/* Neumorphic button hover transitions */
+.neu-btn-flat {
+  background: var(--background);
+  border-radius: var(--neu-radius);
+  box-shadow: var(--neu-flat);
+  transition: box-shadow 0.3s ease;
+}
+.neu-btn-flat:hover {
+  box-shadow: var(--neu-inset);
+}
+.neu-btn-flat:active {
+  box-shadow: inset -3px -3px 7px 0 var(--neu-shadow-light), inset 3px 3px 7px 0 var(--neu-shadow-dark);
+}
+
+.neu-btn-raised {
+  background: var(--background);
+  border-radius: var(--neu-radius);
+  box-shadow: var(--neu-raised);
+  transition: box-shadow 0.3s ease;
+}
+.neu-btn-raised:hover {
+  box-shadow: var(--neu-flat);
+}
+.neu-btn-raised:active {
+  box-shadow: var(--neu-inset);
+}
+
+.neu-btn-inset {
+  background: var(--background);
+  border-radius: var(--neu-radius);
+  box-shadow: var(--neu-inset);
+  transition: box-shadow 0.3s ease;
+}
+.neu-btn-inset:hover {
+  box-shadow: var(--neu-flat);
+}
+.neu-btn-inset:active {
+  box-shadow: var(--neu-raised);
 }
 
 @keyframes fadeSlideIn {

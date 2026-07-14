@@ -18,7 +18,7 @@ export default function BarChart({ content }: eachBar) {
   return (
     <div
       data-looply
-      className="w-full max-w-[650px] flex flex-row gap-[10px] items-end pl-[25px] pr-[25px] pt-[25px] neu-flat h-[300px]"
+      className="w-full max-w-[650px] flex flex-row gap-[10px] items-end px-3 sm:px-[25px] pt-[25px] neu-flat h-[200px] sm:h-[300px]"
     >
       <div className="border-r border-gray-300 dark:border-gray-600 h-full mb-[10px] mr-[20px] pr-[10px] flex flex-col justify-between text-[10px] sm:text-xs dark:text-gray-300">
         <p>{Math.floor(Math.max(max))} </p>

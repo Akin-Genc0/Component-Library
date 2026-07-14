@@ -1,0 +1,56 @@
+---
+id: 11
+slug: toggle
+title: Toggle
+description: A neumorphic toggle switch with three style variants and three size options.
+---
+
+## Overview
+
+The Toggle component is a simple on/off switch that tracks its own boolean state and notifies the parent via an optional `onChange` callback. It supports three neumorphic styles and three sizes.
+
+### Usage
+
+```jsx
+import Toggle from "@/components/toggle";
+
+<Toggle styleType="neu-pressed" size="md" />
+
+<Toggle
+  lable="Dark Mode"
+  styleType="neu-inset"
+  size="lg"
+  onChange={(checked) => console.log(checked)}
+/>
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `lable` | `string` | | Optional label displayed above the toggle |
+| `styleType` | `"neu-flat"` \| `"neu-inset"` \| `"neu-pressed"` | | Visual style variant for the track |
+| `size` | `"sm"` \| `"md"` \| `"lg"` | | Size of the toggle |
+| `onChange` | `(checked: boolean) => void` | | Optional callback fired with the new value when toggled |
+
+### Sizes
+
+| Size | Track | Thumb |
+|------|-------|-------|
+| `sm` | 3rem x 1.5rem | 1.2rem |
+| `md` | 4rem x 2rem | 1.6rem |
+| `lg` | 5rem x 2.5rem | 2rem |
+
+### Variants
+
+- **Flat** sits flush on the surface with soft shadows
+- **Pressed** appears pressed into the surface with inner shadows
+- **Inset** sunken into the surface, pops out on hover
+
+### Behaviour
+
+The toggle manages its own internal state. When clicked, the thumb slides to the opposite end of the track with a smooth CSS transition. If an `onChange` function is provided, it is called with the new boolean value (`true` when on, `false` when off).
+
+### Demo
+
+<ToggleDemo />

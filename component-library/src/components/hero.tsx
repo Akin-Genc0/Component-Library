@@ -22,7 +22,7 @@ export default function Hero({
       data-looply
       className="flex flex-col items-center mt-[6rem] gap-8 w-full font-inter mb-[6rem]"
     >
-      <button className="neu-btn py-2 px-6 text-sm font-thin text-gray-600 dark:text-gray-300">
+      <button className="neu-inset py-2 px-6 text-sm font-thin text-gray-600 dark:text-gray-300">
         {headerBtn}
         {" -->"}
       </button>
@@ -36,24 +36,24 @@ export default function Hero({
         {btn1Href ? (
           <a
             href={btn1Href}
-            className="neu-btn inline-block text-sm cursor-pointer text-gray-900 dark:text-gray-100 py-3 px-8 font-medium no-underline"
+            className="neu-pressed inline-block text-sm cursor-pointer text-gray-900 dark:text-gray-100 py-3 px-8 font-medium no-underline"
           >
             {btn1Text}
           </a>
         ) : (
-          <button className="neu-btn text-sm cursor-pointer text-gray-900 dark:text-gray-100 py-3 px-8 font-medium">
+          <button className="neu-pressed text-sm cursor-pointer text-gray-900 dark:text-gray-100 py-3 px-8 font-medium">
             {btn1Text}
           </button>
         )}
         {btn2Href ? (
           <a
             href={btn2Href}
-            className="neu-btn inline-block text-sm cursor-pointer py-3 px-8 text-gray-500 dark:text-gray-400 no-underline"
+            className="neu-pressed inline-block text-sm cursor-pointer py-3 px-8 text-gray-500 dark:text-gray-400 no-underline"
           >
             {btn2Text}
           </a>
         ) : (
-          <button className="neu-btn text-sm cursor-pointer py-3 px-8 text-gray-500 dark:text-gray-400">
+          <button className="neu-pressed text-sm cursor-pointer py-3 px-8 text-gray-500 dark:text-gray-400">
             {btn2Text}
           </button>
         )}
