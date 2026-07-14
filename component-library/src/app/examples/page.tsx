@@ -1,18 +1,9 @@
 import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
 import ThemeToggle from "@/components/themeSwitch";
-import CardText from "@/components/cardText";
-import BarChart from "@/components/barChart";
-import Calendar from "@/components/calendar";
-import Buttons from "@/components/buttons";
-import Accordion from "@/components/accordion";
-import Carousel from "@/components/carousel";
-import Drawer from "@/components/drawer";
-import Chat from "@/components/chat";
-import DropDown from "@/components/dropDown";
-import CalloutCard from "@/components/calloutCard";
+import CodeBlock from "@/app/local-components/CodeBlock";
 
-export default async function Examples() {
+export default async function GettingStarted() {
   const session = await auth();
 
   return (
@@ -31,8 +22,8 @@ export default async function Examples() {
           },
           { type: "link", label: "Home", href: "/" },
           { type: "link", label: "About", href: "/about" },
-          { type: "link", label: "Docs", href: "/services" },
-          { type: "link", label: "Examples", href: "/contact" },
+          { type: "link", label: "Docs", href: "/docs" },
+          { type: "link", label: "Install", href: "/examples" },
           ...(session
             ? [
                 {
@@ -64,160 +55,228 @@ export default async function Examples() {
       >
         <ThemeToggle />
       </NewNav>
-      <div className="max-w-5xl mx-auto px-6 py-12">
-        <div className="neu-flat p-10 mb-10">
-          <h1 className="text-3xl font-bold mb-2 dark:text-white">Examples</h1>
+
+      <div className="max-w-4xl mx-auto px-6 py-12">
+        <div className="neu-inset p-10 mb-10">
+          <h1 className="text-3xl font-bold mb-2 dark:text-white">
+            Getting Started
+          </h1>
           <p className="text-gray-500 dark:text-gray-400 text-lg">
-            Live interactive examples of every Looply component.
+            Install and start using Looply components in minutes.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-10 justify-center">
-          <CardText
-            header="Project Card"
-            subHeader="A real-world card example."
-            mainText="Use this card to display project info, blog posts, or product features."
-            buttonText1="View"
-            buttonText2="Share"
+        {/* Install */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4 dark:text-white">Install</h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">
+            Install the package via npm:
+          </p>
+          <CodeBlock code="npm install looply-comp-lib" />
+          <p className="text-gray-600 dark:text-gray-300 mb-4">Or with yarn:</p>
+          <CodeBlock code="yarn add looply-comp-lib" />
+        </section>
+
+        {/* Setup */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4 dark:text-white">Setup</h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">
+            1. Import the Looply stylesheet in your root layout (e.g.{" "}
+            <code className="neu-pressed-code px-2 py-0.5 rounded-md text-sm">
+              app/layout.tsx
+            </code>
+            ):
+          </p>
+          <CodeBlock
+            code={`import "looply-comp-lib/styles.css";`}
+            label="TSX"
           />
-
-          <Calendar />
-
-          <BarChart
-            content={[
-              { lable: "Mon", size: 45 },
-              { lable: "Tue", size: 80 },
-              { lable: "Wed", size: 120 },
-              { lable: "Thu", size: 65 },
-              { lable: "Fri", size: 200 },
-            ]}
+          <p className="text-gray-600 dark:text-gray-300 mb-4 mt-6">
+            2. Add the Tailwind source in your{" "}
+            <code className="neu-pressed-code px-2 py-0.5 rounded-md text-sm">
+              globals.css
+            </code>{" "}
+            so Tailwind generates the utility classes used by the components:
+          </p>
+          <CodeBlock
+            label="CSS"
+            code={`@import "tailwindcss";
+@source "../node_modules/looply-comp-lib/dist";`}
           />
+          <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">
+            Both lines are required for components to render correctly.
+          </p>
+        </section>
 
-          <Chat
-            title="Looply AI"
-            img="/looplogoli.png"
-            propt="What components are available?"
+        {/* Basic Usage */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4 dark:text-white">
+            Basic Usage
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">
+            Import any component and use it directly:
+          </p>
+          <CodeBlock
+            label="TSX"
+            code={`import { Card, Buttons, Chat } from "looply-comp-lib";
+
+export default function MyPage() {
+  return (
+    <div>
+      <Card
+        cards={[{
+          cardStyle: "neu-pressed",
+          headerText: "Hello",
+          subHeaderText: "World",
+          descriptionText: "My first Looply card.",
+          buttons: [{ label: "Click me" }],
+        }]}
+      />
+
+      <Buttons
+        buttonObj={[
+          { buttonText: "Flat", buttonType: "neu-flat" },
+          { buttonText: "Raised", buttonType: "neu-raised" },
+        ]}
+      />
+
+      <Chat
+        title="My Bot"
+        img="/bot.png"
+        propt="Say hello"
+        endpoint="/api/my-chat"
+      />
+    </div>
+  );
+}`}
           />
+        </section>
 
-          <Accordion
-            items={[
+        {/* Available Components */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4 dark:text-white">
+            Available Components
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
               {
-                title: "Can I use this in production?",
-                text: "Absolutely. All components are production-ready and tested.",
+                name: "Card",
+                slug: "card",
+                desc: "Content cards with multiple styles",
               },
               {
-                title: "Does it work with Next.js?",
-                text: "Yes, Looply is built on Next.js and works seamlessly with it.",
+                name: "Buttons",
+                slug: "button",
+                desc: "Flat, raised, and pressed buttons",
               },
               {
-                title: "Can I customise the theme?",
-                text: "All styles use CSS variables. Override them in your globals.css.",
+                name: "Chat",
+                slug: "chat",
+                desc: "AI chat widget with custom endpoints",
               },
-            ]}
+              {
+                name: "BarChart",
+                slug: "barchart",
+                desc: "Neumorphic bar charts",
+              },
+              {
+                name: "Calendar",
+                slug: "calendar",
+                desc: "Interactive date picker",
+              },
+              {
+                name: "Accordion",
+                slug: "accordion",
+                desc: "Collapsible content sections",
+              },
+              { name: "Carousel", slug: "carousel", desc: "Image/text slider" },
+              {
+                name: "Drawer",
+                slug: "drawer",
+                desc: "Drawing canvas component",
+              },
+              { name: "DropDown", slug: "dropdown", desc: "Dropdown menus" },
+              {
+                name: "CalloutCard",
+                slug: "calloutcard",
+                desc: "Highlighted CTA cards",
+              },
+              {
+                name: "Toggle",
+                slug: "toggle",
+                desc: "On/off switch with three styles and sizes",
+              },
+              {
+                name: "Table",
+                slug: "table",
+                desc: "Data tables with neumorphic styling",
+              },
+              {
+                name: "TextArea",
+                slug: "textarea",
+                desc: "Multi-line text input with resize control",
+              },
+            ].map((comp) => (
+              <a
+                key={comp.slug}
+                href={`/${comp.slug}`}
+                className="neu-btn p-4 block transition-all duration-200 hover:scale-[1.02]"
+              >
+                <h3 className="font-semibold dark:text-white">{comp.name}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {comp.desc}
+                </p>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* Project Structure */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4 dark:text-white">
+            Recommended Project Structure
+          </h2>
+          <CodeBlock
+            label=""
+            code={`my-app/
+├── app/
+│   ├── globals.css        ← add @source here
+│   ├── layout.tsx         ← import styles.css here
+│   └── page.tsx           ← use components here
+├── public/
+├── .env.local             ← API keys go here
+└── package.json`}
           />
+        </section>
 
-          <Buttons
-            buttonObj={[
-              { buttonText: "Primary", buttonType: "neu-flat" },
-              { buttonText: "Secondary", buttonType: "neu-raised" },
-              { buttonText: "Tertiary", buttonType: "neu-inset" },
-            ]}
+        {/* Environment Variables */}
+        <section>
+          <h2 className="text-2xl font-bold mb-4 dark:text-white">
+            Environment Variables
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">
+            If you&apos;re using the Chat component with your own API, store
+            your keys in{" "}
+            <code className="neu-pressed-code px-2 py-0.5 rounded-md text-sm">
+              .env.local
+            </code>
+            :
+          </p>
+          <CodeBlock
+            label="ENV"
+            code={`# .env.local
+OPENAI_API_KEY=sk-your-key-here
+# or
+HF_TOKEN=hf_your-huggingface-token`}
           />
-
-          <Carousel
-            card={[
-              {
-                image:
-                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
-                text: "Neumorphic design in action.",
-              },
-              {
-                image:
-                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
-                text: "Soft shadows and clean lines.",
-              },
-              {
-                image:
-                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
-                text: "Modern, tactile interfaces.",
-              },
-            ]}
-          />
-
-          <Drawer title="Sketch Pad" size={400} colour="#4d4d4d" />
-
-          <DropDown
-            dropDowns={[
-              {
-                dropDownType: "neu-flat",
-                dropDownMenuLabel: "Menu",
-                dropDownItem: [
-                  { dropDownLable: "Profile", dropDownURL: "/userinfo" },
-                  { dropDownLable: "Settings", dropDownURL: "/userinfo" },
-                  { dropDownLable: "Docs", dropDownURL: "/docs" },
-                  { dropDownLable: "Logout" },
-                ],
-              },
-              {
-                dropDownType: "neu-raised",
-                dropDownMenuLabel: "Options",
-                dropDownItem: [
-                  { dropDownLable: "Profile", dropDownURL: "/userinfo" },
-                  { dropDownLable: "Settings", dropDownURL: "/userinfo" },
-                  { dropDownLable: "Docs", dropDownURL: "/docs" },
-                  { dropDownLable: "Logout" },
-                ],
-              },
-              {
-                dropDownType: "neu-inset",
-                dropDownMenuLabel: "Account",
-                dropDownItem: [
-                  { dropDownLable: "Profile", dropDownURL: "/userinfo" },
-                  { dropDownLable: "Settings", dropDownURL: "/userinfo" },
-                  { dropDownLable: "Docs", dropDownURL: "/docs" },
-                  { dropDownLable: "Logout" },
-                ],
-              },
-            ]}
-          />
-
-          <CalloutCard
-            callOut={[
-              {
-                header: "Start Building Today",
-                subHeader:
-                  "Install Looply with a single command and start creating beautiful neumorphic interfaces in minutes.",
-                styleType: "neu-soft-edge",
-                radiusType: "sharp-edge",
-                buttons: [
-                  { label: "Get Started", href: "/docs" },
-                  { label: "View Examples", href: "/examples" },
-                ],
-              },
-              {
-                header: "Open Source & Free",
-                subHeader:
-                  "Looply is completely free and open source. Use it in personal or commercial projects.",
-                styleType: "neu-floating",
-                radiusType: "soft-edge",
-                buttons: [{ label: "Browse Components", href: "/examples" }],
-                imageUrl:
-                  "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
-              },
-              {
-                header: "Need Help?",
-                subHeader:
-                  "Check out our documentation for guides, API references, and examples.",
-                styleType: "neu-pressed",
-                radiusType: "pill",
-                buttons: [
-                  { label: "Read Docs", href: "/docs" },
-                  { label: "Contact Us", href: "/contact" },
-                ],
-              },
-            ]}
-          />
-        </div>
+          <p className="text-gray-600 dark:text-gray-300">
+            Then reference them in your API route with{" "}
+            <code className="neu-pressed-code px-2 py-0.5 rounded-md text-sm">
+              process.env.OPENAI_API_KEY
+            </code>
+            . Never expose secret keys to the client.
+          </p>
+        </section>
       </div>
     </>
   );

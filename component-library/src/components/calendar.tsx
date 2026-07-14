@@ -19,7 +19,7 @@ function getCalenderData(
           <div
             key={index}
             onClick={() => onSelectDay(value)}
-            className={`w-10 h-10 flex items-center justify-center text-sm cursor-pointer transition-all rounded-md ${
+            className={`w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-xs sm:text-sm cursor-pointer transition-all rounded-md ${
               value === selectedDay
                 ? "neu-flat font-bold scale-110 shadow-lg"
                 : value === today
@@ -56,7 +56,7 @@ export default function Calendar() {
 
   return (
     <>
-      <div className="neu-inset w-[25rem] p-8">
+      <div className="neu-inset w-full max-w-[25rem] p-4 sm:p-8">
         <div className="flex justify-between items-center mb-4">
           <button className="neu-btn px-3 py-1 text-sm" onClick={handlePrev}>
             &larr;

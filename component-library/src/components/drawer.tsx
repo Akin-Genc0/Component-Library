@@ -40,7 +40,11 @@ export default function Drawer({ title, size, colour }: Drawerr) {
   }
 
   return (
-    <div data-looply className="neu-inset w-full max-w-[33rem] p-5">
+    <div
+      data-looply
+      style={{ maxWidth: "33rem" }}
+      className="neu-inset w-full p-5"
+    >
       <div className="flex gap-10 mb-5">
         <h1 className="text-xl font-bold mb-4 dark:text-white">{title}</h1>
         <button

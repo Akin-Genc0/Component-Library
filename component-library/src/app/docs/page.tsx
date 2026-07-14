@@ -41,8 +41,8 @@ export default async function Docs() {
           },
           { type: "link", label: "Home", href: "/" },
           { type: "link", label: "About", href: "/about" },
-          { type: "link", label: "Docs", href: "/services" },
-          { type: "link", label: "Examples", href: "/contact" },
+          { type: "link", label: "Docs", href: "/docs" },
+          { type: "link", label: "Install", href: "/examples" },
           ...(session
             ? [
                 {
@@ -85,7 +85,7 @@ export default async function Docs() {
       <div className="max-w-4xl mx-auto px-6 py-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
         {docs.map((doc) => (
           <Link key={doc.slug} href={`/${doc.slug}`}>
-            <div className="neu-flat p-6 cursor-pointer transition-all duration-200 hover:neu-inset">
+            <div className="neu-pressed p-6 cursor-pointer transition-all duration-200">
               <h2 className="text-lg font-bold mb-1 dark:text-white">
                 {doc.title}
               </h2>
