@@ -7,19 +7,19 @@ A neumorphic UI component library built with Next.js, TypeScript, and Tailwind C
 
 ## Components
 
-- **Card** — Flexible cards with multiple neumorphic styles (flat, pressed, floating)
-- **Callout Card** — Promotional/CTA cards with image support
-- **Table** — Data tables with flat, pressed, and inset variants
-- **Toggle** — Switch toggles in multiple sizes (sm, md, lg)
-- **Button** — Buttons with icon support and multiple styles
-- **Calendar** — Interactive date picker
-- **Bar Chart** — Animated bar chart visualizations
-- **Chat** — AI chat interface component
-- **Accordion** — Expandable content sections
-- **Dropdown** — Menu dropdowns with multiple styles
-- **Carousel** — Image/text carousel slider
-- **Drawer** — Slide-out drawing canvas
-- **TextArea** — Styled text areas with resize control
+- **Card** - Flexible cards with multiple neumorphic styles (flat, pressed, floating)
+- **Callout Card** - Promotional/CTA cards with image support
+- **Table** - Data tables with flat, pressed, and inset variants
+- **Toggle** - Switch toggles in multiple sizes (sm, md, lg)
+- **Button** - Buttons with icon support and multiple styles
+- **Calendar** - Interactive date picker
+- **Bar Chart** - Animated bar chart visualizations
+- **Chat** - AI chat interface component
+- **Accordion** - Expandable content sections
+- **Dropdown** - Menu dropdowns with multiple styles
+- **Carousel** - Image/text carousel slider
+- **Drawer** - Slide-out drawing canvas
+- **TextArea** - Styled text areas with resize control
 
 ## Installation
 
@@ -51,9 +51,9 @@ npm run dev
 
 ## Branch Strategy
 
-- `develop` — active development
-- `qa` — QA testing
-- `prod` — production releases
+- `develop` - active development
+- `qa` - QA testing
+- `prod` - production releases
 
 ## License
 
