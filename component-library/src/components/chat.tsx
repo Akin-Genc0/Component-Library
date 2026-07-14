@@ -57,7 +57,8 @@ export default function Chat({
     <>
       <div
         data-looply
-        className="w-full max-w-[37rem] neu-inset px-5 sm:px-10 py-5 overflow-auto h-full"
+        style={{ maxWidth: "37rem" }}
+        className="w-full neu-inset px-5 sm:px-10 py-5 overflow-auto h-full"
       >
         <div className="flex flex-row gap-5 pb-2">
           <Image

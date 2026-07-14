@@ -102,7 +102,7 @@ export default function NewNav({
                 alt={element.label}
                 width={24}
                 height={24}
-                className="rounded-full"
+                className="rounded-full dark:invert"
               />
             ) : (
               <svg width="24" height="24" viewBox={element.viewBox}>
@@ -119,7 +119,7 @@ export default function NewNav({
   return (
     <>
       <div className="flex items-center w-full relative">
-        <nav className="neu-flat flex justify-between items-center w-full px-3 py-3 md:px-6 md:py-4">
+        <nav className="neu-pressed flex justify-between items-center w-full px-3 py-3 md:px-6 md:py-4">
           {hamburger && (
             <button
               className="block md:hidden neu-btn p-2"
@@ -142,8 +142,11 @@ export default function NewNav({
           )}
           <ul className="flex items-center gap-10">{renderNav(leftItems)}</ul>
           <ul className="flex items-center gap-5 md:gap-5 shrink-0">
-            <li
-              className="hidden md:flex neu-inset !rounded-xl items-center gap-2.5 px-3.5 py-2.5 text-xs font-semibold text-gray-600 dark:text-gray-200"
+            <a
+              href="https://www.npmjs.com/package/looply-comp-lib"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex neu-inset !rounded-xl items-center gap-2.5 px-3.5 py-2.5 text-xs font-semibold text-gray-600 dark:text-gray-200 hover:neu-flat transition-all duration-200 cursor-pointer no-underline"
               title="npm downloads last month"
             >
               <svg
@@ -164,7 +167,7 @@ export default function NewNav({
               <span className="min-w-8 text-center tabular-nums">
                 {npmDownloads ?? "—"}
               </span>
-            </li>
+            </a>
             {renderNav(rightItems)}
 
             {children && <li className="flex items-center">{children}</li>}

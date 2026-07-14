@@ -1,6 +1,3 @@
-@import "tailwindcss";
-
-@custom-variant dark (&:where(.dark, .dark *));
 :root {
   --background: #F0F0F3;
   --foreground: #2d2d2d;
@@ -14,11 +11,9 @@
   --neu-btn-pressed: inset -3px -3px 7px 0 var(--neu-shadow-light), inset 3px 3px 7px 0 var(--neu-shadow-dark);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+body {
+  background: var(--background);
+  color: var(--foreground);
 }
 
 .dark {
@@ -28,19 +23,6 @@
   --neu-shadow-dark: rgba(0, 0, 0, 0.5);
   --neu-flat: -10px -10px 10px 0 rgba(255, 255, 255, 0.05), 10px 10px 10px 0 rgba(0, 0, 0, 0.4);
   --neu-inset: inset -10px -10px 10px 0 rgba(255, 255, 255, 0.05), inset 10px 10px 10px 0 rgba(0, 0, 0, 0.4);
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Inter", sans-serif;
-  margin: 1.5rem 5.5rem;
-}
-
-@media (max-width: 640px) {
-  body {
-    margin: 0.5rem 1rem;
-  }
 }
 
 .neu-raised {
@@ -95,12 +77,6 @@ body {
   box-shadow: inset 4px 4px 8px 0 var(--neu-shadow-dark), inset -4px -4px 8px 0 var(--neu-shadow-light);
 }
 
-.mdx-content pre {
-  background: var(--background);
-  border-radius: 12px;
-  box-shadow: inset 4px 4px 8px 0 var(--neu-shadow-dark), inset -4px -4px 8px 0 var(--neu-shadow-light);
-}
-
 .neu-btn {
   background: var(--background);
   border-radius: 12px;
@@ -117,7 +93,6 @@ body {
   box-shadow: var(--neu-btn-pressed);
 }
 
-/* Neumorphic button hover transitions */
 .neu-btn-flat {
   background: var(--background);
   border-radius: var(--neu-radius);
@@ -167,5 +142,3 @@ body {
     transform: translateY(0);
   }
 }
-
-

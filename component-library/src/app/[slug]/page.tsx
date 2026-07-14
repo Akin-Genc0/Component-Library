@@ -1,4 +1,5 @@
 import DocumentationTemp from "../local-components/Document";
+import CodeBlock from "../local-components/CodeBlock";
 import matter from "gray-matter";
 import fs from "fs";
 import path from "path";
@@ -19,8 +20,50 @@ import Drawer from "@/components/drawer";
 import Hero from "@/components/hero";
 import DropDown from "@/components/dropDown";
 import CalloutCard from "@/components/calloutCard";
+import Toggle from "@/components/toggle";
+import Table from "@/components/table";
+import TextArea from "@/components/textarea";
 
 const mdxComponents = {
+  table: ({ children }: { children: React.ReactNode }) => (
+    <div className="neu-pressed p-6 overflow-x-auto my-4">
+      <table className="w-full border-collapse">{children}</table>
+    </div>
+  ),
+  thead: ({ children }: { children: React.ReactNode }) => (
+    <thead>{children}</thead>
+  ),
+  tbody: ({ children }: { children: React.ReactNode }) => (
+    <tbody>{children}</tbody>
+  ),
+  tr: ({ children }: { children: React.ReactNode }) => (
+    <tr className="transition-colors duration-200 hover:bg-foreground/5">
+      {children}
+    </tr>
+  ),
+  th: ({ children }: { children: React.ReactNode }) => (
+    <th className="text-left text-sm font-semibold text-foreground/70 px-4 py-3 border-b border-foreground/10">
+      {children}
+    </th>
+  ),
+  td: ({ children }: { children: React.ReactNode }) => (
+    <td className="px-4 py-3 text-sm text-foreground/90 border-b border-foreground/5">
+      {children}
+    </td>
+  ),
+  pre: ({ children }: { children: React.ReactNode }) => {
+    const child = children as React.ReactElement<{
+      className?: string;
+      children?: string;
+    }>;
+    const className = child?.props?.className || "";
+    const lang = className.replace("language-", "").toUpperCase() || "CODE";
+    const code =
+      typeof child?.props?.children === "string"
+        ? child.props.children.trim()
+        : "";
+    return <CodeBlock code={code} label={lang} />;
+  },
   Card,
   DropDown,
   BarChart,
@@ -137,16 +180,7 @@ const mdxComponents = {
             { dropDownLable: "Logout" },
           ],
         },
-        {
-          dropDownType: "neu-raised",
-          dropDownMenuLabel: "Options",
-          dropDownItem: [
-            { dropDownLable: "Profile", dropDownURL: "/userinfo" },
-            { dropDownLable: "Settings", dropDownURL: "/userinfo" },
-            { dropDownLable: "Docs", dropDownURL: "/docs" },
-            { dropDownLable: "Logout" },
-          ],
-        },
+
         {
           dropDownType: "neu-inset",
           dropDownMenuLabel: "Account",
@@ -196,6 +230,78 @@ const mdxComponents = {
       ]}
     />
   ),
+  Toggle,
+  ToggleDemo: () => (
+    <div className="flex flex-wrap gap-6 items-center">
+      <Toggle styleType="neu-flat" size="sm" />
+      <Toggle styleType="neu-flat" size="md" />
+      <Toggle styleType="neu-flat" size="lg" />
+      <Toggle styleType="neu-pressed" size="sm" />
+      <Toggle styleType="neu-pressed" size="md" />
+      <Toggle styleType="neu-pressed" size="lg" />
+      <Toggle styleType="neu-inset" size="sm" />
+      <Toggle styleType="neu-inset" size="md" />
+      <Toggle styleType="neu-inset" size="lg" />
+    </div>
+  ),
+  Table,
+  TableDemo: () => (
+    <div className="flex flex-col gap-6">
+      <Table
+        tables={[
+          {
+            label: "Pressed",
+            styleType: "neu-pressed",
+            header: [
+              "Name",
+              "Role",
+              "Status",
+              "Name",
+              "Role",
+              "Status",
+              "Name",
+              "Role",
+              "Status",
+              "Name",
+            ],
+            rows: [
+              { Name: "Dave", Role: "Developer", Status: "Active" },
+              { Name: "Eve", Role: "Analyst", Status: "Busy" },
+              { Name: "Frank", Role: "Lead", Status: "Away" },
+              { Name: "Dave", Role: "Developer", Status: "Active" },
+              { Name: "Eve", Role: "Analyst", Status: "Busy" },
+              { Name: "Frank", Role: "Lead", Status: "Away" },
+              { Name: "Dave", Role: "Developer", Status: "Active" },
+              { Name: "Eve", Role: "Analyst", Status: "Busy" },
+            ],
+          },
+        ]}
+      />
+    </div>
+  ),
+  TextArea,
+  TextAreaDemo: () => (
+    <div className="flex flex-col gap-6">
+      <TextArea
+        lable="Flat Style"
+        helperText="Type something..."
+        resize="on"
+        styleType="neu-flat"
+      />
+      <TextArea
+        lable="Pressed Style"
+        helperText="Type something..."
+        resize="on"
+        styleType="neu-pressed"
+      />
+      <TextArea
+        lable="Inset Style"
+        helperText="Type something..."
+        resize="off"
+        styleType="neu-inset"
+      />
+    </div>
+  ),
 };
 
 const COMPONENT_DATA_DIR = path.join(
@@ -204,6 +310,38 @@ const COMPONENT_DATA_DIR = path.join(
   "app",
   "component-data"
 );
+
+const IMPORT_MAP: Record<string, string> = {
+  button: 'import { Buttons } from "looply-comp-lib";',
+  card: 'import { Card } from "looply-comp-lib";',
+  barchart: 'import { BarChart } from "looply-comp-lib";',
+  calendar: 'import { Calendar } from "looply-comp-lib";',
+  chat: 'import { Chat } from "looply-comp-lib";',
+  accordion: 'import { Accordion } from "looply-comp-lib";',
+  carousel: 'import { Carousel } from "looply-comp-lib";',
+  drawer: 'import { Drawer } from "looply-comp-lib";',
+  dropdown: 'import { DropDown } from "looply-comp-lib";',
+  calloutcard: 'import { CalloutCard } from "looply-comp-lib";',
+  toggle: 'import { Toggle } from "looply-comp-lib";',
+  table: 'import { Table } from "looply-comp-lib";',
+  textarea: 'import { TextArea } from "looply-comp-lib";',
+};
+
+const DEMO_MAP: Record<string, keyof typeof mdxComponents> = {
+  button: "ButtonsDemo",
+  card: "CardDemo",
+  barchart: "BarChartDemo",
+  calendar: "Calendar",
+  chat: "ChatDemo",
+  accordion: "AccordionDemo",
+  carousel: "CarouselDemo",
+  drawer: "DrawerDemo",
+  dropdown: "DropDownDemo",
+  calloutcard: "CalloutCardDemo",
+  toggle: "ToggleDemo",
+  table: "TableDemo",
+  textarea: "TextAreaDemo",
+};
 
 export default async function Page({
   params,
@@ -240,7 +378,7 @@ export default async function Page({
           { type: "link", label: "Home", href: "/" },
           { type: "link", label: "About", href: "/about" },
           { type: "link", label: "Docs", href: "/docs" },
-          { type: "link", label: "Examples", href: "/examples" },
+          { type: "link", label: "Install", href: "/examples" },
           ...(session
             ? [
                 {
@@ -272,7 +410,21 @@ export default async function Page({
       >
         <ThemeToggle />
       </NewNav>
-      <DocumentationTemp title={data.title} description={data.description}>
+      <DocumentationTemp
+        title={data.title}
+        description={data.description}
+        importCode={
+          IMPORT_MAP[slug] || `import { ${data.title} } from "looply-comp-lib";`
+        }
+        demo={(() => {
+          const demoKey = DEMO_MAP[slug];
+          if (demoKey) {
+            const DemoComponent = mdxComponents[demoKey] as React.ComponentType;
+            return <DemoComponent />;
+          }
+          return null;
+        })()}
+      >
         <MDXRemote
           source={content}
           options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
