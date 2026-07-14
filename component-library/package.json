@@ -1,6 +1,6 @@
 {
   "name": "looply-comp-lib",
-  "version": "1.0",
+  "version": "1.0.1",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -14,7 +14,8 @@
     "./styles.css": "./dist/styles.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "keywords": [
     "component library",

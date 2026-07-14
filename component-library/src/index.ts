@@ -1,5 +1,5 @@
 import "./styles/looply.css"
-import "./app/globals.css"
+import "./styles/lib.css"
 
 export { default as Accordion } from "./components/accordion"
 export { default as BarChart } from "./components/barChart"
