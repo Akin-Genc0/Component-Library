@@ -48,6 +48,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/looplogoli.png",
+    apple: "/looplogoli.png",
+  },
+  appleWebApp: {
+    capable: true,
+    title: "Looply",
+    statusBarStyle: "default",
   },
 };
 
