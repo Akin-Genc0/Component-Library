@@ -30,7 +30,7 @@ export default function Carousel({ card }: carousel) {
                 borderTopRightRadius: "var(--neu-radius)",
               }}
             />
-            <p className="p-3 sm:p-5 text-gray-900 dark:text-gray-100 font-inter text-xs sm:text-sm">
+            <p className="p-5 text-gray-900 dark:text-gray-100 font-inter text-sm">
               {content.text}
             </p>
           </div>

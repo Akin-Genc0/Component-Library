@@ -1,0 +1,88 @@
+name: Promote Environments
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - qa
+    types:
+      - closed
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  promote-develop-to-qa:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create or update PR develop → qa
+        env:
+          GH_TOKEN: ${{ secrets.PROMOTION_TOKEN }}
+        run: |
+          existing=$(gh pr list --base qa --head develop --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            echo "PR #$existing already exists, updating..."
+            gh pr edit "$existing" \
+              --title "Promote develop to qa" \
+              --body "This PR promotes the latest **develop** build to the **qa** environment for testing.
+
+          Merging this PR will deploy the current develop version to QA.
+
+          ---
+          _Auto-created by GitHub Actions._"
+          else
+            gh pr create \
+              --base qa \
+              --head develop \
+              --title "Promote develop to qa" \
+              --body "This PR promotes the latest **develop** build to the **qa** environment for testing.
+
+          Merging this PR will deploy the current develop version to QA.
+
+          ---
+          _Auto-created by GitHub Actions._"
+          fi
+
+  promote-qa-to-prod:
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'qa'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: qa
+
+      - name: Create or update PR qa → prod
+        env:
+          GH_TOKEN: ${{ secrets.PROMOTION_TOKEN }}
+        run: |
+          existing=$(gh pr list --base prod --head qa --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            echo "PR #$existing already exists, updating..."
+            gh pr edit "$existing" \
+              --title "Promote qa to prod" \
+              --body "This PR promotes the validated **qa** build to **production**.
+
+          Merging this PR will deploy the QA-approved version to prod.
+
+          ---
+          _Auto-created by GitHub Actions._"
+          else
+            gh pr create \
+              --base prod \
+              --head qa \
+              --title "Promote qa to prod" \
+              --body "This PR promotes the validated **qa** build to **production**.
+
+          Merging this PR will deploy the QA-approved version to prod.
+
+          ---
+          _Auto-created by GitHub Actions._"
+          fi
