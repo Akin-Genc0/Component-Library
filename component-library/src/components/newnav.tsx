@@ -1,11 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-type NavItem = {
+export type NavItem = {
   type: "link" | "button" | "icon";
   label: string;
   href: string;
@@ -15,11 +15,14 @@ type NavItem = {
   viewBox?: string;
 };
 
-type NavProps = {
+export type NavProps = {
   navObj: NavItem[];
   hamburger?: boolean;
   hamburgerIcon?: React.ReactNode;
   children?: React.ReactNode;
+  variant?: "top" | "sidebar";
+  sidebarTitle?: string;
+  sidebarLogoSrc?: string;
 };
 
 export default function NewNav({
@@ -27,26 +30,14 @@ export default function NewNav({
   hamburger,
   hamburgerIcon,
   children,
+  variant = "top",
+  sidebarTitle = "Looply UI",
+  sidebarLogoSrc = "/looplogoli.png",
 }: NavProps) {
   const [mobile, setMobile] = useState(false);
-  const [npmDownloads, setNpmDownloads] = useState<string | null>(null);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    async function fetchNpmDownloads() {
-      try {
-        const resp = await fetch(
-          "https://api.npmjs.org/downloads/point/last-month/looply-comp-lib"
-        );
-        if (!resp.ok) throw new Error("Failed to fetch npm downloads");
-        const data = await resp.json();
-        setNpmDownloads(data.downloads.toString());
-      } catch {
-        setNpmDownloads(null);
-      }
-    }
-    fetchNpmDownloads();
-  }, []);
+  const pathname = usePathname();
 
   const leftItems = navObj.filter((el) => el.slot === "left" || !el.slot);
   const rightItems = navObj.filter((el) => el.slot === "right");
@@ -116,9 +107,181 @@ export default function NewNav({
     ));
   }
 
+  if (variant === "sidebar") {
+    return (
+      <aside
+        className={`neu-pressed no-hover relative z-40 flex h-auto w-full shrink-0 self-stretch flex-col p-5 !rounded-[20px] transition-[width] duration-300 md:sticky md:top-5 md:h-[calc(100dvh-2.5rem)] md:self-start ${
+          sidebarCollapsed ? "md:w-20" : "md:w-72"
+        }`}
+      >
+        <div className="flex items-center justify-between gap-3 px-2 py-3">
+          <Link
+            href="/"
+            className={`flex min-w-0 items-center gap-3 font-semibold text-gray-800 dark:text-gray-100 ${
+              sidebarCollapsed ? "justify-center" : ""
+            }`}
+            aria-label={sidebarTitle}
+          >
+            <Image
+              src={sidebarLogoSrc}
+              alt=""
+              width={28}
+              height={28}
+              className="h-7 w-7 shrink-0 object-contain dark:invert"
+            />
+            {!sidebarCollapsed && (
+              <span className="truncate">{sidebarTitle}</span>
+            )}
+          </Link>
+          <button
+            type="button"
+            className="neu-btn hidden h-8 w-8 shrink-0 items-center justify-center rounded-full md:flex"
+            onClick={() => setSidebarCollapsed((collapsed) => !collapsed)}
+            aria-label={
+              sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
+            }
+          >
+            <svg
+              className={`h-4 w-4 transition-transform ${sidebarCollapsed ? "rotate-180" : ""}`}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+        </div>
+
+        <button
+          type="button"
+          className="neu-btn mt-3 flex h-10 items-center justify-center rounded-xl md:hidden"
+          onClick={() => setMobile((open) => !open)}
+          aria-expanded={mobile}
+          aria-label="Toggle sidebar menu"
+        >
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+
+        <nav
+          className={`${mobile ? "flex" : "hidden"} mt-10 flex-col gap-4 md:flex`}
+        >
+          {navObj.map((item) => {
+            const active = pathname === item.href;
+            const itemClass = `flex w-full items-center gap-3 rounded-xl px-4 py-3.5 text-sm transition-all duration-200 ${
+              active
+                ? "neu-pressed no-hover font-semibold text-gray-900 dark:text-white"
+                : "text-gray-500 hover:neu-flat hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-100"
+            } ${sidebarCollapsed ? "justify-center" : ""}`;
+            const icon = item.imageSrc ? (
+              <Image
+                src={item.imageSrc}
+                alt=""
+                width={20}
+                height={20}
+                className="h-5 w-5 shrink-0 rounded-full dark:invert"
+              />
+            ) : item.iconPath ? (
+              <svg
+                className="h-5 w-5 shrink-0"
+                viewBox={item.viewBox ?? "0 0 24 24"}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d={item.iconPath} />
+              </svg>
+            ) : (
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-current text-[10px] font-semibold">
+                {item.label.slice(0, 1)}
+              </span>
+            );
+
+            return item.type === "button" ? (
+              <button
+                key={`${item.label}-${item.href}`}
+                type="button"
+                className={`${itemClass} w-full text-left`}
+                onClick={() => {
+                  router.push(item.href);
+                  setMobile(false);
+                }}
+                title={sidebarCollapsed ? item.label : undefined}
+              >
+                {icon}
+                {!sidebarCollapsed && (
+                  <span className="truncate">{item.label}</span>
+                )}
+              </button>
+            ) : (
+              <Link
+                key={`${item.label}-${item.href}`}
+                href={item.href}
+                className={itemClass}
+                onClick={() => setMobile(false)}
+                title={sidebarCollapsed ? item.label : undefined}
+                aria-current={active ? "page" : undefined}
+              >
+                {icon}
+                {!sidebarCollapsed && (
+                  <span className="truncate">{item.label}</span>
+                )}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {!sidebarCollapsed && (
+          <a
+            href="https://www.npmjs.com/package/looply-comp-lib"
+            target="_blank"
+            rel="noreferrer"
+            className="neu-inset no-hover mt-8 flex items-center gap-3 rounded-xl p-4 text-gray-700 dark:text-gray-200"
+          >
+            <svg
+              className="h-7 w-7 shrink-0"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M2 3h20v18H2V3Zm4 4v10h4V9h4v8h4V7H6Z" />
+            </svg>
+            <span className="min-w-0">
+              <span className="block text-sm font-semibold">
+                Check out on npm
+              </span>
+              <span className="block truncate text-xs text-gray-500 dark:text-gray-400">
+                looply-comp-lib
+              </span>
+            </span>
+          </a>
+        )}
+
+        {children && (
+          <div className="mt-auto flex justify-center border-t border-gray-200/50 pt-4 dark:border-gray-700/50">
+            {children}
+          </div>
+        )}
+      </aside>
+    );
+  }
+
   return (
     <>
-      <div className="flex items-center w-full relative">
+      <div data-site-top-nav className="flex items-center w-full relative">
         <nav className="neu-pressed flex justify-between items-center w-full px-3 py-3 md:px-6 md:py-4">
           {hamburger && (
             <button
@@ -164,9 +327,7 @@ export default function NewNav({
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              <span className="min-w-8 text-center tabular-nums">
-                {npmDownloads ?? "—"}
-              </span>
+              <span className="min-w-8 text-center tabular-nums">—</span>
             </a>
             {renderNav(rightItems)}
 

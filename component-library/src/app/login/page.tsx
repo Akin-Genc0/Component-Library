@@ -2,6 +2,7 @@ import Form from "@/components/form";
 import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
 import ThemeToggle from "@/components/themeSwitch";
+import Link from "next/link";
 export default async function Login() {
   const session = await auth();
   return (
@@ -73,7 +74,16 @@ export default async function Login() {
       >
         <ThemeToggle />
       </NewNav>
-      <Form session={session} />
+      <div className="relative">
+        <Link
+          href="/"
+          className="neu-btn absolute left-6 top-6 z-10 flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium"
+        >
+          <span aria-hidden="true">←</span>
+          Back to Home
+        </Link>
+        <Form session={session} />
+      </div>
     </>
   );
 }
