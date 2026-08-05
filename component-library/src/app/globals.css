@@ -37,6 +37,10 @@ body {
   margin: 1.5rem 5.5rem;
 }
 
+[data-sidebar-shell] [data-site-top-nav] {
+  display: none;
+}
+
 @media (max-width: 640px) {
   body {
     margin: 0.5rem 1rem;

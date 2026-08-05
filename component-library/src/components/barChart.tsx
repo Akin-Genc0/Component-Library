@@ -7,9 +7,9 @@ type barChart = {
   size: number;
 };
 
-type eachBar = { content: barChart[] };
+type eachBar = { content: barChart[]; fill?: boolean };
 
-export default function BarChart({ content }: eachBar) {
+export default function BarChart({ content, fill = false }: eachBar) {
   const colors = content.map((_, index) => arr[index % arr.length]);
 
   const max = content.reduce((a, b) => Math.max(a, b.size), 0);
@@ -18,8 +18,10 @@ export default function BarChart({ content }: eachBar) {
   return (
     <div
       data-looply
-      style={{ maxWidth: "650px", height: "300px" }}
-      className="w-full flex flex-row gap-[10px] items-end px-3 sm:px-[25px] pt-[25px] neu-flat h-[200px] sm:h-[300px]"
+      style={fill ? undefined : { height: "300px" }}
+      className={`flex w-full flex-row items-end gap-[10px] px-3 pt-[25px] sm:px-[25px] ${
+        fill ? "min-h-0 flex-1" : "h-[200px] sm:h-[300px]"
+      }`}
     >
       <div className="border-r border-gray-300 dark:border-gray-600 h-full mb-[10px] mr-[20px] pr-[10px] flex flex-col justify-between text-[10px] sm:text-xs dark:text-gray-300">
         <p>{Math.floor(Math.max(max))} </p>
