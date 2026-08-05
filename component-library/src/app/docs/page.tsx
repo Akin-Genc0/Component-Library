@@ -1,7 +1,6 @@
 import { auth } from "@/authConfig";
 import NewNav from "@/components/newnav";
 import ThemeToggle from "@/components/themeSwitch";
-import Hero from "@/components/hero";
 import Link from "next/link";
 import fs from "fs";
 import path from "path";
@@ -74,27 +73,28 @@ export default async function Docs() {
       >
         <ThemeToggle />
       </NewNav>
-      <Hero
-        headerBtn="Documentation"
-        header="Component Docs"
-        subHeader="Browse the full list of Looply components. Each page includes usage examples, props, and a live interactive demo."
-        btn1Text="Get Started"
-        btn2Text="View on GitHub"
-        btn2Href="https://github.com/Akin-Genc0/Component-Library"
-      />
-      <div className="max-w-4xl mx-auto px-6 py-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {docs.map((doc) => (
-          <Link key={doc.slug} href={`/${doc.slug}`}>
-            <div className="neu-pressed p-6 cursor-pointer transition-all duration-200">
-              <h2 className="text-lg font-bold mb-1 dark:text-white">
-                {doc.title}
-              </h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {doc.description}
-              </p>
-            </div>
-          </Link>
-        ))}
+      <div className="mx-auto max-w-4xl px-6 py-12">
+        <div className="neu-inset no-hover mb-8 p-10">
+          <h1 className="mb-3 text-3xl font-bold">Component Docs</h1>
+          <p className="text-lg text-gray-500 dark:text-gray-400">
+            Browse the full list of Looply components. Each page includes usage
+            examples, props, and a live interactive demo.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {docs.map((doc) => (
+            <Link key={doc.slug} href={`/${doc.slug}`}>
+              <div className="neu-pressed p-6 transition-all duration-200">
+                <h2 className="mb-1 text-lg font-bold dark:text-white">
+                  {doc.title}
+                </h2>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {doc.description}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </>
   );

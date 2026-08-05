@@ -2,12 +2,21 @@
 import Image from "next/image";
 import { useState } from "react";
 
-type chatBot = { title: string; img: string; propt: string; endpoint?: string };
+type chatBot = {
+  title: string;
+  img: string;
+  propt: string;
+  endpoint?: string;
+  embedded?: boolean;
+  invertImageInDark?: boolean;
+};
 export default function Chat({
   title,
   img,
   propt,
   endpoint = "/api/chat",
+  embedded = false,
+  invertImageInDark = false,
 }: chatBot) {
   const [input, setInput] = useState("");
   const [msg, setMsg] = useState<History[]>([]);
@@ -57,12 +66,16 @@ export default function Chat({
     <>
       <div
         data-looply
-        style={{ maxWidth: "37rem" }}
-        className="w-full neu-inset px-5 sm:px-10 py-5 overflow-auto h-full"
+        style={embedded ? undefined : { maxWidth: "37rem" }}
+        className={`h-full w-full overflow-auto px-5 py-5 sm:px-10 ${
+          embedded ? "" : "neu-inset"
+        }`}
       >
         <div className="flex flex-row gap-5 pb-2">
           <Image
-            className="p-2 bg-gray-50 rounded-full flex flex-row"
+            className={`flex flex-row rounded-full bg-gray-50 p-2 dark:bg-gray-900 ${
+              invertImageInDark ? "dark:invert" : ""
+            }`}
             src={img}
             width={40}
             height={40}

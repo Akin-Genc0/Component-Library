@@ -35,7 +35,7 @@ function getCalenderData(
   );
 }
 
-export default function Calendar() {
+export default function Calendar({ embedded = false }: { embedded?: boolean }) {
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
 
@@ -56,7 +56,11 @@ export default function Calendar() {
 
   return (
     <>
-      <div className="neu-inset w-full max-w-[25rem] p-4 sm:p-8">
+      <div
+        className={`h-full w-full p-4 sm:p-8 ${
+          embedded ? "max-w-none" : "neu-inset max-w-[25rem]"
+        }`}
+      >
         <div className="flex justify-between items-center mb-4">
           <button className="neu-btn px-3 py-1 text-sm" onClick={handlePrev}>
             &larr;

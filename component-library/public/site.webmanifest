@@ -1,0 +1,17 @@
+{
+  "name": "Looply UI",
+  "short_name": "Looply",
+  "description": "A free neumorphic React component library.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F0F0F3",
+  "theme_color": "#F0F0F3",
+  "icons": [
+    {
+      "src": "/looplogoli.png",
+      "sizes": "640x640",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

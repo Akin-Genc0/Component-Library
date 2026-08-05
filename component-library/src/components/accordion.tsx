@@ -65,7 +65,11 @@ export default function Accordion({ items }: AccordionProps) {
     });
   }
   return (
-    <div data-looply className="flex flex-col gap-4 w-full font-inter" style={{ maxWidth: "48rem" }}>
+    <div
+      data-looply
+      className="flex flex-col gap-4 w-full font-inter"
+      style={{ maxWidth: "48rem" }}
+    >
       {values()}
     </div>
   );
