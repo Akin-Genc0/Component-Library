@@ -5,6 +5,10 @@ A neumorphic UI component library built with Next.js, TypeScript, and Tailwind C
 **Live Site:** [loopl-y.com](https://loopl-y.com)  
 **Install Guide:** [loopl-y.com/docs](https://loopl-y.com/examples)
 
+<img width="1512" height="863" alt="Screenshot 2026-08-05 at 14 37 26" src="https://github.com/user-attachments/assets/48ed3e0d-9e26-4cb9-9d55-8b636cac7703" />
+
+
+
 ## Components
 
 - **Card** - Flexible cards with multiple neumorphic styles (flat, pressed, floating)

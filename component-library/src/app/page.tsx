@@ -1,436 +1,313 @@
-import Chat from "@/components/chat";
-import Card from "@/components/card";
-import Hero from "@/components/hero";
-import BarChart from "@/components/barChart";
-import Carousel from "@/components/carousel";
-import Drawer from "@/components/drawer";
 import Accordion from "@/components/accordion";
-import { auth } from "@/authConfig";
-import NewNav from "@/components/newnav";
-import ThemeToggle from "@/components/themeSwitch";
-import Link from "next/link";
+import BarChart from "@/components/barChart";
 import Calendar from "@/components/calendar";
-import Buttons from "@/components/buttons";
-import DropDown from "@/components/dropDown";
 import CalloutCard from "@/components/calloutCard";
-import Toggle from "@/components/toggle";
+import Chat from "@/components/chat";
+import NewNav from "@/components/newnav";
 import Table from "@/components/table";
 import TextArea from "@/components/textarea";
+import ThemeToggle from "@/components/themeSwitch";
+import Toggle from "@/components/toggle";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import Link from "next/link";
+import packageJson from "../../package.json";
+
+const navItems = [
+  {
+    type: "link" as const,
+    label: "Home",
+    href: "/",
+    iconPath: "M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10.5Z",
+  },
+  {
+    type: "link" as const,
+    label: "About",
+    href: "/about",
+    iconPath: "M12 11v5m0-9h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
+  },
+  {
+    type: "link" as const,
+    label: "Documentation",
+    href: "/docs",
+    iconPath: "M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5ZM20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z",
+  },
+  {
+    type: "link" as const,
+    label: "Install",
+    href: "/examples",
+    iconPath: "M12 3v12m0 0 4-4m-4 4-4-4M5 21h14",
+  },
+];
+
+type NpmDownloadsResponse = { downloads: number };
+type GitHubRepositoryResponse = { stargazers_count: number };
+
+async function getJson<T>(url: string): Promise<T | null> {
+  try {
+    const response = await fetch(url, { next: { revalidate: 3600 } });
+    return response.ok ? ((await response.json()) as T) : null;
+  } catch {
+    return null;
+  }
+}
+
 export default async function Home() {
-  const session = await auth();
+  const [npmData, githubData, packageEntrypoint] = await Promise.all([
+    getJson<NpmDownloadsResponse>("https://api.npmjs.org/downloads/point/last-month/looply-comp-lib"),
+    getJson<GitHubRepositoryResponse>("https://api.github.com/repos/Akin-Genc0/Component-Library"),
+    readFile(path.join(process.cwd(), "src", "index.ts"), "utf8"),
+  ]);
+  const npmDownloads = npmData?.downloads.toLocaleString() ?? "—";
+  const githubStars = githubData?.stargazers_count.toLocaleString() ?? "—";
+  const componentCount = (packageEntrypoint.match(/^export \{ default as /gm)?.length ?? 0).toString();
+  const metrics = [
+    { icon: "grid", value: componentCount, label: "Components" },
+    { icon: "npm", value: npmDownloads, label: "npm Downloads" },
+    { icon: "github", value: githubStars, label: "GitHub Stars" },
+    { icon: "bars", value: packageJson.version, label: "Version" },
+  ];
 
   return (
-    <>
-      <NewNav
-        hamburger
-        navObj={[
-          {
-            type: "icon",
-            label: "icon",
-            href: "/",
-            iconPath:
-              "M172,68a44,44,0,1,0-44,44A44.04978,44.04978,0,0,0,172,68Zm-44,36a36,36,0,1,1,36-36A36.04061,36.04061,0,0,1,128,104Zm60,24a44,44,0,1,0,44,44A44.04978,44.04978,0,0,0,188,128Zm0,80a36,36,0,1,1,36-36A36.04061,36.04061,0,0,1,188,208ZM68,128a44,44,0,1,0,44,44A44.04978,44.04978,0,0,0,68,128Zm0,80a36,36,0,1,1,36-36A36.04061,36.04061,0,0,1,68,208Z",
-            slot: "left",
-            viewBox: "0 0 256 256",
-          },
-          {
-            type: "link",
-            label: "Home",
-            href: "/",
-          },
-
-          {
-            type: "link",
-            label: "About",
-            href: "/about",
-          },
-
-          {
-            type: "link",
-            label: "Docs",
-            href: "/docs",
-          },
-
-          {
-            type: "link",
-            label: "Install",
-            href: "/examples",
-          },
-          ...(session
-            ? [
-                {
-                  type: "icon" as const,
-                  label: "Settings",
-                  href: "/userinfo",
-                  iconPath:
-                    "M11.2867 0.5C9.88583 0.5 8.6461 1.46745 8.37171 2.85605L8.29264 3.25622C8.10489 4.20638 7.06195 4.83059 6.04511 4.48813L5.64825 4.35447C4.32246 3.90796 2.83873 4.42968 2.11836 5.63933L1.40492 6.83735C0.67773 8.05846 0.954349 9.60487 2.03927 10.5142L2.35714 10.7806C3.12939 11.4279 3.12939 12.5721 2.35714 13.2194L2.03927 13.4858C0.954349 14.3951 0.67773 15.9415 1.40492 17.1626L2.11833 18.3606C2.83872 19.5703 4.3225 20.092 5.64831 19.6455L6.04506 19.5118C7.06191 19.1693 8.1049 19.7935 8.29264 20.7437L8.37172 21.1439C8.6461 22.5325 9.88584 23.5 11.2867 23.5H12.7136C14.1146 23.5 15.3543 22.5325 15.6287 21.1438L15.7077 20.7438C15.8954 19.7936 16.9384 19.1693 17.9553 19.5118L18.3521 19.6455C19.6779 20.092 21.1617 19.5703 21.8821 18.3606L22.5955 17.1627C23.3227 15.9416 23.046 14.3951 21.9611 13.4858L21.6432 13.2194C20.8709 12.5722 20.8709 11.4278 21.6432 10.7806L21.9611 10.5142C23.046 9.60489 23.3227 8.05845 22.5955 6.83732L21.8821 5.63932C21.1617 4.42968 19.678 3.90795 18.3522 4.35444L17.9552 4.48814C16.9384 4.83059 15.8954 4.20634 15.7077 3.25617L15.6287 2.85616C15.3543 1.46751 14.1146 0.5 12.7136 0.5H11.2867ZM10.3338 3.24375C10.4149 2.83334 10.7983 2.5 11.2867 2.5H12.7136C13.2021 2.5 13.5855 2.83336 13.6666 3.24378L13.7456 3.64379C14.1791 5.83811 16.4909 7.09167 18.5935 6.38353L18.9905 6.24984C19.4495 6.09527 19.9394 6.28595 20.1637 6.66264L20.8771 7.86064C21.0946 8.22587 21.0208 8.69271 20.6764 8.98135L20.3586 9.24773C18.6325 10.6943 18.6325 13.3057 20.3586 14.7523L20.6764 15.0186C21.0208 15.3073 21.0946 15.7741 20.8771 16.1394L20.1637 17.3373C19.9394 17.714 19.4495 17.9047 18.9905 17.7501L18.5936 17.6164C16.4909 16.9082 14.1791 18.1618 13.7456 20.3562L13.6666 20.7562C13.5855 21.1666 13.2021 21.5 12.7136 21.5H11.2867C10.7983 21.5 10.4149 21.1667 10.3338 20.7562L10.2547 20.356C9.82113 18.1617 7.50931 16.9082 5.40665 17.6165L5.0099 17.7501C4.55092 17.9047 4.06104 17.714 3.83671 17.3373L3.1233 16.1393C2.9058 15.7741 2.97959 15.3073 3.32398 15.0186L3.64185 14.7522C5.36782 13.3056 5.36781 10.6944 3.64185 9.24779L3.32398 8.98137C2.97959 8.69273 2.9058 8.2259 3.1233 7.86067L3.83674 6.66266C4.06106 6.28596 4.55093 6.09528 5.0099 6.24986L5.40676 6.38352C7.50938 7.09166 9.82112 5.83819 10.2547 3.64392L10.3338 3.24375Z",
-                  viewBox: "0 0 24 24",
-                  slot: "right" as const,
-                },
-              ]
-            : [
-                {
-                  type: "button" as const,
-                  label: "Sign up",
-                  href: "/login",
-                  slot: "right" as const,
-                },
-              ]),
-
-          {
-            type: "icon",
-            label: "User profile",
-            href: "/login",
-            imageSrc: session?.user?.image || "/nouser1.png",
-            slot: "right",
-          },
-        ]}
-      >
-        <ThemeToggle />
+    <div className="-mx-4 -my-2 flex min-h-screen flex-col gap-6 bg-background p-5 md:-mx-[5.5rem] md:-my-6 md:flex-row md:gap-10">
+      <NewNav variant="sidebar" navObj={navItems}>
+        <a
+          href="https://github.com/Akin-Genc0/Component-Library"
+          target="_blank"
+          rel="noreferrer"
+          className="neu-pressed no-hover flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-100"
+        >
+          <svg className="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.61-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.54 1.04 1.54 1.04.9 1.54 2.35 1.1 2.92.84.09-.65.35-1.1.64-1.35-2.22-.25-4.55-1.11-4.55-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.8a9.6 9.6 0 0 1 2.5.34c1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.33 4.7-4.56 4.95.36.31.68.9.68 1.8v2.67c0 .26.18.58.69.48A10 10 0 0 0 12 2Z" />
+          </svg>
+          <span className="truncate">Star on GitHub</span>
+        </a>
       </NewNav>
-      <Hero
-        headerBtn="Now available by running npm commands"
-        header="Neumorphic UI Built for Your Apps"
-        subHeader="A collection of soft, tactile UI elements 
-        designed to feel real, respond to touch, and bring 
-        your interfaces to life. Start here and make it yours. Free. 
-        Flexible. Open Source."
-        btn1Text="Get Started"
-        btn1Href="/docs"
-        btn2Text="View Components"
-        btn2Href="/examples"
-      />
 
-      <div className="flex flex-wrap gap-[50px] justify-center">
-        <Link href="/card">
-          <Card
-            cards={[
-              {
-                cardStyle: "neu-pressed",
-                headerText: "Soft Edge",
-                subHeaderText: "Subtle and smooth.",
-                descriptionText:
-                  "A gentle raised surface with soft shadows. Perfect for content that needs to feel light and approachable.",
-                buttons: [{ label: "Explore" }, { label: "Details" }],
-              },
-              {
-                cardStyle: "neu-pressed",
-                headerText: "Image Card",
-                subHeaderText: "Visual-first design.",
-                descriptionText:
-                  "Pair rich imagery with clean typography. Ideal for showcasing products, portfolios, or featured content.",
-                buttons: [{ label: "View" }, { label: "Save" }],
-                imageUrl:
-                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
-              },
-              {
-                cardStyle: "neu-floating",
-                headerText: "Floating",
-                subHeaderText: "Bold and elevated.",
-                descriptionText:
-                  "A strong 3D shadow that makes the card pop off the page. Great for calls to action or highlighted sections.",
-                buttons: [{ label: "Get Started" }],
-              },
-            ]}
-          />
-        </Link>
-        <Link href="/calendar">
-          <Calendar />
-        </Link>
-        <Link href="/barchart">
-          <BarChart
-            content={[
-              { lable: "Mon", size: 180 },
-              { lable: "Tue", size: 95 },
-              { lable: "Wed", size: 120 },
-              { lable: "Thu", size: 88 },
-              { lable: "Fri", size: 150 },
-              { lable: "Sat", size: 57 },
-              { lable: "Sun", size: 200 },
-              { lable: "Fri", size: 150 },
-              { lable: "Sat", size: 57 },
-              { lable: "Sun", size: 200 },
-            ]}
-          />
-        </Link>
-        <Link href="/chat">
-          <Chat
-            title="Looply AI"
-            img="/looplogoli.png"
-            propt="How do I install Looply?"
-          />
-        </Link>
-        <Link href="/accordion">
-          <Accordion
-            items={[
-              {
-                title: "What is LoopUI?",
-                text: "LoopUI is a modern component library built with React and Tailwind CSS, designed to help you build beautiful interfaces quickly.",
-              },
-              {
-                title: "How do I get started?",
-                text: "Simply install the components using npm and import them into your project. Full documentation is available in our guides.",
-              },
-              {
-                title: "Is it free to use?",
-                text: "Yes! LoopUI is completely free and open source. You can use it in personal and commercial projects.",
-              },
-              {
-                title: "Does it support dark mode?",
-                text: "Absolutely! All components are built with dark mode support using Tailwind's dark mode utilities.",
-              },
-            ]}
-          />
-        </Link>
-        <Link href="/button">
-          <Buttons
-            buttonObj={[
-              { buttonText: "Flat", buttonType: "neu-flat", href: "/button" },
-              {
-                buttonText: "Raised",
-                buttonType: "neu-raised",
-                href: "/button",
-              },
-              {
-                buttonText: "Pressed",
-                buttonType: "neu-inset",
-                href: "/button",
-              },
-              {
-                buttonText: "Like",
-                buttonType: "neu-flat",
-                icon: "M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21.11l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z",
-              },
-            ]}
-          />
-        </Link>
-        <DropDown
-          dropDowns={[
-            {
-              dropDownType: "neu-flat",
-              dropDownMenuLabel: "Menu",
-              dropDownItem: [
-                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
-                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
-                { dropDownLable: "Docs", dropDownURL: "/docs" },
-                { dropDownLable: "Logout" },
-              ],
-            },
-            {
-              dropDownType: "neu-raised",
-              dropDownMenuLabel: "Options",
-              dropDownItem: [
-                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
-                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
-                { dropDownLable: "Docs", dropDownURL: "/docs" },
-                { dropDownLable: "Logout" },
-              ],
-            },
-            {
-              dropDownType: "neu-inset",
-              dropDownMenuLabel: "Account",
-              dropDownItem: [
-                { dropDownLable: "Profile", dropDownURL: "/userinfo" },
-                { dropDownLable: "Settings", dropDownURL: "/userinfo" },
-                { dropDownLable: "Docs", dropDownURL: "/docs" },
-                { dropDownLable: "Logout" },
-              ],
-            },
-          ]}
-        />
-        <Link href="/carousel">
-          <Carousel
-            card={[
-              {
-                image:
-                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
-                text: "Soft, tactile interfaces inspired by real-world surfaces. Neumorphism brings depth and elegance to modern UI design.",
-              },
-              {
-                image:
-                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
-                text: "Subtle gradients and shadows create a seamless experience. Every element feels like it belongs on the surface.",
-              },
-              {
-                image:
-                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
-                text: "Minimalist aesthetics meet functional design. Clean layouts with soft shadows that guide the user naturally.",
-              },
-              {
-                image:
-                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
-                text: "Light and shadow working in harmony. Components that feel pressed, raised, or floating on a unified surface.",
-              },
-              {
-                image:
-                  "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
-                text: "Fluid color palettes and smooth transitions. Build interfaces that are as beautiful as they are functional.",
-              },
-            ]}
-          />
-        </Link>
-        <Link href="/drawer">
-          <Drawer title="Doodle" size={600} colour="#000000ff" />
-        </Link>
+      <main className="min-w-0 flex-1 space-y-10 pb-10">
+        <header className="neu-pressed no-hover flex flex-col gap-5 p-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-2xl font-bold tracking-tight">Neumorphic UI Built for Your Apps</p>
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              Soft, tactile UI elements for modern apps. Free. Flexible. Open Source.
+            </p>
+          </div>
+          <div className="flex items-center gap-3 self-end sm:self-auto">
+            <a
+              href="https://www.npmjs.com/package/looply-comp-lib"
+              target="_blank"
+              rel="noreferrer"
+              className="neu-btn flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-gray-600 dark:text-gray-200"
+            >
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M2 3h20v18H2V3Zm4 4v10h4V9h4v8h4V7H6Z" />
+              </svg>
+              {npmDownloads}
+            </a>
+            <Link href="/login" className="neu-btn rounded-xl p-3" aria-label="Open profile">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.5" />
+                <path d="M5 21a7 7 0 0 1 14 0" />
+              </svg>
+            </Link>
+            <div className="neu-btn rounded-xl p-3">
+              <ThemeToggle />
+            </div>
+          </div>
+        </header>
 
-        <CalloutCard
-          callOut={[
-            {
-              header: "Start Building Today",
-              subHeader:
-                "Install Looply with a single command and start creating beautiful neumorphic interfaces in minutes. No configuration needed.",
-              styleType: "neu-soft-edge",
-              radiusType: "sharp-edge",
-              buttons: [
-                { label: "Get Started", href: "/docs" },
-                { label: "View Examples", href: "/examples" },
-              ],
-            },
-            {
-              header: "Open Source & Free",
-              subHeader:
-                "Looply is completely free and open source. Use it in personal or commercial projects, contribute to the codebase, or fork it and make it your own.",
-              styleType: "neu-floating",
-              radiusType: "soft-edge",
-              buttons: [{ label: "Browse Components", href: "/examples" }],
-              imageUrl: "/coollad.png",
-            },
-            {
-              header: "Need Help?",
-              subHeader:
-                "Check out our documentation for guides, API references, and examples to help you get the most out of Looply.",
-              styleType: "neu-pressed",
-              radiusType: "pill",
-              buttons: [
-                { label: "Read Docs", href: "/docs" },
-                { label: "Contact Us", href: "/contact" },
-              ],
-            },
-          ]}
-        />
-        <Toggle styleType="neu-flat" size="sm" />
-        <Toggle styleType="neu-flat" size="md" />
-        <Toggle styleType="neu-flat" size="lg" />
-        <Toggle styleType="neu-pressed" size="sm" />
-        <Toggle styleType="neu-pressed" size="md" />
-        <Toggle styleType="neu-pressed" size="lg" />
-        <Toggle styleType="neu-inset" size="sm" />
-        <Toggle styleType="neu-inset" size="md" />
-        <Toggle styleType="neu-inset" size="lg" />
+        <section className="grid gap-10 sm:grid-cols-2 xl:grid-cols-4" aria-label="Library metrics">
+          {metrics.map((metric) => (
+            <article key={metric.label} className="neu-pressed no-hover flex items-center gap-5 p-6 !rounded-xl">
+              <span className="neu-inset no-hover flex h-12 w-12 items-center justify-center !rounded-full text-xs font-bold text-gray-600 dark:text-gray-300">
+                {metric.icon === "grid" && (
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4ZM4 13h7v7H4v-7Zm9 0h7v7h-7v-7Z" />
+                  </svg>
+                )}
+                {metric.icon === "npm" && (
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M2 3h20v18H2V3Zm4 4v10h4V9h4v8h4V7H6Z" />
+                  </svg>
+                )}
+                {metric.icon === "github" && (
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.61-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.54 1.04 1.54 1.04.9 1.54 2.35 1.1 2.92.84.09-.65.35-1.1.64-1.35-2.22-.25-4.55-1.11-4.55-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.8a9.6 9.6 0 0 1 2.5.34c1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.33 4.7-4.56 4.95.36.31.68.9.68 1.8v2.67c0 .26.18.58.69.48A10 10 0 0 0 12 2Z" />
+                  </svg>
+                )}
+                {metric.icon === "bars" && (
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M4 19h3V9H4v10Zm6 0h4V4h-4v15Zm7 0h3v-7h-3v7Z" />
+                  </svg>
+                )}
+              </span>
+              <div>
+                <p className="text-2xl font-bold leading-none">{metric.value}</p>
+                <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">{metric.label}</p>
+              </div>
+            </article>
+          ))}
+        </section>
 
-        <Link href="/table">
+        <section className="grid gap-10 xl:grid-cols-[1.05fr_1fr]">
+          <article className="neu-inset no-hover flex min-h-[420px] min-w-0 flex-col p-6">
+            <h2 className="mb-5 text-base font-bold">Analytics Overview</h2>
+            <BarChart
+              fill
+              content={[
+                { lable: "Mon", size: 180 },
+                { lable: "Tue", size: 95 },
+                { lable: "Wed", size: 120 },
+                { lable: "Thu", size: 88 },
+                { lable: "Fri", size: 150 },
+                { lable: "Sat", size: 57 },
+                { lable: "Sun", size: 200 },
+              ]}
+            />
+          </article>
+
+          <article className="neu-inset no-hover p-6">
+            <h2 className="mb-5 text-base font-bold">FAQ</h2>
+            <Accordion
+              items={[
+                { title: "What is Looply UI?", text: "A React and Tailwind CSS component library with a tactile neumorphic visual language." },
+                { title: "How do I get started?", text: "Install the package with npm and use the documentation to import the components you need." },
+                { title: "Is it free to use?", text: "Yes. Looply UI is free and open source for personal and commercial projects." },
+                { title: "Does it support dark mode?", text: "Yes. Components include dark-mode aware styles through Tailwind CSS." },
+              ]}
+            />
+          </article>
+        </section>
+
+        <section className="neu-inset no-hover p-6">
+          <h2 className="mb-5 text-base font-bold">Cards</h2>
+          <div className="grid gap-10 lg:grid-cols-3">
+            {[
+              ["Soft Edge", "Flat surface", "A subtle, tactile card with layered shadows. Great for feature blocks or previews.", "neu-flat"],
+              ["Pressed", "Inset surface", "A pressed-in card that recedes into the background. Perfect for grouped content.", "neu-inset"],
+              ["Floating", "Raised surface", "A strongly raised card that hovers above the surface. Ideal for hero tiles.", "neu-raised"],
+            ].map(([title, subtitle, description, style]) => (
+              <article key={title} className={`${style} flex min-h-60 flex-col p-6`}>
+                <h3 className="text-2xl font-bold">{title}</h3>
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{subtitle}</p>
+                <p className="mt-7 text-sm leading-6 text-gray-600 dark:text-gray-300">{description}</p>
+                <Link href="/examples" className="neu-btn mt-auto w-fit rounded-xl px-5 py-2.5 text-sm font-medium">
+                  Explore
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="neu-inset no-hover p-6">
+          <h2 className="mb-5 text-base font-bold">Tables</h2>
           <Table
             tables={[
               {
-                label: "Flat Style",
+                label: "Soft Edge",
                 styleType: "neu-flat",
-                header: ["Name", "Role", "Status", "Team"],
+                header: ["Component", "Category", "Status"],
                 rows: [
-                  {
-                    Name: "Alice",
-                    Role: "Engineer",
-                    Status: "Active",
-                    Team: "Frontend",
-                  },
-                  {
-                    Name: "Bob",
-                    Role: "Designer",
-                    Status: "Away",
-                    Team: "Design",
-                  },
-                  {
-                    Name: "Carol",
-                    Role: "Manager",
-                    Status: "Active",
-                    Team: "Ops",
-                  },
-                  {
-                    Name: "Dan",
-                    Role: "DevOps",
-                    Status: "Busy",
-                    Team: "Infra",
-                  },
+                  { Component: "Card", Category: "Layout", Status: "Ready" },
+                  { Component: "Button", Category: "Controls", Status: "Ready" },
+                  { Component: "Drawer", Category: "Overlay", Status: "Ready" },
                 ],
               },
               {
-                label: "Pressed Style",
-                styleType: "neu-pressed",
-                header: ["Name", "Role", "Status", "Team"],
-                rows: [
-                  {
-                    Name: "Dave",
-                    Role: "Developer",
-                    Status: "Active",
-                    Team: "Backend",
-                  },
-                  {
-                    Name: "Eve",
-                    Role: "Analyst",
-                    Status: "Busy",
-                    Team: "Data",
-                  },
-                  { Name: "Fay", Role: "Tester", Status: "Active", Team: "QA" },
-                  {
-                    Name: "Gus",
-                    Role: "Architect",
-                    Status: "Away",
-                    Team: "Platform",
-                  },
-                ],
-              },
-              {
-                label: "Inset Style",
+                label: "Inset",
                 styleType: "neu-inset",
-                header: ["Name", "Role", "Status", "Team"],
+                header: ["Component", "Category", "Status"],
                 rows: [
-                  {
-                    Name: "Frank",
-                    Role: "Lead",
-                    Status: "Active",
-                    Team: "Core",
-                  },
-                  {
-                    Name: "Grace",
-                    Role: "QA",
-                    Status: "Away",
-                    Team: "Testing",
-                  },
-                  {
-                    Name: "Hank",
-                    Role: "PM",
-                    Status: "Active",
-                    Team: "Product",
-                  },
-                  {
-                    Name: "Iris",
-                    Role: "SRE",
-                    Status: "Busy",
-                    Team: "Reliability",
-                  },
+                  { Component: "Table", Category: "Data", Status: "Ready" },
+                  { Component: "Calendar", Category: "Input", Status: "Ready" },
+                  { Component: "Toggle", Category: "Controls", Status: "Ready" },
+                ],
+              },
+              {
+                label: "Pressed",
+                styleType: "neu-pressed",
+                header: ["Component", "Category", "Status"],
+                rows: [
+                  { Component: "Chat", Category: "AI", Status: "Ready" },
+                  { Component: "Carousel", Category: "Media", Status: "Ready" },
+                  { Component: "Accordion", Category: "Content", Status: "Ready" },
                 ],
               },
             ]}
           />
-        </Link>
-        <TextArea
-          lable="Flat"
-          helperText="Type something..."
-          resize="on"
-          styleType="neu-flat"
-        />
-        <TextArea
-          lable="Pressed"
-          helperText="Type something..."
-          resize="on"
-          styleType="neu-pressed"
-        />
-        <TextArea
-          lable="Inset"
-          helperText="Type something..."
-          resize="off"
-          styleType="neu-inset"
-        />
-      </div>
-    </>
+        </section>
+
+        <section className="neu-inset no-hover grid items-stretch gap-10 p-6 md:grid-cols-3">
+          <div className="neu-raised min-w-0">
+            <Chat
+              embedded
+              title="Looply AI"
+              img="/looplogoli.png"
+              propt="How do I install Looply?"
+              invertImageInDark
+            />
+          </div>
+          <div className="neu-raised min-w-0">
+            <Calendar embedded />
+          </div>
+          <div className="neu-raised flex h-full flex-col p-6">
+            <div className="neu-inset no-hover flex flex-col items-start gap-6 p-4">
+              <Toggle styleType="neu-flat" size="sm" />
+              <Toggle styleType="neu-inset" size="md" />
+              <Toggle styleType="neu-pressed" size="lg" />
+            </div>
+            <div className="neu-inset no-hover mt-6 flex flex-wrap gap-3 p-4">
+              <button type="button" className="neu-btn-flat !rounded-lg px-3 py-2 text-xs font-medium">Flat</button>
+              <button type="button" className="neu-btn-raised !rounded-lg px-3 py-2 text-xs font-medium">Raised</button>
+              <button type="button" className="neu-btn-inset !rounded-lg px-3 py-2 text-xs font-medium">Inset</button>
+              <button type="button" className="neu-btn !rounded-lg p-2" aria-label="Like this component">
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section className="neu-inset no-hover p-6">
+          <h2 className="mb-5 text-base font-bold">Callout Cards</h2>
+          <CalloutCard
+            callOut={[
+              {
+                header: "Start Building Today",
+                subHeader: "Install Looply and start creating soft, tactile interfaces in minutes.",
+                styleType: "neu-soft-edge",
+                radiusType: "soft-edge",
+                buttons: [{ label: "Get Started", href: "/docs" }],
+              },
+              {
+                header: "Open Source and Free",
+                subHeader: "Use Looply in personal or commercial projects and help shape the library.",
+                styleType: "neu-floating",
+                radiusType: "soft-edge",
+                buttons: [{ label: "View Components", href: "/examples" }],
+              },
+              {
+                header: "Need a Hand?",
+                subHeader: "Browse the documentation for guides, API references, and practical examples.",
+                styleType: "neu-pressed",
+                radiusType: "soft-edge",
+                buttons: [{ label: "Read Docs", href: "/docs" }],
+              },
+            ]}
+          />
+        </section>
+
+        <section className="neu-inset no-hover p-6">
+          <h2 className="mb-5 text-base font-bold">Text Areas</h2>
+          <div className="grid gap-10 lg:grid-cols-3">
+            <TextArea lable="Soft Edge" helperText="Write a note..." resize="on" styleType="neu-flat" />
+            <TextArea lable="Pressed" helperText="Write a note..." resize="on" styleType="neu-pressed" />
+            <TextArea lable="Inset" helperText="Write a note..." resize="off" styleType="neu-inset" />
+          </div>
+        </section>
+
+      </main>
+    </div>
   );
 }

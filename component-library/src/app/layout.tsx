@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import SiteSidebar from "@/components/siteSidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,7 +48,21 @@ export const metadata: Metadata = {
       "Soft, tactile UI components for React. Free, flexible, and open source.",
   },
   icons: {
-    icon: "/looplogoli.png",
+    icon: [
+      {
+        url: "/looplogoli.png",
+        type: "image/png",
+        sizes: "640x640",
+      },
+    ],
+    shortcut: "/looplogoli.png",
+    apple: "/looplogoli.png",
+  },
+  manifest: "/site.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: "Looply",
+    statusBarStyle: "default",
   },
 };
 
@@ -61,7 +76,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class">{children}</ThemeProvider>
+        <ThemeProvider attribute="class">
+          <SiteSidebar>{children}</SiteSidebar>
+        </ThemeProvider>
       </body>
     </html>
   );
