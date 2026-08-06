@@ -110,7 +110,8 @@ export default function NewNav({
   if (variant === "sidebar") {
     return (
       <aside
-        className={`neu-pressed no-hover relative z-40 flex h-auto w-full shrink-0 self-stretch flex-col p-5 !rounded-[20px] transition-[width] duration-300 md:sticky md:top-5 md:h-[calc(100dvh-2.5rem)] md:self-start ${
+        data-collapsed={sidebarCollapsed ? "true" : "false"}
+        className={`group/sidebar neu-pressed no-hover relative z-40 flex h-auto w-full shrink-0 self-stretch flex-col overflow-hidden p-5 !rounded-[20px] transition-[width] duration-300 md:sticky md:top-5 md:h-[calc(100dvh-2.5rem)] md:self-start ${
           sidebarCollapsed ? "md:w-20" : "md:w-72"
         }`}
       >
@@ -271,7 +272,7 @@ export default function NewNav({
         )}
 
         {children && (
-          <div className="mt-auto flex justify-center border-t border-gray-200/50 pt-4 dark:border-gray-700/50">
+          <div className="mt-auto flex w-full justify-center border-t border-gray-200/50 pt-4 dark:border-gray-700/50">
             {children}
           </div>
         )}
