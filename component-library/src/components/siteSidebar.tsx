@@ -31,6 +31,13 @@ const navItems = [
     href: "/examples",
     iconPath: "M12 3v12m0 0 4-4m-4 4-4-4M5 21h14",
   },
+  {
+    type: "link" as const,
+    label: "Settings",
+    href: "/userinfo",
+    iconPath:
+      "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z",
+  },
 ];
 
 export default function SiteSidebar({
@@ -56,12 +63,14 @@ export default function SiteSidebar({
       className="-mx-4 -my-2 flex min-h-screen flex-col gap-6 bg-background p-5 md:-mx-[5.5rem] md:-my-6 md:flex-row md:gap-10"
     >
       <NewNav variant="sidebar" navObj={navItems}>
-        <div className="flex items-center gap-3">
+        <div className="flex w-full items-center gap-3 group-data-[collapsed=true]/sidebar:flex-col group-data-[collapsed=true]/sidebar:gap-2">
           <a
             href="https://github.com/Akin-Genc0/Component-Library"
             target="_blank"
             rel="noreferrer"
-            className="neu-pressed no-hover flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold text-gray-700 dark:text-gray-100"
+            aria-label="Star on GitHub"
+            title="Star on GitHub"
+            className="neu-pressed no-hover flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold text-gray-700 dark:text-gray-100 group-data-[collapsed=true]/sidebar:h-10 group-data-[collapsed=true]/sidebar:w-10 group-data-[collapsed=true]/sidebar:flex-none group-data-[collapsed=true]/sidebar:p-0"
           >
             <svg
               className="h-5 w-5 shrink-0"
@@ -71,9 +80,11 @@ export default function SiteSidebar({
             >
               <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.61-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.54 1.04 1.54 1.04.9 1.54 2.35 1.1 2.92.84.09-.65.35-1.1.64-1.35-2.22-.25-4.55-1.11-4.55-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.8a9.6 9.6 0 0 1 2.5.34c1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.33 4.7-4.56 4.95.36.31.68.9.68 1.8v2.67c0 .26.18.58.69.48A10 10 0 0 0 12 2Z" />
             </svg>
-            <span className="truncate">Star on GitHub</span>
+            <span className="truncate group-data-[collapsed=true]/sidebar:hidden">
+              Star on GitHub
+            </span>
           </a>
-          <div className="neu-btn rounded-xl p-2">
+          <div className="neu-btn shrink-0 rounded-xl p-2">
             <ThemeToggle />
           </div>
         </div>
