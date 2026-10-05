@@ -5,7 +5,7 @@ type calloutContent = {
   subHeader: string;
   buttons?: { label: string; href?: string }[];
   imageUrl?: string;
-  styleType: "neu-soft-edge" | "neu-pressed" | "neu-floating";
+  styleType: "sketch-flat" | "sketch-pressed" | "sketch-raised";
   radiusType: "sharp-edge" | "soft-edge" | "pill";
 };
 
@@ -14,9 +14,9 @@ type calloutoutObject = {
 };
 
 const styleMap = {
-  "neu-soft-edge": "neu-flat",
-  "neu-pressed": "neu-inset",
-  "neu-floating": "neu-raised",
+  "sketch-flat": "sketch-flat",
+  "sketch-pressed": "sketch-inset",
+  "sketch-raised": "sketch-raised",
 };
 
 const radiusMap = {
@@ -47,7 +47,7 @@ export default function CalloutCard({ callOut }: calloutoutObject) {
                   {element.buttons.map((btn, i) => (
                     <button
                       key={i}
-                      className="neu-btn px-6 py-2.5 font-medium text-sm text-gray-900 dark:text-gray-100 cursor-pointer transition-all duration-200"
+                      className="sketch-btn px-6 py-2.5 font-medium text-sm text-gray-900 dark:text-gray-100 cursor-pointer transition-all duration-200"
                       onClick={() =>
                         btn.href && (window.location.href = btn.href)
                       }

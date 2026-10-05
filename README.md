@@ -1,25 +1,36 @@
 # Looply Component Library
 
-A neumorphic UI component library built with Next.js, TypeScript, and Tailwind CSS.
+Looply is a React component library and documentation site built with Next.js, TypeScript, and Tailwind CSS. It uses a monochrome, sketch-inspired visual system with clean surfaces, simple line work, and reusable `sketch-*` style variants.
 
-**Live Site:** [loopl-y.com](https://loopl-y.com)  
-**Install Guide:** [loopl-y.com/docs](https://loopl-y.com/examples)
+[![npm version](https://img.shields.io/npm/v/looply-comp-lib?logo=npm&label=npm)](https://www.npmjs.com/package/looply-comp-lib)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![Terraform](https://img.shields.io/badge/Terraform-managed-7B42BC?logo=terraform)](component-library/infra)
+![License](https://img.shields.io/badge/license-MIT-22C55E)
+[![CI](https://github.com/Akin-Genc0/Component-Library/actions/workflows/linter.yml/badge.svg)](https://github.com/Akin-Genc0/Component-Library/actions/workflows/linter.yml)
+
+![Looply documentation interface](component-library/public/newScreen.png)
+
+**Live site:** [loopl-y.com](https://loopl-y.com)
+**Component docs:** [loopl-y.com/docs](https://loopl-y.com/docs)
+**Install guide:** [loopl-y.com/examples](https://loopl-y.com/examples)
+
+
 
 ## Components
 
-- **Card** - Flexible cards with multiple neumorphic styles (flat, pressed, floating)
-- **Callout Card** - Promotional/CTA cards with image support
-- **Table** - Data tables with flat, pressed, and inset variants
-- **Toggle** - Switch toggles in multiple sizes (sm, md, lg)
-- **Button** - Buttons with icon support and multiple styles
-- **Calendar** - Interactive date picker
-- **Bar Chart** - Animated bar chart visualizations
-- **Chat** - AI chat interface component
-- **Accordion** - Expandable content sections
-- **Dropdown** - Menu dropdowns with multiple styles
-- **Carousel** - Image/text carousel slider
-- **Drawer** - Slide-out drawing canvas
-- **TextArea** - Styled text areas with resize control
+- `Accordion` - Expandable content sections
+- `BarChart` - Responsive monochrome bar charts
+- `Buttons` - Action buttons with optional icons
+- `Calendar` - Interactive date selection
+- `CalloutCard` - Announcement and CTA cards
+- `Card` - Flexible content cards
+- `Carousel` - Image and text carousel
+- `Chat` - Customizable chat interface
+- `Drawer` - Slide-over drawing panel
+- `DropDown` - Menu dropdowns
+- `Table` - Structured data tables
+- `TextArea` - Multi-line form inputs
+- `Toggle` - On/off controls
 
 ## Installation
 
@@ -27,34 +38,93 @@ A neumorphic UI component library built with Next.js, TypeScript, and Tailwind C
 npm install looply-comp-lib
 ```
 
+Import the library stylesheet in your application layout:
+
 ```tsx
-import { Card, Table, Toggle } from "looply-comp-lib";
 import "looply-comp-lib/styles.css";
 ```
 
+For Tailwind CSS v4, include the package source in your global stylesheet:
+
+```css
+@import "tailwindcss";
+@source "../node_modules/looply-comp-lib/dist";
+```
+
+## Usage
+
+```tsx
+import { Buttons, Card, Toggle } from "looply-comp-lib";
+import "looply-comp-lib/styles.css";
+
+export default function Example() {
+  return (
+    <div>
+      <Buttons
+        buttonObj={[
+          { buttonText: "Cancel", buttonType: "sketch-flat" },
+          { buttonText: "Continue", buttonType: "sketch-raised" },
+        ]}
+      />
+      <Card
+        cards={[
+          {
+            cardStyle: "sketch-flat",
+            headerText: "Component card",
+            subHeaderText: "A simple content surface",
+            descriptionText: "Use cards to group related information and actions.",
+          },
+        ]}
+      />
+      <Toggle styleType="sketch-pressed" size="md" />
+    </div>
+  );
+}
+```
+
+## Style Variants
+
+The library uses `sketch-*` classes and prop values. Common surface variants are:
+
+- `sketch-flat`
+- `sketch-raised`
+- `sketch-inset`
+- `sketch-pressed`
+
+Button-specific classes use the `sketch-btn-*` prefix. The older `neu-*` names are no longer part of the current API.
+
 ## Development
+
+Run the site and package project from `component-library/`:
 
 ```bash
 cd component-library
-npm install
+npm ci
 npm run dev
+```
+
+Useful commands:
+
+```bash
+npm run lint
+npm run build
+npm run build:lib
 ```
 
 ## Tech Stack
 
-- Next.js (App Router)
-- TypeScript
+- Next.js App Router
+- React and TypeScript
 - Tailwind CSS v4
-- MDX for documentation
-- Prisma (database)
-- next-themes (dark mode)
-- Terraform (infrastructure as code)
-- GCP (Cloud Run, Artifact Registry, Secret Manager)
+- MDX component documentation
+- Prisma and PostgreSQL
+- next-themes
+- Terraform and Google Cloud Run
 
-## Branch Strategy
+## Branches
 
 - `develop` - active development
-- `qa` - QA testing
+- `qa` - quality assurance
 - `prod` - production releases
 
 ## License

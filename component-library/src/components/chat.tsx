@@ -68,7 +68,7 @@ export default function Chat({
         data-looply
         style={embedded ? undefined : { maxWidth: "37rem" }}
         className={`h-full w-full overflow-auto px-5 py-5 sm:px-10 ${
-          embedded ? "" : "neu-inset"
+          embedded ? "" : "sketch-inset"
         }`}
       >
         <div className="flex flex-row gap-5 pb-2">
@@ -87,7 +87,7 @@ export default function Chat({
         <div className="flex flex-col h-51 ">
           <div className="flex justify-center mb-4">
             <button
-              className="neu-btn p-1 pl-3 pr-3 text-sm dark:text-gray-300"
+              className="sketch-btn p-1 pl-3 pr-3 text-sm dark:text-gray-300"
               onClick={preset}
             >
               {propt}
@@ -99,12 +99,12 @@ export default function Chat({
               return (
                 <div key={index} className="space-y-3 mb-4">
                   <div className="flex justify-end">
-                    <div className="neu-flat p-3">
+                    <div className="sketch-flat p-3">
                       <p className="text-sm font-medium">{display.user}</p>
                     </div>
                   </div>
                   <div className="flex justify-start">
-                    <div className="neu-inset p-3">
+                    <div className="sketch-inset p-3">
                       {display.bot.startsWith("data:image/") ? (
                         <img
                           src={display.bot}
@@ -122,7 +122,7 @@ export default function Chat({
           </div>
           <div className="flex flex-row gap-2 mt-4">
             <input
-              className="flex-1 neu-inset !rounded-lg px-3 py-2 dark:text-gray-100 dark:placeholder-gray-400 outline-none"
+              className="flex-1 sketch-inset !rounded-lg px-3 py-2 dark:text-gray-100 dark:placeholder-gray-400 outline-none"
               value={input}
               onChange={getInput}
               onKeyDown={handleKeyDown}
@@ -131,7 +131,7 @@ export default function Chat({
             />
             <button
               onClick={display}
-              className="neu-btn px-4 py-2 dark:text-gray-100"
+              className="sketch-btn px-4 py-2 dark:text-gray-100"
             >
               Send
             </button>

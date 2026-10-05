@@ -2,12 +2,12 @@
 id: 13
 slug: textarea
 title: TextArea
-description: A neumorphic textarea input with three style variants, optional label, resize control, and error messaging.
+description: A textarea input with three style variants, optional label, resize control, and error messaging.
 ---
 
 ## Overview
 
-The TextArea component provides a styled multi-line text input with neumorphic styling. It supports three visual variants, optional labels, resizable or fixed dimensions, and inline error messages.
+The TextArea component provides a styled multi-line text input with flexible surface styling. It supports three visual variants, optional labels, resizable or fixed dimensions, and inline error messages.
 
 ### Usage
 
@@ -18,14 +18,14 @@ import { TextArea } from "looply-comp-lib";
   lable="Message"
   helperText="Type something..."
   resize="on"
-  styleType="neu-flat"
+  styleType="sketch-flat"
 />
 
 <TextArea
   lable="Bio"
   helperText="Tell us about yourself"
   resize="off"
-  styleType="neu-pressed"
+  styleType="sketch-pressed"
   errorMessage="This field is required"
 />
 ```
@@ -38,7 +38,7 @@ import { TextArea } from "looply-comp-lib";
 | `helperText` | `string` | | Placeholder text shown when empty |
 | `resize` | `"on"` \| `"off"` | | Controls whether the user can resize the textarea (both axes when on) |
 | `errorMessage` | `string` | | Optional error message displayed below the textarea |
-| `styleType` | `"neu-flat"` \| `"neu-inset"` \| `"neu-pressed"` | | Visual style variant |
+| `styleType` | `"sketch-flat"` \| `"sketch-inset"` \| `"sketch-pressed"` | | Visual style variant |
 
 ### Variants
 

@@ -26,7 +26,7 @@ import TextArea from "@/components/textarea";
 
 const mdxComponents = {
   table: ({ children }: { children: React.ReactNode }) => (
-    <div className="neu-pressed p-6 overflow-x-auto my-4">
+    <div className="sketch-pressed p-6 overflow-x-auto my-4">
       <table className="w-full border-collapse">{children}</table>
     </div>
   ),
@@ -129,9 +129,9 @@ const mdxComponents = {
   ButtonsDemo: () => (
     <Buttons
       buttonObj={[
-        { buttonText: "Flat", buttonType: "neu-flat" },
-        { buttonText: "Raised", buttonType: "neu-raised" },
-        { buttonText: "Pressed", buttonType: "neu-inset" },
+        { buttonText: "Flat", buttonType: "sketch-flat" },
+        { buttonText: "Raised", buttonType: "sketch-raised" },
+        { buttonText: "Pressed", buttonType: "sketch-inset" },
       ]}
     />
   ),
@@ -139,7 +139,7 @@ const mdxComponents = {
     <Card
       cards={[
         {
-          cardStyle: "neu-soft-edge",
+          cardStyle: "sketch-flat",
           headerText: "Soft Edge",
           subHeaderText: "Flat raised surface.",
           descriptionText:
@@ -147,7 +147,7 @@ const mdxComponents = {
           buttons: [{ label: "Learn More" }, { label: "Get Started" }],
         },
         {
-          cardStyle: "neu-pressed",
+          cardStyle: "sketch-pressed",
           headerText: "Pressed",
           subHeaderText: "Sunken inward surface.",
           descriptionText:
@@ -155,7 +155,7 @@ const mdxComponents = {
           buttons: [{ label: "Learn More" }, { label: "Get Started" }],
         },
         {
-          cardStyle: "neu-floating",
+          cardStyle: "sketch-raised",
           headerText: "Floating",
           subHeaderText: "Elevated 3D surface.",
           descriptionText:
@@ -171,7 +171,7 @@ const mdxComponents = {
     <DropDown
       dropDowns={[
         {
-          dropDownType: "neu-flat",
+          dropDownType: "sketch-flat",
           dropDownMenuLabel: "Menu",
           dropDownItem: [
             { dropDownLable: "Profile", dropDownURL: "/userinfo" },
@@ -182,7 +182,7 @@ const mdxComponents = {
         },
 
         {
-          dropDownType: "neu-inset",
+          dropDownType: "sketch-inset",
           dropDownMenuLabel: "Account",
           dropDownItem: [
             { dropDownLable: "Profile", dropDownURL: "/userinfo" },
@@ -198,7 +198,7 @@ const mdxComponents = {
     <Hero
       headerBtn="New release"
       header="Build Something Beautiful"
-      subHeader="A neumorphic hero section for your landing page."
+      subHeader="A clean hero section for your landing page."
       btn1Text="Get Started"
       btn2Text="Learn More"
     />
@@ -209,8 +209,8 @@ const mdxComponents = {
         {
           header: "Start Building Today",
           subHeader:
-            "Install Looply with a single command and start creating beautiful neumorphic interfaces.",
-          styleType: "neu-soft-edge",
+            "Install Looply with a single command and start creating clean, practical interfaces.",
+          styleType: "sketch-flat",
           radiusType: "soft-edge",
           buttons: [
             { label: "Get Started", href: "/docs" },
@@ -221,7 +221,7 @@ const mdxComponents = {
           header: "Open Source & Free",
           subHeader:
             "Looply is completely free and open source. Use it in personal or commercial projects.",
-          styleType: "neu-floating",
+          styleType: "sketch-raised",
           radiusType: "pill",
           buttons: [{ label: "Browse Components", href: "/examples" }],
           imageUrl:
@@ -233,15 +233,15 @@ const mdxComponents = {
   Toggle,
   ToggleDemo: () => (
     <div className="flex flex-wrap gap-6 items-center">
-      <Toggle styleType="neu-flat" size="sm" />
-      <Toggle styleType="neu-flat" size="md" />
-      <Toggle styleType="neu-flat" size="lg" />
-      <Toggle styleType="neu-pressed" size="sm" />
-      <Toggle styleType="neu-pressed" size="md" />
-      <Toggle styleType="neu-pressed" size="lg" />
-      <Toggle styleType="neu-inset" size="sm" />
-      <Toggle styleType="neu-inset" size="md" />
-      <Toggle styleType="neu-inset" size="lg" />
+      <Toggle styleType="sketch-flat" size="sm" />
+      <Toggle styleType="sketch-flat" size="md" />
+      <Toggle styleType="sketch-flat" size="lg" />
+      <Toggle styleType="sketch-pressed" size="sm" />
+      <Toggle styleType="sketch-pressed" size="md" />
+      <Toggle styleType="sketch-pressed" size="lg" />
+      <Toggle styleType="sketch-inset" size="sm" />
+      <Toggle styleType="sketch-inset" size="md" />
+      <Toggle styleType="sketch-inset" size="lg" />
     </div>
   ),
   Table,
@@ -251,7 +251,7 @@ const mdxComponents = {
         tables={[
           {
             label: "Pressed",
-            styleType: "neu-pressed",
+            styleType: "sketch-pressed",
             header: [
               "Name",
               "Role",
@@ -286,19 +286,19 @@ const mdxComponents = {
         lable="Flat Style"
         helperText="Type something..."
         resize="on"
-        styleType="neu-flat"
+        styleType="sketch-flat"
       />
       <TextArea
         lable="Pressed Style"
         helperText="Type something..."
         resize="on"
-        styleType="neu-pressed"
+        styleType="sketch-pressed"
       />
       <TextArea
         lable="Inset Style"
         helperText="Type something..."
         resize="off"
-        styleType="neu-inset"
+        styleType="sketch-inset"
       />
     </div>
   ),
