@@ -4,7 +4,7 @@ import { useState } from "react";
 
 type ToggleProps = {
   lable?: string;
-  styleType: "neu-flat" | "neu-inset" | "neu-pressed";
+  styleType: "sketch-flat" | "sketch-inset" | "sketch-pressed";
   size: "sm" | "md" | "lg";
   onChange?: (checked: boolean) => void;
 };

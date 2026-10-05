@@ -5,7 +5,7 @@ type TextAreaProps = {
   helperText: string;
   resize: "on" | "off";
   errorMessage?: string;
-  styleType: "neu-flat" | "neu-inset" | "neu-pressed";
+  styleType: "sketch-flat" | "sketch-inset" | "sketch-pressed";
 };
 
 export default function TextArea({

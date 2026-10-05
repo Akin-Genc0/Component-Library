@@ -43,13 +43,13 @@ export default function Drawer({ title, size, colour }: Drawerr) {
     <div
       data-looply
       style={{ maxWidth: "33rem" }}
-      className="neu-inset w-full p-5"
+      className="sketch-inset w-full p-5"
     >
       <div className="flex gap-10 mb-5">
         <h1 className="text-xl font-bold mb-4 dark:text-white">{title}</h1>
         <button
           onClick={() => setHoveredCells(Array(size).fill(false))}
-          className="neu-btn cursor-pointer px-5 py-0.5 text-sm dark:text-gray-300"
+          className="sketch-btn cursor-pointer px-5 py-0.5 text-sm dark:text-gray-300"
         >
           Clear
         </button>

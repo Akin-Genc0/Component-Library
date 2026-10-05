@@ -1,6 +1,6 @@
 {
   "name": "looply-comp-lib",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -93,5 +93,9 @@
     "react": ">=18",
     "react-dom": ">=18",
     "tailwindcss": ">=4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akin-Genc0/Component-Library.git"
   }
 }

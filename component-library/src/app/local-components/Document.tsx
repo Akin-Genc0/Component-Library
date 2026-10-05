@@ -39,7 +39,7 @@ export default function DocumentationTemp({
 
       {/* Import code block */}
       {importCode && (
-        <div className="neu-pressed-code rounded-2xl overflow-hidden mb-8">
+        <div className="sketch-code rounded-2xl overflow-hidden mb-8">
           <div className="flex items-center justify-between px-5 py-3 border-b border-gray-300 dark:border-gray-600">
             <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">
               TSX
@@ -86,7 +86,7 @@ export default function DocumentationTemp({
             Playground — Edit Props Live
           </button>
           {playgroundOpen && (
-            <div className="neu-inset p-6 rounded-2xl mb-4">{playground}</div>
+            <div className="sketch-inset p-6 rounded-2xl mb-4">{playground}</div>
           )}
         </div>
       )}
@@ -94,7 +94,7 @@ export default function DocumentationTemp({
       {/* Documentation content */}
       {children && (
         <div
-          className="neu-inset p-8 rounded-2xl mdx-content prose prose-neutral dark:prose-invert max-w-none
+          className="sketch-inset p-8 rounded-2xl mdx-content prose prose-neutral dark:prose-invert max-w-none
               [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-4
               [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:mt-6 [&_h3]:mb-3
               [&_p]:mb-4 [&_p]:leading-relaxed

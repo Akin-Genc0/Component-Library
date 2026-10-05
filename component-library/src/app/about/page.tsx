@@ -55,17 +55,17 @@ export default async function About() {
         <ThemeToggle />
       </NewNav>
       <div className="max-w-3xl mx-auto py-12 px-6">
-        <div className="neu-inset p-10 mb-8">
+        <div className="sketch-inset p-10 mb-8">
           <h1 className="text-3xl font-bold mb-3">About Looply</h1>
           <p className="text-gray-500 dark:text-gray-400 text-lg">
-            A free neumorphic component library because soft UI shouldn&apos;t
+            A free React component library because practical UI shouldn&apos;t
             cost money.
           </p>
         </div>
-        <div className="neu-pressed p-8 space-y-4">
+        <div className="sketch-pressed p-8 space-y-4">
           <p className="leading-relaxed dark:text-gray-300">
             Looply is built by a software engineer trying to build something fun
-            in his spare time. Most neumorphic component libraries out there are
+            in his spare time. Most component libraries out there are
             paid or locked behind subscriptions. This one is free, open source,
             and always will be.
           </p>
@@ -76,13 +76,13 @@ export default async function About() {
           </p>
         </div>
 
-        <div className="neu-inset p-10 mb-8 mt-8">
+        <div className="sketch-inset p-10 mb-8 mt-8">
           <h2 className="text-2xl font-bold mb-3">Built for the Future</h2>
           <p className="text-gray-500 dark:text-gray-400 text-lg">
             Infrastructure-first, with versioning and environments in mind.
           </p>
         </div>
-        <div className="neu-pressed p-8 space-y-4">
+        <div className="sketch-pressed p-8 space-y-4">
           <p className="leading-relaxed dark:text-gray-300">
             This isn&apos;t just a component library thrown together. It&apos;s
             built with future planning and proper versioning from day one. The
@@ -96,13 +96,13 @@ export default async function About() {
           </p>
         </div>
 
-        <div className="neu-inset p-10 mb-8 mt-8">
+        <div className="sketch-inset p-10 mb-8 mt-8">
           <h2 className="text-2xl font-bold mb-3">Tech Stack</h2>
           <p className="text-gray-500 dark:text-gray-400 text-lg">
             Modern tooling, properly deployed.
           </p>
         </div>
-        <div className="neu-pressed p-8 space-y-4">
+        <div className="sketch-pressed p-8 space-y-4">
           <ul className="list-disc list-inside space-y-2 leading-relaxed dark:text-gray-300">
             <li>Next.js, React, TypeScript, and Tailwind CSS</li>
             <li>Terraform for infrastructure as code</li>
@@ -113,7 +113,7 @@ export default async function About() {
           </ul>
         </div>
 
-        <div className="neu-pressed p-8 mt-8">
+        <div className="sketch-pressed p-8 mt-8">
           <a
             href="https://github.com/Akin-Genc0/Component-Library"
             target="_blank"

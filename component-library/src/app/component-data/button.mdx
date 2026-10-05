@@ -2,12 +2,12 @@
 id: 3
 slug: button
 title: Buttons
-description: A set of neumorphic buttons with three distinct style variants and optional icon support.
+description: A set of buttons with three distinct style variants and optional icon support.
 ---
 
 ## Overview
 
-The Buttons component renders a group of buttons inside a raised neumorphic container. Each button can be styled as flat, raised, or inset, and supports optional navigation and SVG icons.
+The Buttons component renders a group of buttons inside a raised container. Each button can be styled as flat, raised, or inset, and supports optional navigation and SVG icons.
 
 ### Usage
 
@@ -16,10 +16,10 @@ import { Buttons } from "looply-comp-lib";
 
 <Buttons
   buttonObj={[
-    { buttonText: "Flat", buttonType: "neu-flat" },
-    { buttonText: "Raised", buttonType: "neu-raised" },
-    { buttonText: "Pressed", buttonType: "neu-inset" },
-    { buttonText: "Like", buttonType: "neu-flat", icon: "M234,80.12..." },
+    { buttonText: "Flat", buttonType: "sketch-flat" },
+    { buttonText: "Raised", buttonType: "sketch-raised" },
+    { buttonText: "Pressed", buttonType: "sketch-inset" },
+    { buttonText: "Like", buttonType: "sketch-flat", icon: "M234,80.12..." },
   ]}
 />
 ```
@@ -35,7 +35,7 @@ import { Buttons } from "looply-comp-lib";
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `buttonText` | `string` | | Button label |
-| `buttonType` | `"neu-flat"`, `"neu-raised"`, `"neu-inset"` | `"neu-flat"` | Visual style variant |
+| `buttonType` | `"sketch-flat"`, `"sketch-raised"`, `"sketch-inset"` | `"sketch-flat"` | Visual style variant |
 | `buttonX` | `number` | `20` | Horizontal padding in px |
 | `buttonY` | `number` | `8` | Vertical padding in px |
 | `href` | `string` | | Optional URL to navigate to on click |
@@ -53,9 +53,9 @@ Pass an SVG path string via the `icon` prop to render an inline icon next to the
 
 ### Styling
 
-- Container wrapped in `neu-raised p-8`
+- Container wrapped in `sketch-raised p-8`
 - All buttons have `rounded-lg` corners and `200ms` transitions
-- Hover states swap between `neu-inset` and `neu-flat`
+- Hover states swap between `sketch-inset` and `sketch-flat`
 - Styles are applied via a `styleMap` lookup, no duplicated markup
 
 ### Demo
