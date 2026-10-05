@@ -1,9 +1,10 @@
 # Looply
 
-A neumorphic React component library built with Tailwind CSS.
+A monochrome, sketch-inspired React component library built with Tailwind CSS.
 
-**Live Site:** [loopl-y.com](https://loopl-y.com)  
+**Live Site:** [loopl-y.com](https://loopl-y.com)
 **Docs & Examples:** [loopl-y.com/examples](https://loopl-y.com/examples)
+**GitHub Repo:** [Akin-Genc0/Component-Library](https://github.com/Akin-Genc0/Component-Library)
 
 ## Installation
 
@@ -41,10 +42,10 @@ import "looply-comp-lib/styles.css";
 function App() {
   return (
     <div>
-      <Card cards={[{ cardStyle: "neu-pressed", headerText: "Hello", subHeaderText: "World", descriptionText: "A neumorphic card", buttons: [{ label: "Click" }] }]} />
-      <Toggle styleType="neu-flat" size="md" />
-      <Table tables={[{ label: "Users", styleType: "neu-pressed", header: ["Name", "Role"], rows: [{ Name: "Alice", Role: "Engineer" }] }]} />
-      <TextArea lable="Notes" helperText="Type here..." resize="on" styleType="neu-flat" />
+      <Card cards={[{ cardStyle: "sketch-pressed", headerText: "Hello", subHeaderText: "World", descriptionText: "A flexible content card", buttons: [{ label: "Click" }] }]} />
+      <Toggle styleType="sketch-flat" size="md" />
+      <Table tables={[{ label: "Users", styleType: "sketch-pressed", header: ["Name", "Role"], rows: [{ Name: "Alice", Role: "Engineer" }] }]} />
+      <TextArea lable="Notes" helperText="Type here..." resize="on" styleType="sketch-flat" />
     </div>
   );
 }
@@ -59,7 +60,7 @@ function App() {
 | `Buttons`    | Buttons with icon support and multiple styles  |
 | `Calendar`   | Interactive date picker                        |
 | `CalloutCard`| Promotional/CTA cards with image support       |
-| `Card`       | Flexible cards with neumorphic styles          |
+| `Card`       | Flexible cards with multiple surface styles    |
 | `Carousel`   | Image/text carousel slider                     |
 | `Chat`       | AI chat interface component                    |
 | `Drawer`     | Slide-out drawing canvas                       |
