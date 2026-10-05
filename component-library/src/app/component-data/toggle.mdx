@@ -2,23 +2,23 @@
 id: 11
 slug: toggle
 title: Toggle
-description: A neumorphic toggle switch with three style variants and three size options.
+description: A toggle switch with three style variants and three size options.
 ---
 
 ## Overview
 
-The Toggle component is a simple on/off switch that tracks its own boolean state and notifies the parent via an optional `onChange` callback. It supports three neumorphic styles and three sizes.
+The Toggle component is a simple on/off switch that tracks its own boolean state and notifies the parent via an optional `onChange` callback. It supports three surface styles and three sizes.
 
 ### Usage
 
 ```jsx
 import { Toggle } from "looply-comp-lib";
 
-<Toggle styleType="neu-pressed" size="md" />
+<Toggle styleType="sketch-pressed" size="md" />
 
 <Toggle
   lable="Dark Mode"
-  styleType="neu-inset"
+  styleType="sketch-inset"
   size="lg"
   onChange={(checked) => console.log(checked)}
 />
@@ -29,7 +29,7 @@ import { Toggle } from "looply-comp-lib";
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `lable` | `string` | | Optional label displayed above the toggle |
-| `styleType` | `"neu-flat"` \| `"neu-inset"` \| `"neu-pressed"` | | Visual style variant for the track |
+| `styleType` | `"sketch-flat"` \| `"sketch-inset"` \| `"sketch-pressed"` | | Visual style variant for the track |
 | `size` | `"sm"` \| `"md"` \| `"lg"` | | Size of the toggle |
 | `onChange` | `(checked: boolean) => void` | | Optional callback fired with the new value when toggled |
 

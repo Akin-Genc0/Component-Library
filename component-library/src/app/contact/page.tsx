@@ -63,7 +63,7 @@ export default async function Examples() {
         <ThemeToggle />
       </NewNav>
       <div className="max-w-5xl mx-auto px-6 py-12">
-        <div className="neu-flat p-10 mb-10">
+        <div className="sketch-flat p-10 mb-10">
           <h1 className="text-3xl font-bold mb-2 dark:text-white">Examples</h1>
           <p className="text-gray-500 dark:text-gray-400 text-lg">
             Live interactive examples of every Looply component.
@@ -116,9 +116,9 @@ export default async function Examples() {
 
           <Buttons
             buttonObj={[
-              { buttonText: "Primary", buttonType: "neu-flat" },
-              { buttonText: "Secondary", buttonType: "neu-raised" },
-              { buttonText: "Tertiary", buttonType: "neu-inset" },
+              { buttonText: "Primary", buttonType: "sketch-flat" },
+              { buttonText: "Secondary", buttonType: "sketch-raised" },
+              { buttonText: "Tertiary", buttonType: "sketch-inset" },
             ]}
           />
 
@@ -127,7 +127,7 @@ export default async function Examples() {
               {
                 image:
                   "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80",
-                text: "Neumorphic design in action.",
+                text: "Component design in action.",
               },
               {
                 image:

@@ -16,7 +16,7 @@ export default function CardText({
   return (
     <>
       <div data-looply>
-        <div className="lg:w-[22rem] h-[400px] neu-inset px-10 py-8 flex flex-col gap-6 font-inter sm:w-full md:w-[20rem] h-full">
+        <div className="lg:w-[22rem] h-[400px] sketch-inset px-10 py-8 flex flex-col gap-6 font-inter sm:w-full md:w-[20rem] h-full">
           <section>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">
               {header}
@@ -31,10 +31,10 @@ export default function CardText({
             </p>
           </section>
           <section className="flex flex-row gap-3 mt-auto">
-            <button className="neu-btn px-5 py-2 font-medium text-sm text-gray-900 dark:text-gray-100">
+            <button className="sketch-btn px-5 py-2 font-medium text-sm text-gray-900 dark:text-gray-100">
               {buttonText1}
             </button>
-            <button className="neu-btn px-5 py-2 font-medium text-sm text-gray-500 dark:text-gray-400">
+            <button className="sketch-btn px-5 py-2 font-medium text-sm text-gray-500 dark:text-gray-400">
               {buttonText2}
             </button>
           </section>

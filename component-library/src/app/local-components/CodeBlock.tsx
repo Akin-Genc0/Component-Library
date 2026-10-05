@@ -17,7 +17,7 @@ export default function CodeBlock({ code, label = "SHELL" }: CodeBlockProps) {
   }
 
   return (
-    <div className="neu-pressed-code rounded-2xl overflow-hidden mb-4">
+    <div className="sketch-code rounded-2xl overflow-hidden mb-4">
       <div className="flex items-center justify-between px-5 py-3 border-b border-gray-300 dark:border-gray-600">
         <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">
           {label}

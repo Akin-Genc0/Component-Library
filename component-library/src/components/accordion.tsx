@@ -24,14 +24,14 @@ export default function Accordion({ items }: AccordionProps) {
       return (
         <div
           key={index}
-          className="neu-flat p-5 cursor-pointer"
+          className="sketch-flat p-5 cursor-pointer"
           onClick={() => handleToggle(index)}
         >
           <div className="flex items-center justify-between">
             <h2 className="text-base text-gray-700 dark:text-gray-100">
               {val.title}
             </h2>
-            <div className="neu-inset w-8 h-8 flex items-center justify-center flex-shrink-0 !rounded-full">
+            <div className="sketch-inset w-8 h-8 flex items-center justify-center flex-shrink-0 !rounded-full">
               <svg
                 className={`w-4 h-4 transition-transform duration-200 text-gray-500 dark:text-gray-300 ${
                   hide[index] ? "rotate-45" : ""
@@ -54,7 +54,7 @@ export default function Accordion({ items }: AccordionProps) {
               hide[index] ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
             }`}
           >
-            <div className="neu-inset p-4">
+            <div className="sketch-inset p-4">
               <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
                 {val.text}
               </p>

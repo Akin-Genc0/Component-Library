@@ -2,7 +2,7 @@
 
 type buttonItems = {
   buttonText: string;
-  buttonType?: "neu-flat" | "neu-raised" | "neu-inset";
+  buttonType?: "sketch-flat" | "sketch-raised" | "sketch-inset";
   buttonX?: number;
   buttonY?: number;
   href?: string;
@@ -14,17 +14,17 @@ type buttonProps = {
 };
 
 const styleMap = {
-  "neu-flat": "neu-btn-flat",
-  "neu-raised": "neu-btn-raised",
-  "neu-inset": "neu-btn-inset",
+  "sketch-flat": "sketch-btn-flat",
+  "sketch-raised": "sketch-btn-raised",
+  "sketch-inset": "sketch-btn-inset",
 };
 
 export default function Buttons({ buttonObj }: buttonProps) {
   return (
     <>
-      <div className="neu-raised p-8 flex flex-row flex-wrap gap-5 sm:h-auto h-auto lg:h-[6rem]">
+      <div className="sketch-raised p-8 flex flex-row flex-wrap gap-5 sm:h-auto h-auto lg:h-[6rem]">
         {buttonObj.map((element, index) => {
-          const style = styleMap[element.buttonType ?? "neu-flat"];
+          const style = styleMap[element.buttonType ?? "sketch-flat"];
           return (
             <div key={index}>
               <button

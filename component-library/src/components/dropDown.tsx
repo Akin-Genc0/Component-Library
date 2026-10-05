@@ -8,7 +8,7 @@ type dropdownContent = {
 };
 
 type dropDownMenu = {
-  dropDownType: "neu-flat" | "neu-inset" | "neu-raised";
+  dropDownType: "sketch-flat" | "sketch-inset" | "sketch-raised";
   dropDownMenuLabel: string;
   dropDownItem: dropdownContent[];
   DropdownMenuSeparator?: any;
@@ -19,9 +19,9 @@ type dropDownCollection = {
 };
 
 const styleMap = {
-  "neu-flat": { base: "neu-flat", hover: "hover:neu-inset" },
-  "neu-raised": { base: "neu-raised", hover: "hover:neu-inset" },
-  "neu-inset": { base: "neu-inset", hover: "hover:neu-flat" },
+  "sketch-flat": { base: "sketch-flat", hover: "hover:sketch-inset" },
+  "sketch-raised": { base: "sketch-raised", hover: "hover:sketch-inset" },
+  "sketch-inset": { base: "sketch-inset", hover: "hover:sketch-flat" },
 };
 
 export default function DropDown({ dropDowns }: dropDownCollection) {
@@ -44,7 +44,7 @@ export default function DropDown({ dropDowns }: dropDownCollection) {
                 className={`${style.base} !rounded-lg cursor-pointer ${style.hover} transition-all duration-200 px-5 py-2 font-medium text-sm flex items-center gap-2`}
               >
                 {element.dropDownMenuLabel}
-                <div className="neu-inset w-6 h-6 flex items-center justify-center flex-shrink-0 !rounded-full">
+                <div className="sketch-inset w-6 h-6 flex items-center justify-center flex-shrink-0 !rounded-full">
                   <svg
                     className={`w-3 h-3 transition-transform duration-200 text-gray-500 dark:text-gray-300 ${isOpen ? "rotate-180" : ""}`}
                     fill="none"

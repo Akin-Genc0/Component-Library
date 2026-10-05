@@ -16,14 +16,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Looply - Neumorphic Component Library",
+    default: "Looply - React Component Library",
     template: "%s | Looply",
   },
   description:
-    "A free, open-source neumorphic UI component library for React. Soft, tactile components built with Tailwind CSS for modern web apps.",
+    "A free, open-source React UI component library with clean, flexible components built with Tailwind CSS for modern web apps.",
   keywords: [
-    "neumorphic",
-    "neumorphism",
     "component library",
     "react components",
     "tailwind css",
@@ -35,7 +33,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Akin Genc" }],
   openGraph: {
-    title: "Looply - Neumorphic Component Library",
+    title: "Looply - React Component Library",
     description:
       "Soft, tactile UI components for React. Free, flexible, and open source.",
     siteName: "Looply",
@@ -43,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Looply - Neumorphic Component Library",
+    title: "Looply - React Component Library",
     description:
       "Soft, tactile UI components for React. Free, flexible, and open source.",
   },

@@ -77,7 +77,7 @@ export default async function Login() {
       <div className="relative">
         <Link
           href="/"
-          className="neu-btn absolute left-6 top-6 z-10 flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium"
+          className="sketch-btn absolute left-6 top-6 z-10 flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium"
         >
           <span aria-hidden="true">←</span>
           Back to Home
