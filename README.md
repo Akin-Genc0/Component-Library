@@ -14,6 +14,10 @@ Looply is a React component library and documentation site built with Next.js, T
 **Component docs:** [loopl-y.com/docs](https://loopl-y.com/docs)
 **Install guide:** [loopl-y.com/examples](https://loopl-y.com/examples)
 
+<img width="1512" height="863" alt="Screenshot 2026-08-05 at 14 37 26" src="https://github.com/user-attachments/assets/48ed3e0d-9e26-4cb9-9d55-8b636cac7703" />
+
+
+
 ## Components
 
 - `Accordion` - Expandable content sections
