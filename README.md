@@ -2,6 +2,12 @@
 
 Looply is a React component library and documentation site built with Next.js, TypeScript, and Tailwind CSS. It uses a monochrome, sketch-inspired visual system with clean surfaces, simple line work, and reusable `sketch-*` style variants.
 
+[![npm version](https://img.shields.io/npm/v/looply-comp-lib?logo=npm&label=npm)](https://www.npmjs.com/package/looply-comp-lib)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![Terraform](https://img.shields.io/badge/Terraform-managed-7B42BC?logo=terraform)](component-library/infra)
+![License](https://img.shields.io/badge/license-MIT-22C55E)
+[![CI](https://github.com/Akin-Genc0/Component-Library/actions/workflows/linter.yml/badge.svg)](https://github.com/Akin-Genc0/Component-Library/actions/workflows/linter.yml)
+
 ![Looply documentation interface](component-library/public/newScreen.png)
 
 **Live site:** [loopl-y.com](https://loopl-y.com)
