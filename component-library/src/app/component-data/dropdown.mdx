@@ -2,12 +2,12 @@
 id: 9
 slug: dropdown
 title: DropDown
-description: A neumorphic dropdown menu with three style variants, smooth animations, and fragmented item layout.
+description: A dropdown menu with three style variants, smooth animations, and fragmented item layout.
 ---
 
 ## Overview
 
-The DropDown component renders one or more dropdown menus with neumorphic styling. Each menu item appears as its own separate neumorphic block (fragmented layout), and the list animates in smoothly on open.
+The DropDown component renders one or more dropdown menus with clean surface styling. Each menu item appears as its own separate block (fragmented layout), and the list animates in smoothly on open.
 
 ### Usage
 
@@ -17,7 +17,7 @@ import { DropDown } from "looply-comp-lib";
 <DropDown
   dropDowns={[
     {
-      dropDownType: "neu-flat",
+      dropDownType: "sketch-flat",
       dropDownMenuLabel: "Menu",
       dropDownItem: [
         { dropDownLable: "Profile", dropDownURL: "/userinfo" },
@@ -40,7 +40,7 @@ import { DropDown } from "looply-comp-lib";
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `dropDownType` | `"neu-flat" \| "neu-raised" \| "neu-inset"` | Visual style variant |
+| `dropDownType` | `"sketch-flat" \| "sketch-raised" \| "sketch-inset"` | Visual style variant |
 | `dropDownMenuLabel` | `string` | Label shown on the trigger button |
 | `dropDownItem` | `dropdownContent[]` | Array of menu items |
 
@@ -59,7 +59,7 @@ import { DropDown } from "looply-comp-lib";
 
 ### Features
 
-- Fragmented item layout, each dropdown item is its own neumorphic block
+- Fragmented item layout, each dropdown item is its own separate block
 - Smooth `fadeSlideIn` animation on open
 - Chevron icon rotates when open/closed
 - Only one dropdown open at a time (opening one closes the others)

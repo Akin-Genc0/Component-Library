@@ -2,7 +2,7 @@
 
 type TableProps = {
   label?: string;
-  styleType: "neu-flat" | "neu-inset" | "neu-pressed";
+  styleType: "sketch-flat" | "sketch-inset" | "sketch-pressed";
   header: string[];
   rows: Record<string, string>[];
 };

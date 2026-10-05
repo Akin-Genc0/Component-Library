@@ -55,7 +55,7 @@ export default async function UserInfoPage() {
       </NewNav>
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
         {session?.user ? (
-          <div className="neu-inset p-10 flex flex-col items-center gap-4">
+          <div className="sketch-inset p-10 flex flex-col items-center gap-4">
             <img
               src={session.user.image || "/nouser1.png"}
               alt="User Avatar"
@@ -70,7 +70,7 @@ export default async function UserInfoPage() {
             </p>
           </div>
         ) : (
-          <div className="neu-inset p-10">
+          <div className="sketch-inset p-10">
             <p className="text-gray-600 dark:text-gray-300">
               No user info found.
             </p>

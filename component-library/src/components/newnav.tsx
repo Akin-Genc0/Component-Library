@@ -13,6 +13,7 @@ export type NavItem = {
   iconPath?: string;
   imageSrc?: string;
   viewBox?: string;
+  section?: string;
 };
 
 export type NavProps = {
@@ -70,8 +71,8 @@ export default function NewNav({
           <button
             className={
               isMobile
-                ? "neu-inset !rounded-lg cursor-pointer py-2.5 px-6 text-sm transition-all duration-200 dark:text-gray-100"
-                : "hidden md:flex neu-inset !rounded-lg cursor-pointer py-2.5 px-6 text-sm transition-all duration-200 dark:text-gray-100"
+                ? "sketch-inset !rounded-lg cursor-pointer py-2.5 px-6 text-sm transition-all duration-200 dark:text-gray-100"
+                : "hidden md:flex sketch-inset !rounded-lg cursor-pointer py-2.5 px-6 text-sm transition-all duration-200 dark:text-gray-100"
             }
             onClick={() => {
               router.push(element.href);
@@ -110,7 +111,7 @@ export default function NewNav({
   if (variant === "sidebar") {
     return (
       <aside
-        className={`neu-pressed no-hover relative z-40 flex h-auto w-full shrink-0 self-stretch flex-col p-5 !rounded-[20px] transition-[width] duration-300 md:sticky md:top-5 md:h-[calc(100dvh-2.5rem)] md:self-start ${
+        className={`sketch-pressed no-hover relative z-40 flex h-auto w-full shrink-0 self-stretch flex-col p-4 !rounded-none transition-[width] duration-300 md:sticky md:top-0 md:h-dvh md:self-start md:overflow-hidden md:border-y-0 md:border-l-0 ${
           sidebarCollapsed ? "md:w-20" : "md:w-72"
         }`}
       >
@@ -135,14 +136,12 @@ export default function NewNav({
           </Link>
           <button
             type="button"
-            className="neu-btn hidden h-8 w-8 shrink-0 items-center justify-center rounded-full md:flex"
+            className="sidebar-collapse-button hidden h-8 w-8 shrink-0 items-center justify-center text-[var(--foreground)] md:flex"
             onClick={() => setSidebarCollapsed((collapsed) => !collapsed)}
-            aria-label={
-              sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
-            }
+            aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             <svg
-              className={`h-4 w-4 transition-transform ${sidebarCollapsed ? "rotate-180" : ""}`}
+              className={`h-5 w-5 transition-transform ${sidebarCollapsed ? "rotate-180" : ""}`}
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -156,7 +155,7 @@ export default function NewNav({
 
         <button
           type="button"
-          className="neu-btn mt-3 flex h-10 items-center justify-center rounded-xl md:hidden"
+          className="sketch-btn mt-3 flex h-10 items-center justify-center rounded-xl md:hidden"
           onClick={() => setMobile((open) => !open)}
           aria-expanded={mobile}
           aria-label="Toggle sidebar menu"
@@ -174,14 +173,15 @@ export default function NewNav({
         </button>
 
         <nav
-          className={`${mobile ? "flex" : "hidden"} mt-10 flex-col gap-4 md:flex`}
+          className={`${mobile ? "flex" : "hidden"} sidebar-scrollbar mt-6 flex-col gap-0.5 md:min-h-0 md:flex-1 md:overflow-y-auto md:pr-1 md:pb-4 md:flex`}
         >
-          {navObj.map((item) => {
+          {navObj.map((item, index) => {
             const active = pathname === item.href;
-            const itemClass = `flex w-full items-center gap-3 rounded-xl px-4 py-3.5 text-sm transition-all duration-200 ${
+            const showSection = item.section && item.section !== navObj[index - 1]?.section;
+            const itemClass = `flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-200 ${
               active
-                ? "neu-pressed no-hover font-semibold text-gray-900 dark:text-white"
-                : "text-gray-500 hover:neu-flat hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-100"
+                ? "border border-[var(--border-strong)] bg-[var(--accent-subtle)] font-semibold text-[var(--accent)]"
+                : "text-gray-500 hover:bg-gray-50 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-100"
             } ${sidebarCollapsed ? "justify-center" : ""}`;
             const icon = item.imageSrc ? (
               <Image
@@ -210,9 +210,8 @@ export default function NewNav({
               </span>
             );
 
-            return item.type === "button" ? (
+            const itemContent = item.type === "button" ? (
               <button
-                key={`${item.label}-${item.href}`}
                 type="button"
                 className={`${itemClass} w-full text-left`}
                 onClick={() => {
@@ -228,7 +227,6 @@ export default function NewNav({
               </button>
             ) : (
               <Link
-                key={`${item.label}-${item.href}`}
                 href={item.href}
                 className={itemClass}
                 onClick={() => setMobile(false)}
@@ -241,6 +239,17 @@ export default function NewNav({
                 )}
               </Link>
             );
+
+            return (
+              <div key={`${item.label}-${item.href}`}>
+                {showSection && !sidebarCollapsed && (
+                  <p className="mb-1.5 mt-5 border-b border-[var(--border)] px-3 pb-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--muted)] first:mt-0">
+                    {item.section}
+                  </p>
+                )}
+                {itemContent}
+              </div>
+            );
           })}
         </nav>
 
@@ -249,7 +258,7 @@ export default function NewNav({
             href="https://www.npmjs.com/package/looply-comp-lib"
             target="_blank"
             rel="noreferrer"
-            className="neu-inset no-hover mt-8 flex items-center gap-3 rounded-xl p-4 text-gray-700 dark:text-gray-200"
+            className="sketch-inset no-hover mt-4 shrink-0 flex items-center gap-3 rounded-xl p-4 text-gray-700 dark:text-gray-200"
           >
             <svg
               className="h-7 w-7 shrink-0"
@@ -282,10 +291,10 @@ export default function NewNav({
   return (
     <>
       <div data-site-top-nav className="flex items-center w-full relative">
-        <nav className="neu-pressed flex justify-between items-center w-full px-3 py-3 md:px-6 md:py-4">
+        <nav className="sketch-pressed flex justify-between items-center w-full px-3 py-3 md:px-6 md:py-4">
           {hamburger && (
             <button
-              className="block md:hidden neu-btn p-2"
+              className="block md:hidden sketch-btn p-2"
               onClick={() => setMobile(!mobile)}
               aria-label="Toggle menu"
             >
@@ -309,7 +318,7 @@ export default function NewNav({
               href="https://www.npmjs.com/package/looply-comp-lib"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex neu-inset !rounded-xl items-center gap-2.5 px-3.5 py-2.5 text-xs font-semibold text-gray-600 dark:text-gray-200 hover:neu-flat transition-all duration-200 cursor-pointer no-underline"
+              className="hidden md:flex sketch-inset !rounded-xl items-center gap-2.5 px-3.5 py-2.5 text-xs font-semibold text-gray-600 dark:text-gray-200 hover:sketch-flat transition-all duration-200 cursor-pointer no-underline"
               title="npm downloads last month"
             >
               <svg
@@ -336,7 +345,7 @@ export default function NewNav({
         </nav>
 
         {hamburger && mobile && (
-          <div className="md:hidden absolute top-full left-0 w-full neu-raised z-50 mt-2">
+          <div className="md:hidden absolute top-full left-0 w-full sketch-raised z-50 mt-2">
             <ul className="flex flex-col list-none p-4 gap-4">
               {renderNav(navObj, true)}
             </ul>

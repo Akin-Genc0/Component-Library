@@ -57,7 +57,7 @@ export default async function GettingStarted() {
       </NewNav>
 
       <div className="max-w-4xl mx-auto px-6 py-12">
-        <div className="neu-inset p-10 mb-10">
+        <div className="sketch-inset p-10 mb-10">
           <h1 className="text-3xl font-bold mb-2 dark:text-white">
             Getting Started
           </h1>
@@ -82,7 +82,7 @@ export default async function GettingStarted() {
           <h2 className="text-2xl font-bold mb-4 dark:text-white">Setup</h2>
           <p className="text-gray-600 dark:text-gray-300 mb-4">
             1. Import the Looply stylesheet in your root layout (e.g.{" "}
-            <code className="neu-pressed-code px-2 py-0.5 rounded-md text-sm">
+            <code className="sketch-code px-2 py-0.5 rounded-md text-sm">
               app/layout.tsx
             </code>
             ):
@@ -93,7 +93,7 @@ export default async function GettingStarted() {
           />
           <p className="text-gray-600 dark:text-gray-300 mb-4 mt-6">
             2. Add the Tailwind source in your{" "}
-            <code className="neu-pressed-code px-2 py-0.5 rounded-md text-sm">
+            <code className="sketch-code px-2 py-0.5 rounded-md text-sm">
               globals.css
             </code>{" "}
             so Tailwind generates the utility classes used by the components:
@@ -125,7 +125,7 @@ export default function MyPage() {
     <div>
       <Card
         cards={[{
-          cardStyle: "neu-pressed",
+          cardStyle: "sketch-pressed",
           headerText: "Hello",
           subHeaderText: "World",
           descriptionText: "My first Looply card.",
@@ -135,8 +135,8 @@ export default function MyPage() {
 
       <Buttons
         buttonObj={[
-          { buttonText: "Flat", buttonType: "neu-flat" },
-          { buttonText: "Raised", buttonType: "neu-raised" },
+          { buttonText: "Flat", buttonType: "sketch-flat" },
+          { buttonText: "Raised", buttonType: "sketch-raised" },
         ]}
       />
 
@@ -177,7 +177,7 @@ export default function MyPage() {
               {
                 name: "BarChart",
                 slug: "barchart",
-                desc: "Neumorphic bar charts",
+                desc: "Responsive bar charts",
               },
               {
                 name: "Calendar",
@@ -209,7 +209,7 @@ export default function MyPage() {
               {
                 name: "Table",
                 slug: "table",
-                desc: "Data tables with neumorphic styling",
+                desc: "Data tables with clean styling",
               },
               {
                 name: "TextArea",
@@ -220,7 +220,7 @@ export default function MyPage() {
               <a
                 key={comp.slug}
                 href={`/${comp.slug}`}
-                className="neu-btn p-4 block transition-all duration-200 hover:scale-[1.02]"
+                className="sketch-pressed block p-6 transition-all duration-200 hover:scale-[1.02]"
               >
                 <h3 className="font-semibold dark:text-white">{comp.name}</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -257,7 +257,7 @@ export default function MyPage() {
           <p className="text-gray-600 dark:text-gray-300 mb-4">
             If you&apos;re using the Chat component with your own API, store
             your keys in{" "}
-            <code className="neu-pressed-code px-2 py-0.5 rounded-md text-sm">
+            <code className="sketch-code px-2 py-0.5 rounded-md text-sm">
               .env.local
             </code>
             :
@@ -271,7 +271,7 @@ HF_TOKEN=hf_your-huggingface-token`}
           />
           <p className="text-gray-600 dark:text-gray-300">
             Then reference them in your API route with{" "}
-            <code className="neu-pressed-code px-2 py-0.5 rounded-md text-sm">
+            <code className="sketch-code px-2 py-0.5 rounded-md text-sm">
               process.env.OPENAI_API_KEY
             </code>
             . Never expose secret keys to the client.

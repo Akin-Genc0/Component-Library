@@ -22,7 +22,9 @@ function getDocPages() {
 
 export default async function Docs() {
   const session = await auth();
-  const docs = getDocPages();
+  const docs = getDocPages().filter(
+    (doc) => Boolean(doc.title?.trim()) && Boolean(doc.description?.trim()),
+  );
 
   return (
     <>
@@ -74,7 +76,7 @@ export default async function Docs() {
         <ThemeToggle />
       </NewNav>
       <div className="mx-auto max-w-4xl px-6 py-12">
-        <div className="neu-inset no-hover mb-8 p-10">
+        <div className="sketch-inset no-hover mb-4 p-10">
           <h1 className="mb-3 text-3xl font-bold">Component Docs</h1>
           <p className="text-lg text-gray-500 dark:text-gray-400">
             Browse the full list of Looply components. Each page includes usage
@@ -84,7 +86,7 @@ export default async function Docs() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {docs.map((doc) => (
             <Link key={doc.slug} href={`/${doc.slug}`}>
-              <div className="neu-pressed p-6 transition-all duration-200">
+              <div className="sketch-pressed p-6 transition-all duration-200">
                 <h2 className="mb-1 text-lg font-bold dark:text-white">
                   {doc.title}
                 </h2>

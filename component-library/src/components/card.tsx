@@ -1,7 +1,7 @@
 "use client";
 
 type CardDesign = {
-  cardStyle: "neu-soft-edge" | "neu-pressed" | "neu-floating";
+  cardStyle: "sketch-flat" | "sketch-pressed" | "sketch-raised";
   headerText: string;
   subHeaderText: string;
   descriptionText: string;
@@ -14,9 +14,9 @@ type CardCollection = {
 };
 
 const styleMap = {
-  "neu-soft-edge": "neu-flat",
-  "neu-pressed": "neu-inset",
-  "neu-floating": "neu-raised",
+  "sketch-flat": "sketch-flat",
+  "sketch-pressed": "sketch-inset",
+  "sketch-raised": "sketch-raised",
 };
 
 export default function Card({ cards }: CardCollection) {
@@ -56,7 +56,7 @@ export default function Card({ cards }: CardCollection) {
               {card.buttons?.map((btn, i) => (
                 <button
                   key={i}
-                  className="neu-btn px-5 py-2 font-medium text-sm text-gray-900 dark:text-gray-100"
+                  className="sketch-btn px-5 py-2 font-medium text-sm text-gray-900 dark:text-gray-100"
                   onClick={() => btn.href && (window.location.href = btn.href)}
                 >
                   {btn.label}
