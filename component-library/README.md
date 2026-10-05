@@ -2,6 +2,12 @@
 
 A monochrome, sketch-inspired React component library built with Tailwind CSS.
 
+[![npm version](https://img.shields.io/npm/v/looply-comp-lib?logo=npm&label=npm)](https://www.npmjs.com/package/looply-comp-lib)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![Terraform](https://img.shields.io/badge/Terraform-managed-7B42BC?logo=terraform)](https://github.com/Akin-Genc0/Component-Library/tree/prod/component-library/infra)
+![License](https://img.shields.io/badge/license-MIT-22C55E)
+[![CI](https://github.com/Akin-Genc0/Component-Library/actions/workflows/linter.yml/badge.svg)](https://github.com/Akin-Genc0/Component-Library/actions/workflows/linter.yml)
+
 **Live Site:** [loopl-y.com](https://loopl-y.com)
 **Docs & Examples:** [loopl-y.com/examples](https://loopl-y.com/examples)
 **GitHub Repo:** [Akin-Genc0/Component-Library](https://github.com/Akin-Genc0/Component-Library)
