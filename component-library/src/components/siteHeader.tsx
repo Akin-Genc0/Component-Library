@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/themeSwitch";
@@ -15,6 +17,7 @@ const pageLabels: Record<string, string> = {
 
 export default function SiteHeader() {
   const pathname = usePathname();
+  const { data: session } = useSession();
   const label = pageLabels[pathname] ?? "Component details";
   const [starCount, setStarCount] = useState("...");
 
@@ -70,9 +73,31 @@ export default function SiteHeader() {
         <div className="p-1 text-[var(--muted)]">
           <ThemeToggle />
         </div>
-        <Link href="/login" className="sketch-btn top-nav-action hidden px-3 py-2 text-sm font-semibold sm:inline-flex">
-          Sign in
-        </Link>
+        {session?.user ? (
+          <Link
+            href="/userinfo"
+            className="hidden h-10 w-10 overflow-hidden rounded-full border border-[var(--border-strong)] bg-[var(--surface-subtle)] sm:inline-flex"
+            aria-label="Open user profile"
+          >
+            {session.user.image ? (
+              <Image
+                src={session.user.image}
+                alt=""
+                width={40}
+                height={40}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <span className="flex h-full w-full items-center justify-center text-sm font-semibold">
+                {session.user.name?.slice(0, 1).toUpperCase() ?? "U"}
+              </span>
+            )}
+          </Link>
+        ) : (
+          <Link href="/login" className="sketch-btn top-nav-action hidden px-3 py-2 text-sm font-semibold sm:inline-flex">
+            Sign in
+          </Link>
+        )}
         <Link href="/docs" className="sketch-btn-raised top-nav-action px-3 py-2 text-sm font-semibold">
           Browse docs
         </Link>
