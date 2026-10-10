@@ -9,7 +9,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     providers: [
     GitHub({
       clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!
+      clientSecret: process.env.GITHUB_SECRET!,
+      issuer: "https://github.com",
     }),
     GoogleProvider({
     clientId: process.env.GOOGLE_CLIENT_ID,
@@ -24,5 +25,3 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   })
   ]
 });
-
- 
