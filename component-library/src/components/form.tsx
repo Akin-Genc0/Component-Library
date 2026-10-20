@@ -1,5 +1,5 @@
 "use client";
-import { loginGithub, loginGoogle, logout } from "@/lib/actions/login";
+import { loginGoogle, logout } from "@/lib/actions/login";
 import { Session } from "next-auth";
 
 interface FormProps {
@@ -31,6 +31,7 @@ export default function Form({ session }: FormProps) {
         <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-100 text-center">
           You are signed out
         </h1>
+        {/* GitHub sign-in is temporarily hidden.
         <button
           className="sketch-inset !rounded-lg px-8 py-2 cursor-pointer font-bold text-sm flex items-center gap-3 justify-center dark:text-gray-100"
           onClick={() => loginGithub()}
@@ -48,7 +49,7 @@ export default function Form({ session }: FormProps) {
             />
           </svg>
           Sign in with GitHub
-        </button>
+        </button> */}
 
         <button
           className="sketch-inset !rounded-lg px-8 py-2 cursor-pointer font-bold text-sm dark:text-gray-100 flex items-center gap-3 justify-center"
